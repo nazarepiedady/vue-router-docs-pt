@@ -1,16 +1,16 @@
 <template>
   <div class="sponsors_outer">
     <div>
-      <HomeSponsorsGroup v-if="sponsors.platinum.length" name="Platinum" size="96" />
+      <HomeSponsorsGroup v-if="sponsors.platinum.length" name="Platina" size="96" />
 
-      <HomeSponsorsGroup v-if="sponsors.gold.length" name="Gold" size="48" />
+      <HomeSponsorsGroup v-if="sponsors.gold.length" name="Ouro" size="48" />
 
-      <HomeSponsorsGroup v-if="sponsors.silver.length" name="Silver" size="24" />
+      <HomeSponsorsGroup v-if="sponsors.silver.length" name="Prata" size="24" />
 
       <a
         class="become-sponsor button white"
         href="https://github.com/sponsors/posva"
-      >{{ translations[site.lang] || translations.en }}</a>
+      >{{ translations[site.lang] || translations.pt }}</a>
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@ const { site } = useData()
 const translations = {
   'en-US': 'Become a Sponsor!',
   'zh-CN': '成为赞助者！',
+  'pt-PT': 'Torna-te um Patrocinador!'
 }
 </script>
 
