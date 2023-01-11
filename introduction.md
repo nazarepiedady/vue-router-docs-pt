@@ -1,24 +1,24 @@
-# Introduction
+# Introdução
 
 <VueSchoolLink
   href="https://vueschool.io/courses/vue-router-4-for-everyone"
-  title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School"
->Watch a Free Vue Router Video Course</VueSchoolLink>
+  title="Aprenda a como construir Aplicações de Página Única poderosas com a Vue Router na Vue School"
+>Assista um Curso em Vídeo de Vue Router</VueSchoolLink>
 
-Vue Router is the official router for [Vue.js](https://vuejs.org). It deeply integrates with Vue.js core to make building Single Page Applications with Vue.js a breeze. Features include:
+O Vue Router é o roteador oficial para a [Vue.js](https://vuejs.org). Ele se integra profundamente com o núcleo da Vue.js para facilitar a construção de Aplicações de Página Única com a Vue.js. As funcionalidades incluem:
 
-- Nested routes mapping
-- Dynamic Routing
-- Modular, component-based router configuration
-- Route params, query, wildcards
-- View transition effects powered by Vue.js' transition system
-- Fine-grained navigation control
-- Links with automatic active CSS classes
-- HTML5 history mode or hash mode
-- Customizable Scroll Behavior
-- Proper encoding for URLs
+- Mapeamento de Rotas Encaixadas
+- Roteamento Dinâmico
+- Configuração Modular do Roteador Baseado em Componente
+- Parâmetros de Rota, Consulta e Opções de Rota (Wildcards)
+- Efeitos de Transição do Panorama Alimentado pelo Sistema de Transição da Vue.js
+- Controlo de Navegação Finamente Granulado
+- Ligações com Classes de CSS Ativa Automática
+- Modo de História da HTML5 ou Modo de Hash
+- Comportamento de Deslocamento Personalizado
+- Codificação Apropriada para URLs
 
-[Get started](./guide/) or play with the [playground](https://github.com/vuejs/router/tree/main/packages/playground) (see [`README.md`](https://github.com/vuejs/router) to run them).
+[Começar](./guide/) ou brincar com a [zona de testes](https://github.com/vuejs/router/tree/main/packages/playground) (consulte o [`README.md`](https://github.com/vuejs/router) para executá-los).
 
 <HomeSponsors />
 
