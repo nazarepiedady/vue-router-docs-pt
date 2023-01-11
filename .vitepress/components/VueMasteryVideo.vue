@@ -11,7 +11,7 @@ const props = defineProps({
   title: {
     type: String,
     required: true,
-    default: 'Get started with Vue Router',
+    default: 'Começar com a Vue Router',
   },
   img: {
     type: String,
