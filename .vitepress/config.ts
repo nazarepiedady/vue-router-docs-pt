@@ -38,6 +38,16 @@ const config = defineConfig({
       lang: 'pt-PT',
       title: 'Vue Router',
       description: 'O roteador oficial para Vue.js.',
+    },
+    '/en/': {
+      lang: 'en-US',
+      title: 'Vue Router',
+      description: 'The official router for Vue.js.',
+    },
+    '/zh/': {
+      lang: 'zh-CN',
+      title: 'Vue Router',
+      description: 'Vue.js 的官方路由',
     }
   },
 
@@ -65,17 +75,17 @@ const config = defineConfig({
     },
 
     locales: {
-      // Portuguese
+      // Português
       '/': {
         label: 'Português',
-        selectText: 'Languages',
+        selectText: 'Idiomas',
         nav: [
           {
-            text: 'Guide',
+            text: 'Guia',
             link: '/guide/',
           },
           {
-            text: 'API Reference',
+            text: 'Referência da API',
             link: '/api/',
           },
           {
@@ -90,130 +100,127 @@ const config = defineConfig({
 
         sidebar: [
           {
-            text: 'Introduction',
+            text: 'Introdução',
             link: '/introduction.html',
           },
           {
-            text: 'Installation',
+            text: 'Instalação',
             link: '/installation.html',
           },
           {
-            text: 'Essentials',
+            text: 'Fundamentos',
             collapsable: false,
             children: [
               {
-                text: 'Getting Started',
+                text: 'Começar',
                 link: '/guide/',
               },
               {
-                text: 'Dynamic Route Matching',
+                text: 'Correspondência de Rota Dinâmica',
                 link: '/guide/essentials/dynamic-matching.html',
               },
               {
-                text: "Routes' Matching Syntax",
+                text: "Sintaxe de Correspondência das Rotas",
                 link: '/guide/essentials/route-matching-syntax.html',
               },
               {
-                text: 'Nested Routes',
+                text: 'Rotas Encaixadas',
                 link: '/guide/essentials/nested-routes.html',
               },
               {
-                text: 'Programmatic Navigation',
+                text: 'Navegação Programática',
                 link: '/guide/essentials/navigation.html',
               },
               {
-                text: 'Named Routes',
+                text: 'Rotas Nomeadas',
                 link: '/guide/essentials/named-routes.html',
               },
               {
-                text: 'Named Views',
+                text: 'Visões Nomeadas',
                 link: '/guide/essentials/named-views.html',
               },
               {
-                text: 'Redirect and Alias',
+                text: 'Redirecionamento e Pseudónimos',
                 link: '/guide/essentials/redirect-and-alias.html',
               },
               {
-                text: 'Passing Props to Route Components',
+                text: 'Passagem de Propriedades para Componentes Rota',
                 link: '/guide/essentials/passing-props.html',
               },
               {
-                text: 'Different History modes',
+                text: 'Diferentes Modos de História',
                 link: '/guide/essentials/history-mode.html',
               },
             ],
           },
           {
-            text: 'Advanced',
+            text: 'Avançado',
             collapsable: false,
             children: [
               {
-                text: 'Navigation guards',
+                text: 'Guardas de Navegação',
                 link: '/guide/advanced/navigation-guards.html',
               },
               {
-                text: 'Route Meta Fields',
+                text: 'Campos de Meta da Rota',
                 link: '/guide/advanced/meta.html',
               },
               {
-                text: 'Data Fetching',
+                text: 'Requisição de Dados',
                 link: '/guide/advanced/data-fetching.html',
               },
               {
-                text: 'Composition API',
+                text: 'API de Composição',
                 link: '/guide/advanced/composition-api.html',
               },
               {
-                text: 'Transitions',
+                text: 'Transições',
                 link: '/guide/advanced/transitions.html',
               },
               {
-                text: 'Scroll Behavior',
+                text: 'Comportamento de Deslocamento',
                 link: '/guide/advanced/scroll-behavior.html',
               },
               {
-                text: 'Lazy Loading Routes',
+                text: 'Rotas de Carregamento Preguiçoso',
                 link: '/guide/advanced/lazy-loading.html',
               },
               {
-                text: 'Typed Routes',
+                text: 'Rotas com Tipos',
                 link: '/guide/advanced/typed-routes.html',
               },
               {
-                text: 'Extending RouterLink',
+                text: 'Estendendo o RouterLink',
                 link: '/guide/advanced/extending-router-link.html',
               },
               {
-                text: 'Navigation Failures',
+                text: 'Falhas de Navegação',
                 link: '/guide/advanced/navigation-failures.html',
               },
               {
-                text: 'Dynamic Routing',
+                text: 'Roteamento Dinâmico',
                 link: '/guide/advanced/dynamic-routing.html',
               },
             ],
           },
           {
-            text: 'Migrating from Vue 2',
+            text: 'Migrando a partir da Vue 2',
             link: '/guide/migration/index.html',
           },
         ],
       },
-
-      // TODO: Delete this in the future updates
       // English
-      /*
-      '/en': {
+      '/en/': {
         label: 'English',
         selectText: 'Languages',
         nav: [
           {
             text: 'Guide',
-            link: '/guide/',
+            link: 'https://router.vuejs.org/guide/',
           },
           {
             text: 'API Reference',
-            link: '/api/',
+            link: 'https://router.vuejs.org//api/',
           },
           {
             text: 'v4.x',
@@ -228,11 +235,11 @@ const config = defineConfig({
         sidebar: [
           {
             text: 'Introduction',
-            link: '/introduction.html',
+            link: 'https://router.vuejs.org/introduction.html',
           },
           {
             text: 'Installation',
-            link: '/installation.html',
+            link: 'https://router.vuejs.org/installation.html',
           },
           {
             text: 'Essentials',
@@ -240,43 +247,43 @@ const config = defineConfig({
             children: [
               {
                 text: 'Getting Started',
-                link: '/guide/',
+                link: 'https://router.vuejs.org/guide/',
               },
               {
                 text: 'Dynamic Route Matching',
-                link: '/guide/essentials/dynamic-matching.html',
+                link: 'https://router.vuejs.org/guide/essentials/dynamic-matching.html',
               },
               {
                 text: "Routes' Matching Syntax",
-                link: '/guide/essentials/route-matching-syntax.html',
+                link: 'https://router.vuejs.org/guide/essentials/route-matching-syntax.html',
               },
               {
                 text: 'Nested Routes',
-                link: '/guide/essentials/nested-routes.html',
+                link: 'https://router.vuejs.org/guide/essentials/nested-routes.html',
               },
               {
                 text: 'Programmatic Navigation',
-                link: '/guide/essentials/navigation.html',
+                link: 'https://router.vuejs.org/guide/essentials/navigation.html',
               },
               {
                 text: 'Named Routes',
-                link: '/guide/essentials/named-routes.html',
+                link: 'https://router.vuejs.org/guide/essentials/named-routes.html',
               },
               {
                 text: 'Named Views',
-                link: '/guide/essentials/named-views.html',
+                link: 'https://router.vuejs.org/guide/essentials/named-views.html',
               },
               {
                 text: 'Redirect and Alias',
-                link: '/guide/essentials/redirect-and-alias.html',
+                link: 'https://router.vuejs.org/guide/essentials/redirect-and-alias.html',
               },
               {
                 text: 'Passing Props to Route Components',
-                link: '/guide/essentials/passing-props.html',
+                link: 'https://router.vuejs.org/guide/essentials/passing-props.html',
               },
               {
                 text: 'Different History modes',
-                link: '/guide/essentials/history-mode.html',
+                link: 'https://router.vuejs.org/guide/essentials/history-mode.html',
               },
             ],
           },
@@ -286,57 +293,187 @@ const config = defineConfig({
             children: [
               {
                 text: 'Navigation guards',
-                link: '/guide/advanced/navigation-guards.html',
+                link: 'https://router.vuejs.org/guide/advanced/navigation-guards.html',
               },
               {
                 text: 'Route Meta Fields',
-                link: '/guide/advanced/meta.html',
+                link: 'https://router.vuejs.org/guide/advanced/meta.html',
               },
               {
                 text: 'Data Fetching',
-                link: '/guide/advanced/data-fetching.html',
+                link: 'https://router.vuejs.org/guide/advanced/data-fetching.html',
               },
               {
                 text: 'Composition API',
-                link: '/guide/advanced/composition-api.html',
+                link: 'https://router.vuejs.org/guide/advanced/composition-api.html',
               },
               {
                 text: 'Transitions',
-                link: '/guide/advanced/transitions.html',
+                link: 'https://router.vuejs.org/guide/advanced/transitions.html',
               },
               {
                 text: 'Scroll Behavior',
-                link: '/guide/advanced/scroll-behavior.html',
+                link: 'https://router.vuejs.org/guide/advanced/scroll-behavior.html',
               },
               {
                 text: 'Lazy Loading Routes',
-                link: '/guide/advanced/lazy-loading.html',
+                link: 'https://router.vuejs.org/guide/advanced/lazy-loading.html',
               },
               {
                 text: 'Typed Routes',
-                link: '/guide/advanced/typed-routes.html',
+                link: 'https://router.vuejs.org/guide/advanced/typed-routes.html',
               },
               {
                 text: 'Extending RouterLink',
-                link: '/guide/advanced/extending-router-link.html',
+                link: 'https://router.vuejs.org/guide/advanced/extending-router-link.html',
               },
               {
                 text: 'Navigation Failures',
-                link: '/guide/advanced/navigation-failures.html',
+                link: 'https://router.vuejs.org/guide/advanced/navigation-failures.html',
               },
               {
                 text: 'Dynamic Routing',
-                link: '/guide/advanced/dynamic-routing.html',
+                link: 'https://router.vuejs.org/guide/advanced/dynamic-routing.html',
               },
             ],
           },
           {
             text: 'Migrating from Vue 2',
-            link: '/guide/migration/index.html',
+            link: 'https://router.vuejs.org/guide/migration/index.html',
           },
         ],
       },
-      */
+      // 简体中文
+      '/zh/': {
+        label: '中文',
+        selectText: '选择语言',
+        editLinkText: '为此页提供修改建议',
+        nav: [
+          {
+            text: '教程',
+            link: 'https://router.vuejs.org/zh/guide/',
+          },
+          {
+            text: 'API 参考',
+            link: 'https://router.vuejs.org/zh/api/',
+          },
+          {
+            text: 'v4.x',
+            items: [{ text: 'v3.x', link: 'https://v3.router.vuejs.org/zh' }],
+          },
+          {
+            text: '更新日志',
+            link: 'https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md',
+          },
+        ],
+
+        sidebar: [
+          {
+            text: '介绍',
+            link: 'https://router.vuejs.org/zh/introduction.html',
+          },
+          {
+            text: '安装',
+            link: 'https://router.vuejs.org/zh/installation.html',
+          },
+          {
+            text: '基础',
+            collapsable: false,
+            children: [
+              {
+                text: '入门',
+                link: 'https://router.vuejs.org/zh/guide/',
+              },
+              {
+                text: '动态路由匹配',
+                link: 'https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html',
+              },
+              {
+                text: '路由的匹配语法',
+                link: 'https://router.vuejs.org/zh/guide/essentials/route-matching-syntax.html',
+              },
+              {
+                text: '嵌套路由',
+                link: 'https://router.vuejs.org/zh/guide/essentials/nested-routes.html',
+              },
+              {
+                text: '编程式导航',
+                link: 'https://router.vuejs.org/zh/guide/essentials/navigation.html',
+              },
+              {
+                text: '命名路由',
+                link: 'https://router.vuejs.org/zh/guide/essentials/named-routes.html',
+              },
+              {
+                text: '命名视图',
+                link: 'https://router.vuejs.org/zh/guide/essentials/named-views.html',
+              },
+              {
+                text: '重定向和别名',
+                link: 'https://router.vuejs.org/zh/guide/essentials/redirect-and-alias.html',
+              },
+              {
+                text: '路由组件传参',
+                link: 'https://router.vuejs.org/zh/guide/essentials/passing-props.html',
+              },
+              {
+                text: '不同的历史记录模式',
+                link: 'https://router.vuejs.org/zh/guide/essentials/history-mode.html',
+              },
+            ],
+          },
+          {
+            text: '进阶',
+            collapsable: false,
+            children: [
+              {
+                text: '导航守卫',
+                link: 'https://router.vuejs.org/zh/guide/advanced/navigation-guards.html',
+              },
+              {
+                text: '路由元信息',
+                link: 'https://router.vuejs.org/zh/guide/advanced/meta.html',
+              },
+              {
+                text: '数据获取',
+                link: 'https://router.vuejs.org/zh/guide/advanced/data-fetching.html',
+              },
+              {
+                text: '组合式 API',
+                link: 'https://router.vuejs.org/zh/guide/advanced/composition-api.html',
+              },
+              {
+                text: '过渡动效',
+                link: 'https://router.vuejs.org/zh/guide/advanced/transitions.html',
+              },
+              {
+                text: '滚动行为',
+                link: 'https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html',
+              },
+              {
+                text: '路由懒加载',
+                link: 'https://router.vuejs.org/zh/guide/advanced/lazy-loading.html',
+              },
+              {
+                text: '扩展 RouterLink',
+                link: 'https://router.vuejs.org/zh/guide/advanced/extending-router-link.html',
+              },
+              {
+                text: '导航故障',
+                link: 'https://router.vuejs.org/zh/guide/advanced/navigation-failures.html',
+              },
+              {
+                text: '动态路由',
+                link: 'https://router.vuejs.org/zh/guide/advanced/dynamic-routing.html',
+              },
+            ],
+          },
+          {
+            text: '从 Vue2 迁移',
+            link: 'https://router.vuejs.org/zh/guide/migration/index.html',
+          },
+        ],
+      },
     },
   },
 })
