@@ -1,5 +1,5 @@
 <template>
-  <h3>{{ name }} Sponsors</h3>
+  <h3>Patrocinadores {{ name }}</h3>
 
   <p>
     <a
@@ -32,7 +32,7 @@ import { computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    name: 'gold' | 'platinum' | 'silver' | 'bronze'
+    name: 'gold' | 'platinum' | 'silver' | 'bronze' | 'ouro' | 'platina' | 'prata'
     size: number | string
   }>(),
   { size: 140 }
