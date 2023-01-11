@@ -2,26 +2,26 @@
 home: true
 
 heroImage: /logo.png
-actionText: Get Started →
+actionText: Começar →
 actionLink: /installation.html
 altActionLink: https://vueschool.io/courses/vue-router-4-for-everyone?friend=vuerouter&utm_source=vuerouter&utm_medium=link&utm_campaign=homepage
-altActionText: Free Video Course
+altActionText: Curso em Vídeo Gratuito
 
 features:
-  - title: 🛣 Expressive route syntax
-    details: Define static and dynamic routes with an intuitive and powerful syntax.
-  - title: 🛑 Fine-grained Navigation control
-    details: Intercept any navigation and precisely control its outcome.
-  - title: 🧱 Component-based configuration
-    details: Map each route to the component that should display.
-  - title: 🔌 History modes
-    details: Choose between HTML5, Hash or Memory history modes.
-  - title: 🎚 Scroll control
-    details: Precisely control the scroll position in every page.
-  - title: 🌐 Automatic Encoding
-    details: Directly use unicode characters (你好) in your code.
+  - title: 🛣 Sintaxe de rota expressiva
+    details: Defina rotas dinâmicas e estáticas com uma sintaxe poderosa e intuitiva.
+  - title: 🛑 Controlo de Navegação Finamente Granulado
+    details: Intercete qualquer navegação e controle precisamente o seu resultado.
+  - title: 🧱 Configuração Baseada em Componente
+    details: Indique cada rota ao componente que deve exibir.
+  - title: 🔌 Modos de História
+    details: Escolha entre os modos de história da HTML5, Hash ou Memória.
+  - title: 🎚 Controlo de Deslocamento
+    details: Controle com precisão a posição do deslocamento dentro de cada página.
+  - title: 🌐 Codificação Automática
+    details: Use diretamente caracteres unicode (你好) no teu código.
 
-footer: MIT Licensed | Copyright © 2014-present Evan You, Eduardo San Martin Morote
+footer: Licenciado com MIT | Copyright © 2014-presente Evan You, Eduardo San Martin Morote
 ---
 
 <HomeSponsors />
