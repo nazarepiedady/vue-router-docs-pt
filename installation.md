@@ -1,14 +1,14 @@
-# Installation
+# Instalação
 
 <VueMasteryLogoLink></VueMasteryLogoLink>
 
-## Direct Download / CDN
+## Descarregamento Direto / CDN
 
 [https://unpkg.com/vue-router@4](https://unpkg.com/vue-router@4)
 
 <!--email_off-->
 
-[Unpkg.com](https://unpkg.com) provides npm-based CDN links. The above link will always point to the latest release on npm. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js`.
+O [Unpkg.com](https://unpkg.com) fornece ligações de CDN baseadas no npm. A ligação acima sempre apontará para o lançamento mais recente na npm. Tu podes também usar uma versão específica ou marcador através de URLs como `https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js`.
 
 <!--/email_off-->
 
