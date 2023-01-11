@@ -6,7 +6,7 @@
       </template>
       <template #sidebar-top>
         <div class="sponsors sponsors-top">
-          <span>Platinum Sponsors</span>
+          <span>Patrocinadores Platina</span>
 
           <template v-if="sponsors.platinum.length">
             <a
@@ -25,14 +25,14 @@
             href="https://github.com/sponsors/posva"
             target="_blank"
             rel="noopener"
-            alt="Your logo here"
-          >Become a Sponsor!</a>
+            alt="O teu logótipo estará aqui"
+          >Torna-te um Patrocinador</a>
         </div>
       </template>
 
       <template #sidebar-bottom>
         <div class="sponsors">
-          <span>Sponsors</span>
+          <span>Patrocinadores</span>
 
           <a
             v-for="sponsor in sponsors.gold"
