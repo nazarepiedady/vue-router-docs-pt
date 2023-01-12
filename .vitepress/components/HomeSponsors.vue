@@ -1,11 +1,11 @@
 <template>
   <div class="sponsors_outer">
     <div>
-      <HomeSponsorsGroup v-if="sponsors.platinum.length" name="Platina" size="96" />
+      <HomeSponsorsGroup v-if="sponsors.platinum.length" name="platinum" size="96" />
 
-      <HomeSponsorsGroup v-if="sponsors.gold.length" name="Ouro" size="48" />
+      <HomeSponsorsGroup v-if="sponsors.gold.length" name="gold" size="48" />
 
-      <HomeSponsorsGroup v-if="sponsors.silver.length" name="Prata" size="24" />
+      <HomeSponsorsGroup v-if="sponsors.silver.length" name="silver" size="24" />
 
       <a
         class="become-sponsor button white"
