@@ -1,11 +1,11 @@
-# Getting Started
+# Começar
 
 <VueSchoolLink
   href="https://vueschool.io/courses/vue-router-4-for-everyone"
-  title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School"
->Watch a Free Vue Router Video Course</VueSchoolLink>
+  title="Aprenda a construir Aplicações de Página Única poderosas com a Vue School"
+>Assista um Curso em Vídeo Gratuito sobre a Vue Router</VueSchoolLink>
 
-Creating a Single-page Application with Vue + Vue Router feels natural: with Vue.js, we are already composing our application with components. When adding Vue Router to the mix, all we need to do is map our components to the routes and let Vue Router know where to render them. Here's a basic example:
+A criação de uma Aplicação de Página Única com a Vue + Vue Router acontece de maneira natural: com a Vue.js, já estamos a compor a nossa aplicação com componentes. Quando adicionamos a Vue Router para a mistura, todo o que precisamos fazer é mapear os nossos componentes para rotas e deixar a Vue Router saber onde apresentá-las. Aqui está um exemplo básico:
 
 ## HTML
 
@@ -16,72 +16,73 @@ Creating a Single-page Application with Vue + Vue Router feels natural: with Vue
 <div id="app">
   <h1>Hello App!</h1>
   <p>
-    <!-- use the router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
+    <!-- use o componente router-link para navegação. -->
+    <!-- especifique a ligação passando a propriedade `to`. -->
+    <!-- `<router-link>` produzirá um marcador `<a>` com o atributo `href` correto -->
     <router-link to="/">Go to Home</router-link>
     <router-link to="/about">Go to About</router-link>
   </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
+  <!-- modo de canalização da rota -->
+  <!-- componente correspondido pela rota será apresentado cá -->
   <router-view></router-view>
 </div>
 ```
 
 ### `router-link`
 
-Note how instead of using regular `a` tags, we use a custom component `router-link` to create links. This allows Vue Router to change the URL without reloading the page, handle URL generation as well as its encoding. We will see later how to benefit from these features.
+Nota como que ao invés de usar os marcadores `a` normais, usamos um componente personalizado `router-link` para criar ligações. Isto permite que a Vue Router para mudar a URL sem recarregar a página, manipular a geração de URL bem como a sua codificação. Nós veremos depois como tiver proveito destas funcionalidades.
 
 ### `router-view`
 
-`router-view` will display the component that corresponds to the url. You can put it anywhere to adapt it to your layout.
+O `router-view` exibirá o componente que corresponde a URL. Tu podes colocá-lo em qualquer lugar para adaptá-lo para o teu esquema.
 
 <VueMasteryLogoLink></VueMasteryLogoLink>
 
 ## JavaScript
 
 ```js
-// 1. Define route components.
-// These can be imported from other files
+// 1. Defina componentes de rota.
+// Estes podem ser importados a partir de outros ficheiros
 const Home = { template: '<div>Home</div>' }
 const About = { template: '<div>About</div>' }
 
-// 2. Define some routes
-// Each route should map to a component.
-// We'll talk about nested routes later.
+// 2. Defina algumas rotas
+// Cada rota deve mapear para um componente.
+// Falaremos sobre rotas encaixadas depois.
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
 ]
 
-// 3. Create the router instance and pass the `routes` option
-// You can pass in additional options here, but let's
-// keep it simple for now.
+// 3. Crie a instância de rota e passe a opção `routes`
+// Tu podes passar opções adicionais aqui, mas
+// preservar a simplicidade por agora.
 const router = VueRouter.createRouter({
-  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+  // 4. Fornece a implementação da história para usar.
+  // Aqui nós estamos a usar a história de hash por simplicidade.
   history: VueRouter.createWebHashHistory(),
-  routes, // short for `routes: routes`
+  routes, // abreviação para `routes: routes`
 })
 
-// 5. Create and mount the root instance.
+// 5. Criar e montar a instância raiz.
 const app = Vue.createApp({})
-// Make sure to _use_ the router instance to make the
-// whole app router-aware.
+// Certifica-te de _usar_ a instância do roteador para
+// fazer a aplicação tomar conhecimento do roteador.
 app.use(router)
 
 app.mount('#app')
 
-// Now the app has started!
+// Agora a aplicação foi inicializada!
 ```
 
-By calling `app.use(router)`, we get access to it as `this.$router` as well as the current route as `this.$route` inside of any component:
+Ao chamar `app.use(router)`, recebemos acesso para ele como `this.$router` bem como a rota atual como `this.$route` dento de qualquer componente:
 
 ```js
 // Home.vue
 export default {
   computed: {
     username() {
-      // We will see what `params` is shortly
+      // Nós veremos o que `params` é em breve
       return this.$route.params.username
     },
   },
@@ -97,6 +98,6 @@ export default {
 }
 ```
 
-To access the router or the route inside the `setup` function, call the `useRouter` or `useRoute` functions. We will learn more about this in [the Composition API](./advanced/composition-api.md#accessing-the-router-and-current-route-inside-setup)
+Para acessar o roteador ou a rota dentro da função `setup`, chame as funções `useRouter` ou `useRoute`. Nós aprenderemos mais a respeito disto na [API de Composição](./advanced/composition-api.md#accessing-the-router-and-current-route-inside-setup)
 
-Throughout the docs, we will often use the `router` instance. Keep in mind that `this.$router` is exactly the same as directly using the `router` instance created through `createRouter`. The reason we use `this.$router` is because we don't want to import the router in every single component that needs to manipulate routing.
+Em toda documentação, usaremos com frequência a instância `router`. Lembra-te de que usar `this.$router` é exatamente o mesmo que usar diretamente a instância `router` criado através da função `createRouter`. O motivo de usarmos `this.$router` é o de não querermos importar o roteador em todo componente individual que precisa manipular o roteamento.
