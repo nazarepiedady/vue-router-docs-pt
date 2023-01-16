@@ -1,27 +1,27 @@
-# Dynamic Route Matching with Params
+# Correspondência de Rota Dinâmica com Parâmetros
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/dynamic-routes"
-  title="Learn about dynamic route matching with params"
+  title="Estude a correspondência de rota dinâmica com parâmetros"
 />
 
-Very often we will need to map routes with the given pattern to the same component. For example we may have a `User` component which should be rendered for all users but with different user IDs. In Vue Router we can use a dynamic segment in the path to achieve that, we call that a _param_:
+Com muita frequência precisaremos mapear as rotas com o dado padrão para o mesmo componente. Por exemplo podemos ter um componente `User` que deve ser apresentado para todos os utilizadores mas com identificadores de utilizador diferentes. Na Vue Router podemos usar um segmento dinâmico no caminho para atingir isto, chamamos isto de _parâmetro_:
 
 ```js
 const User = {
   template: '<div>User</div>',
 }
 
-// these are passed to `createRouter`
+// Estes são passados para a função `createRouter`
 const routes = [
-  // dynamic segments start with a colon
+  // os segmentos dinâmicos começam com um sinal de dois pontos
   { path: '/users/:id', component: User },
 ]
 ```
 
-Now URLs like `/users/johnny` and `/users/jolyne` will both map to the same route.
+Agora as URLs como `/users/johnny` e `/users/jolyne` ambas mapearão para a mesma rota.
 
-A _param_ is denoted by a colon `:`. When a route is matched, the value of its _params_ will be exposed as `this.$route.params` in every component. Therefore, we can render the current user ID by updating `User`'s template to this:
+Um _parâmetro_ é representado por um sinal de dois pontos `:`. Quando uma rota for correspondida, o valor destes _parâmetros_ serão expostos como `this.$route.params` dentro de cada componente. Portanto, podemos exibir o identificador do utilizador atual ao atualizar o modelo de marcação do `User` para isto:
 
 ```js
 const User = {
@@ -29,16 +29,16 @@ const User = {
 }
 ```
 
-You can have multiple _params_ in the same route, and they will map to corresponding fields on `$route.params`. Examples:
+Tu podes ter vários _parâmetros_ na mesma rota, e eles mapearão para os campos correspondentes no `$route.params`. Exemplos:
 
-| pattern                        | matched path             | \$route.params                           |
+| padrão                        | caminho correspondido            | \$route.params                           |
 | ------------------------------ | ------------------------ | ---------------------------------------- |
 | /users/:username               | /users/eduardo           | `{ username: 'eduardo' }`                |
 | /users/:username/posts/:postId | /users/eduardo/posts/123 | `{ username: 'eduardo', postId: '123' }` |
 
-In addition to `$route.params`, the `$route` object also exposes other useful information such as `$route.query` (if there is a query in the URL), `$route.hash`, etc. You can check out the full details in the [API Reference](../../api/#routelocationnormalized).
+Além do `$route.params`, o objeto `$route` também expõe outras informações úteis tais como `$route.query` (se houver uma consulta na URL), `$route.hash`, etc. Tu podes verificar os detalhes completos na [Referência da API](../../api/#routelocationnormalized).
 
-A working demo of this example can be found [here](https://codesandbox.io/s/route-params-vue-router-examples-mlb14?from-embed&initialpath=%2Fusers%2Feduardo%2Fposts%2F1).
+Uma demonstração em funcionamento deste exemplo pode ser encontrado [nesta ligação](https://codesandbox.io/s/route-params-vue-router-examples-mlb14?from-embed&initialpath=%2Fusers%2Feduardo%2Fposts%2F1).
 
 <!-- <iframe
   src="https://codesandbox.io/embed//route-params-vue-router-examples-mlb14?fontsize=14&theme=light&view=preview&initialpath=%2Fusers%2Feduardo%2Fposts%2F1"
@@ -48,16 +48,16 @@ A working demo of this example can be found [here](https://codesandbox.io/s/rout
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe> -->
 
-## Reacting to Params Changes
+## Reagindo as Mudanças de Parâmetros
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/reacting-to-param-changes"
-  title="Learn how to react to param changes"
+  title="Saiba como reagir as mudanças de parâmetro"
 />
 
-One thing to note when using routes with params is that when the user navigates from `/users/johnny` to `/users/jolyne`, **the same component instance will be reused**. Since both routes render the same component, this is more efficient than destroying the old instance and then creating a new one. **However, this also means that the lifecycle hooks of the component will not be called**.
+Uma coisa para prestar atenção quando estamos a usar rotas com parâmetros é que quando o utilizador navegar de `/users/johnny` para `/users/jolyne`, **a mesma instância do componente será reutilizada**. Já que ambas as rotas apresentam o mesmo componente, isto é mais eficiente do que destruir a instância antiga e depois criar uma nova instância. **No entanto, isto também significa que os gatilhos do ciclo de vida do componente não serão chamados**.
 
-To react to params changes in the same component, you can simply watch anything on the `$route` object, in this scenario, the `$route.params`:
+Para reagir as mudanças de parâmetros no mesmo componente, podes de modo simples observar qualquer coisa no objeto `$route`, neste cenário, o `$route.params`:
 
 ```js
 const User = {
@@ -66,60 +66,69 @@ const User = {
     this.$watch(
       () => this.$route.params,
       (toParams, previousParams) => {
-        // react to route changes...
+        // reagir as mudanças de rota...
       }
     )
   },
 }
 ```
 
-Or, use the `beforeRouteUpdate` [navigation guard](../advanced/navigation-guards.md), which also allows to cancel the navigation:
+Ou, usar a [guarda de navegação](../advanced/navigation-guards.md) `beforeRouteUpdate`, que também permite cancelar a navegação:
 
 ```js
 const User = {
   template: '...',
   async beforeRouteUpdate(to, from) {
-    // react to route changes...
+    // reagir as mudanças de rota...
     this.userData = await fetchUser(to.params.id)
   },
 }
 ```
 
-## Catch all / 404 Not found Route
+## Captura total / Rota não encontrada 404
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/404-not-found-page"
-  title="Learn how to make a catch all/404 not found route"
+  title="Saiba como fazer uma captura total/rota não encontrada 404"
 />
 
-Regular params will only match characters in between url fragments, separated by `/`. If we want to match **anything**, we can use a custom _param_ regexp by adding the regexp inside parentheses right after the _param_:
+Os parâmetros regulares apenas corresponderão os caracteres entre os fragmentos de URL, separados pelo `/`. Se quisermos corresponder **qualquer coisa**, podemos usar uma expressão regular de _parâmetro_ personalizado ao adicionar a expressão regular dentro de parêntesis exatamente depois do `parâmetro`:
 
 ```js
 const routes = [
-  // will match everything and put it under `$route.params.pathMatch`
+  /*
+    corresponderá tudo e o
+    colocará sob `$route.params.pathMatch`
+  */
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
-  // will match anything starting with `/user-` and put it under `$route.params.afterUser`
+  /*
+    corresponderá qualquer coisa começando com `/user-` e o
+    colocará sob `$route.params.afterUser`
+  */
   { path: '/user-:afterUser(.*)', component: UserGeneric },
 ]
 ```
 
-In this specific scenario we are using a [custom regexp](./route-matching-syntax.md#custom-regexp-in-params) between parentheses and marking the `pathMatch` param as [optionally repeatable](./route-matching-syntax.md#optional-parameters). This allows us to directly navigate to the route if we need to by splitting the `path` into an array:
+Neste cenário específico estamos a usar uma [expressão regular personalizada](./route-matching-syntax.md#custom-regexp-in-params) entre parêntesis e marcando o parâmetro `pathMatch` como [opcionalmente repetitível](./route-matching-syntax.md#optional-parameters). Isto permite-nos navegar diretamente para a rota se precisarmos ao separar o `path` em um arranjo:
 
 ```js
 this.$router.push({
   name: 'NotFound',
-  // preserve current path and remove the first char to avoid the target URL starting with `//`
+  /*
+    preserva o caminho atual e
+    remove o primeiro carácter para evitar a URL de destino começando com `//`
+  */
   params: { pathMatch: this.$route.path.substring(1).split('/') },
-  // preserve existing query and hash if any
+  // preserve a `query` e o `hash` existentes se houver algum
   query: this.$route.query,
   hash: this.$route.hash,
 })
 ```
 
-See more in the [repeated params](./route-matching-syntax.md#repeatable-params) section.
+Acompanhe mais na seção [parâmetros repetidos](./route-matching-syntax.md#repeatable-params).
 
-If you are using [History mode](./history-mode.md), make sure to follow the instructions to correctly configure your server as well.
+Se estiveres a usar o [mode de História](./history-mode.md), certifica-te também de seguir as instruções para configurar corretamente o teu servidor.
 
-## Advanced Matching Patterns
+## Padrões de Correspondência Avançados
 
-Vue Router uses its own path matching syntax, inspired by the one used by `express`, so it supports many advanced matching patterns such as optional params, zero or more / one or more requirements, and even custom regex patterns. Please check the [Advanced Matching](./route-matching-syntax.md) documentation to explore them.
+A Vue Router usa a sua própria sintaxe de correspondência de caminho, inspirada por aquela usada pela `express`, assim ela suporta muitos padrões de correspondência avançados tais como parâmetros opcionais, zero ou mais / um ou mais requisitos, e até padrões de expressão regular personalizado. Consulte a documentação da [Correspondência Avançada](./route-matching-syntax.md) para explorá-las.
