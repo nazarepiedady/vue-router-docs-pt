@@ -1,119 +1,119 @@
-# Routes' Matching Syntax
+# Sintaxe de Correspondência da Rota
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-advanced-routes-matching-syntax"
-  title="Learn how to use advanced route routes' matching syntax"
+  title="Aprenda a como usar a sintaxe de correspondência de rotas de rota avançada"
 />
 
-Most applications will use static routes like `/about` and dynamic routes like `/users/:userId` like we just saw in [Dynamic Route Matching](./dynamic-matching.md), but Vue Router has much more to offer!
+A maioria das aplicações usarão rotas estáticas como `/about` e rotas dinâmicas como `/users/:userId` como já vimos na [Correspondência de Rota Dinâmica](./dynamic-matching.md), mas a Vue Router tem muito mais a oferecer!
 
-:::tip
-For the sake of simplicity, all route records **are omitting the `component` property** to focus on the `path` value.
+:::tip Dica
+Para fins de simplicidade, todos registos da rota **estão a omitir a propriedade `component`** para focar no valor `path`.
 :::
 
-## Custom regex in params
+## Expressão Regular Personalizada nos Parâmetros
 
-When defining a param like `:userId`, we internally use the following regex `([^/]+)` (at least one character that isn't a slash `/`) to extract params from URLs. This works well unless you need to differentiate two routes based on the param content. Imagine two routes `/:orderId` and `/:productName`, both would match the exact same URLs, so we need a way to differentiate them. The easiest way would be to add a static section to the path that differentiates them:
+Quando estivermos a definir um parâmetro como `:userId`, usaremos internamente a seguinte expressão regular `([^/]+)` (pelo menos um carácter que não é uma barra `/`) para extrair os parâmetros das URLs. Isto funciona bem a menos que precises fazer diferenciar duas rotas baseadas no conteúdo do parâmetro. Suponha duas rotas `/:orderId` e `/productName`, ambas corresponderiam exatamente as mesmas URLs, assim precisamos de uma maneira de diferenciá-las. A maneira mais fácil seria adicionar uma seção estática ao caminho que as diferencia:
 
 ```js
 const routes = [
-  // matches /o/3549
+  // corresponde a "/o/3549"
   { path: '/o/:orderId' },
-  // matches /p/books
+  // corresponde a "/p/books"
   { path: '/p/:productName' },
 ]
 ```
 
-But in some scenarios we don't want to add that static section `/o`/`p`. However, `orderId` is always a number while `productName` can be anything, so we can specify a custom regex for a param in parentheses:
+Mas em alguns cenários não queremos adicionar aquela seção estática `/o`/`p`. No entanto, `orderId` sempre é um número enquanto `productName` pode ser qualquer coisa, assim podemos especificar uma expressão regular personalizada para um parâmetro entre parêntesis:
 
 ```js
 const routes = [
-  // /:orderId -> matches only numbers
+  // "/:orderId" -> corresponde apenas a números
   { path: '/:orderId(\\d+)' },
-  // /:productName -> matches anything else
+  // "/:productName" -> corresponde qualquer coisa
   { path: '/:productName' },
 ]
 ```
 
-Now, going to `/25` will match `/:orderId` while going to anything else will match `/:productName`. The order of the `routes` array doesn't even matter!
+Agora, ir para `/25` corresponderá ao `/:orderId` enquanto ir para qualquer coisa corresponderá ao `/:productName`. A ordem do arranjo `routes` nem sequer importa!
 
-:::tip
-Make sure to **escape backslashes (`\`)** like we did with `\d` (becomes `\\d`) to actually pass the backslash character in a string in JavaScript.
+:::tip Dica
+Certifica-te de **escapar as barras oblíquas invertidas (`/`)** como fizemos com `\d` (torna-se `\\d`) para realmente passar o carácter barra oblíqua invertida na sequência de caracteres em JavaScript.
 :::
 
-## Repeatable params
+## Parâmetros Repetitivos
 
-If you need to match routes with multiple sections like `/first/second/third`, you should mark a param as repeatable with `*` (0 or more) and `+` (1 or more):
+Se precisas corresponder rotas com várias seções como `/first/second/third`, deves marcar um parâmetro como repetitivo com `*` (0 ou mais) e `+` (1 ou mais):
 
 ```js
 const routes = [
-  // /:chapters -> matches /one, /one/two, /one/two/three, etc
+  // "/:chapters" -> corresponde a "/one", "/one/two", "/one/two/three", etc
   { path: '/:chapters+' },
-  // /:chapters -> matches /, /one, /one/two, /one/two/three, etc
+  // "/:chapters" -> corresponde a "/", "/one", "/one/two", "/one/two/three", etc
   { path: '/:chapters*' },
 ]
 ```
 
-This will give you an array of params instead of a string and will also require you to pass an array when using named routes:
+Isto dar-te-á um arranjo de parâmetros no lugar de uma sequência de caracteres e também exigirá que passes um arranjo quando estiveres a usar rotas nomeadas:
 
 ```js
-// given { path: '/:chapters*', name: 'chapters' },
+// dado o { path: '/:chapters*', name: 'chapters' },
 router.resolve({ name: 'chapters', params: { chapters: [] } }).href
-// produces /
+// produz "/"
 router.resolve({ name: 'chapters', params: { chapters: ['a', 'b'] } }).href
-// produces /a/b
+// produz "/a/b"
 
-// given { path: '/:chapters+', name: 'chapters' },
+// dado { path: '/:chapters+', name: 'chapters' },
 router.resolve({ name: 'chapters', params: { chapters: [] } }).href
-// throws an Error because `chapters` is empty
+// lança um erro porque o `chapters` está vazio
 ```
 
-These can also be combined with a custom regex by adding them **after the closing parentheses**:
+Estes também podem ser combinados com uma expressão regular personalizada ao adicioná-las **depois dos parêntesis de fechamento**:
 
 ```js
 const routes = [
-  // only match numbers
-  // matches /1, /1/2, etc
+  // apenas corresponde a números
+  // corresponde a "/1", "/1/2", etc
   { path: '/:chapters(\\d+)+' },
-  // matches /, /1, /1/2, etc
+  // corresponde a "/", "/1", "/1/2", etc
   { path: '/:chapters(\\d+)*' },
 ]
 ```
 
-## Sensitive and strict route options 
+## Opções de Rota Estritas e Sensíveis
 
-By default, all routes are case-insensitive and match routes with or without a trailing slash. e.g. a route `/users` matches `/users`, `/users/`, and even `/Users/`. This behavior can be configured with the `strict` and `sensitive` options, they can be set both at a router and route level:
+Por padrão, todas rotas são insensíveis às diferenças entre maiúsculas e minúsculas e correspondem a rotas com ou sem uma barra de caminho, por exemplo uma rota `/users` corresponde a `/users`, `/users/`, e até mesmo `/Users/`. Este comportamento pode ser configurado com as opções `strict` e `sensitive`, podem ser definidas ambas no nível de um roteador e rota:
 
 ```js
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    // will match /users/posva but not:
-    // - /users/posva/ because of strict: true
-    // - /Users/posva because of sensitive: true
+    // corresponderá a "/users/posva" mas não:
+    // - "/users/posva/" por causa do strict: true
+    // - "/Users/posva" por causa do sensitive: true
     { path: '/users/:id', sensitive: true },
-    // will match /users, /Users, and /users/42 but not /users/ or /users/42/
+    // corresponderá a "/users", "/Users", e "/users/42" não a "/users/" ou "/users/42/"
     { path: '/users/:id?' },
   ],
-  strict: true, // applies to all routes
+  strict: true, // aplica-se à todas rotas
 })
 ```
 
-## Optional parameters
+## Parâmetros Opcionais
 
-You can also mark a parameter as optional by using the `?` modifier (0 or 1):
+Tu também podes marcar um parâmetro como opcional com o uso do modificador `?` (0 ou 1):
 
 ```js
 const routes = [
-  // will match /users and /users/posva
+  // corresponderá a "/users" e "/users/posva"
   { path: '/users/:userId?' },
-  // will match /users and /users/42
+  // corresponderá a "/users" e "/users/42"
   { path: '/users/:userId(\\d+)?' },
 ]
 ```
 
-Note that `*` technically also marks a parameter as optional but `?` parameters cannot be repeated.
+Nota que tecnicamente `*` também marca um parâmetro como opcional mas parâmetros `?` não podem ser repetidos.
 
-## Debugging
+## Depuração
 
-If you need to dig how your routes are transformed into a regex to understand why a route isn't being matched or, to report a bug, you can use the [path ranker tool](https://paths.esm.dev/?p=AAMeJSyAwR4UbFDAFxAcAGAIJXMAAA..#). It supports sharing your routes through the URL.
+Se precisas escavar como as tuas rotas são transformadas em uma expressão regular para entenderes o porquê de uma rota não ser correspondida ou, comunicar um bug, podes usar a [ferramenta classificadora de caminho](https://paths.esm.dev/?p=AAMeJSyAwR4UbFDAFxAcAGAIJXMAAA..#). Ela ajuda a partilhar as tuas rotas através da URL.
