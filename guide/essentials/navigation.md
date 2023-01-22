@@ -11,48 +11,37 @@ sidebarDepth: 0
 
 À parte de usar `<router-link>` para criar marcadores de âncoras para navegação declarativa, nós podemos fazer isto programaticamente usando os métodos da instância do roteador.
 
-## Navigate to a different location
 ## Navegar para uma localização diferente
 
-**Note: Inside of a Vue instance, you have access to the router instance as `$router`. You can therefore call `this.$router.push`.**
 **Nota: Dentro de uma instância de Vue, tens acesso à instância do roteador como `$router`. Tu podes portanto chamar `this.$router.push`.**
 
-To navigate to a different URL, use `router.push`. This method pushes a new entry into the history stack, so when the user clicks the browser back button they will be taken to the previous URL.
 Para navegar para uma URL diferente, use `router.push`. Este método empurra uma nova entrada para pilha da história, então quando os utilizadores clicarem no botão retornar ou voltar do navegador serão levados para URL anterior.
 
-This is the method called internally when you click a `<router-link>`, so clicking `<router-link :to="...">` is the equivalent of calling `router.push(...)`.
 Este é o método chamado internamente quando clicas em um `<router-link>`, assim o clicar em `<router-link :to="...">` é o equivalente de chamar o `router.push(...)`.
 
 | Declarativo               | Programático       |
 | ------------------------- | ------------------ |
 | `<router-link :to="...">` | `router.push(...)` |
 
-The argument can be a string path, or a location descriptor object. Examples:
 O argumento pode ser um caminho de sequência de caracteres, ou um objeto descritor da localização. Exemplos:
 
 ```js
-// literal string path
 // caminho de sequência de caracteres literal
 router.push('/users/eduardo')
 
-// object with path
 // objeto com o caminho (`path`, em Inglês)
 router.push({ path: '/users/eduardo' })
 
-// named route with params to let the router build the url
 // rota nomeada com os parâmetros para permitir o roteador construir a URL
 router.push({ name: 'user', params: { username: 'eduardo' } })
 
-// with query, resulting in /register?plan=private
 // com a consulta (`query`, em Inglês), resultando em `/register?plan=private`
 router.push({ path: '/register', query: { plan: 'private' } })
 
-// with hash, resulting in /about#team
 // com a hash, resultando em `/about#team`
 router.push({ path: '/about', hash: '#team' })
 ```
 
-**Note**: `params` are ignored if a `path` is provided, which is not the case for `query`, as shown in the example above. Instead, you need to provide the `name` of the route or manually specify the whole `path` with any parameter:
 **Nota:** Os `params` são ignorados se um `path` for fornecido, o que não é o caso para a `query`, como mostrado no exemplo acima. Ao invés disto, precisas fornecer o `name` da rota ou manualmente especificar o `path` inteiro com qualquer parâmetro:
 
 ```js
