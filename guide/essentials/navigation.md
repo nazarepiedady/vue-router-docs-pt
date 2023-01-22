@@ -46,21 +46,21 @@ router.push({ path: '/about', hash: '#team' })
 
 ```js
 const username = 'eduardo'
-// we can manually build the url but we will have to handle the encoding ourselves
+// nós podemos manualmente construir a url mas teremos que manipular nós mesmos a codificação
 router.push(`/user/${username}`) // -> /user/eduardo
-// same as
+// o mesmo que
 router.push({ path: `/user/${username}` }) // -> /user/eduardo
-// if possible use `name` and `params` to benefit from automatic URL encoding
+// se possível use `name` e `params` para beneficiar-se da codificação automática da URL
 router.push({ name: 'user', params: { username } }) // -> /user/eduardo
-// `params` cannot be used alongside `path`
+// o `params` não pode ser usado em conjunto com do `path`
 router.push({ path: '/user', params: { username } }) // -> /user
 ```
 
-When specifying `params`, make sure to either provide a `string` or `number` (or an array of these for [repeatable params](./route-matching-syntax.md#repeatable-params)). **Any other type (like `undefined`, `false`, etc) will be automatically stringified**. For [optional params](./route-matching-syntax.md#optional-parameters), you can provide an empty string (`""`) as the value to skip it.
+Quando especificares o `params`, certifica-te de fornecer tanto uma `string` ou `number` (ou um `array` destes para os [parâmetros repetitivos](./route-matching-syntax.md#repeatable-params)). **Qualquer outro tipo (como `undefined`, `false`, etc) serão automaticamente transformadas em sequências de caracteres**. Para os [parâmetros opcionais](./route-matching-syntax.md#optional-parameters), podes fornecer uma sequência de caracteres vazia (`""`) como valor para ignorá-lo.
 
-Since the prop `to` accepts the same kind of object as `router.push`, the exact same rules apply to both of them.
+Já que a propriedade `to` aceita o mesmo tipo de objeto que o `router.push`, as mesmíssimas regras aplicam-se à ambos os dois.
 
-`router.push` and all the other navigation methods return a _Promise_ that allows us to wait till the navigation is finished and to know if it succeeded or failed. We will talk more about that in [Navigation Handling](../advanced/navigation-failures.md).
+O `router.push` e todos os outros métodos de navegação retornam uma _Promessa_ que permite-nos esperar até a navegação ser terminada e saber se foi bem-sucedida ou não. Nós falaremos mais a respeito disto na [Manipulação da Navegação](../advanced/navigation-failures.md).
 
 ## Replace current location
 
