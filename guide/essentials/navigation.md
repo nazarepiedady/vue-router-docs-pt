@@ -78,28 +78,28 @@ router.push({ path: '/home', replace: true })
 router.replace({ path: '/home' })
 ```
 
-## Traverse history
+## Percorrer a história
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/go-back"
-  title="Learn how to use Vue Router to go back"
+  title="Aprenda como usar a Vue Router para voltar atrás"
 />
 
-This method takes a single integer as parameter that indicates by how many steps to go forward or go backward in the history stack, similar to `window.history.go(n)`.
+Este método recebe um inteiro único como parâmetro que indica em quantas etapas avançar ou regressar na pilha da história, similar ao `window.history.go(n)`.
 
-Examples
+Exemplos:
 
 ```js
-// go forward by one record, the same as router.forward()
+// avançar em um registo, o mesmo que router.forward()
 router.go(1)
 
-// go back by one record, the same as router.back()
+// regressar em um registo, o mesmo que router.back()
 router.go(-1)
 
-// go forward by 3 records
+// avançar em 3 registos
 router.go(3)
 
-// fails silently if there aren't that many records
+// falha silenciosamente se não existir tantos registos
 router.go(-100)
 router.go(100)
 ```
