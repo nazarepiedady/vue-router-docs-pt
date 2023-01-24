@@ -62,19 +62,19 @@ Já que a propriedade `to` aceita o mesmo tipo de objeto que o `router.push`, as
 
 O `router.push` e todos os outros métodos de navegação retornam uma _Promessa_ que permite-nos esperar até a navegação ser terminada e saber se foi bem-sucedida ou não. Nós falaremos mais a respeito disto na [Manipulação da Navegação](../advanced/navigation-failures.md).
 
-## Replace current location
+## Substituir a localização atual
 
-It acts like `router.push`, the only difference is that it navigates without pushing a new history entry, as its name suggests - it replaces the current entry.
+Isto comporta-se como `router.push`, a única diferença é que ele navega sem empurrar uma nova entrada na história, como o seu nome sugeri - ele substitui a entrada atual.
 
-| Declarative                       | Programmatic          |
+| Declarativo                       | Programático          |
 | --------------------------------- | --------------------- |
 | `<router-link :to="..." replace>` | `router.replace(...)` |
 
-It's also possible to directly add a property `replace: true` to the `routeLocation` that is passed to `router.push`:
+Também é possível adicionar diretamente uma propriedade `replace: true` ao `routerLocation` que é passado para o `router.push`:
 
 ```js
 router.push({ path: '/home', replace: true })
-// equivalent to
+// equivalente ao
 router.replace({ path: '/home' })
 ```
 
