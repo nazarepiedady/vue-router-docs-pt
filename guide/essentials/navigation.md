@@ -104,10 +104,10 @@ router.go(-100)
 router.go(100)
 ```
 
-## History Manipulation
+## Manipulação da História
 
-You may have noticed that `router.push`, `router.replace` and `router.go` are counterparts of [`window.history.pushState`, `window.history.replaceState` and `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History), and they do imitate the `window.history` APIs.
+Tu podes ter notado que o `router.push`, `router.replace` e `router.go` são os equivalentes dos [`window.history.pushState`, `window.history.replaceState` and `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History), e eles imitam as APIs da `window.history`.
 
-Therefore, if you are already familiar with [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API), manipulating history will feel familiar when using Vue Router.
+Portanto, se já estiveres familiarizado com as [APIs de História do Navegador](https://developer.mozilla.org/en-US/docs/Web/API/History_API), manipular a história não será algo de outro mundo quando estiveres a usar a Vue Router.
 
-It is worth mentioning that Vue Router navigation methods (`push`, `replace`, `go`) work consistently no matter the kind of [`history` option](../../api/#history) is passed when creating the router instance.
+É digno de menção que os métodos de navegação da Vue Router (`push`, `replace`, e `go`) funcionam de maneira consistente não importando o tipo de [opção de `history`](../../api/#history) é passada quando estiveres a criar a instância do roteador.
