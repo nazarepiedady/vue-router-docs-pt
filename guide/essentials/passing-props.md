@@ -1,13 +1,13 @@
-# Passing Props to Route Components
+# Passando Propriedades para os Componentes de Rota
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-props"
-  title="Learn how to pass props to route components"
+  title="Aprenda como passar propriedades para os componentes de rota"
 />
 
-Using `$route` in your component creates a tight coupling with the route which limits the flexibility of the component as it can only be used on certain URLs. While this is not necessarily a bad thing, we can decouple this behavior with a `props` option:
+Usar `$route` no teu componente cria um acoplamento apertado com a rota o que limita a flexibilidade do componente já que ele apenas pode ser usado sobre certas URLs. Enquanto que isto não é necessariamente uma coisa má, podemos desfazer o acoplamento deste comportamento com uma opção `props`:
 
-We can replace
+Nós podemos substituir
 
 ```js
 const User = {
@@ -16,26 +16,26 @@ const User = {
 const routes = [{ path: '/user/:id', component: User }]
 ```
 
-with
+por
 
 ```js
 const User = {
-  // make sure to add a prop named exactly like the route param
+  // certifica-te de adicionar uma propriedade nomeada exatamente como o parâmetro da rota
   props: ['id'],
   template: '<div>User {{ id }}</div>'
 }
 const routes = [{ path: '/user/:id', component: User, props: true }]
 ```
 
-This allows you to use the component anywhere, which makes the component easier to reuse and test.
+Isto permite-te usar o componente em qualquer lugar, o que torna o componente mais fácil de reutilizar e testar.
 
-## Boolean mode
+## Modo booleano
 
-When `props` is set to `true`, the `route.params` will be set as the component props.
+Quando o `props` for definido para `true`, a `route.params` serão definidas como propriedades do componente.
 
-## Named views
+## Visões Nomeadas
 
-For routes with named views, you have to define the `props` option for each named view:
+Para rotas com visões nomeadas, tens que definir a opção `props` para cada visão nomeada:
 
 ```js
 const routes = [
@@ -47,9 +47,9 @@ const routes = [
 ]
 ```
 
-## Object mode
+## Modo de objeto
 
-When `props` is an object, this will be set as the component props as-is. Useful for when the props are static.
+Quando `props` for um objeto, este será definido como propriedades de componente como está. Útil para quando as propriedades forem estáticas.
 
 ```js
 const routes = [
@@ -61,9 +61,9 @@ const routes = [
 ]
 ```
 
-## Function mode
+## Mode de função
 
-You can create a function that returns props. This allows you to cast parameters into other types, combine static values with route-based values, etc.
+Tu podes criar uma função que retorna propriedades. Isto permite-te moldar parâmetros com outros tipos, combinar valores estáticos com valores baseados em rota etc.
 
 ```js
 const routes = [
@@ -75,6 +75,6 @@ const routes = [
 ]
 ```
 
-The URL `/search?q=vue` would pass `{query: 'vue'}` as props to the `SearchUser` component.
+A URL `/search?q=vue` passaria `{ query: 'vue' }` como propriedades para o componente `SearchUser`.
 
-Try to keep the `props` function stateless, as it's only evaluated on route changes. Use a wrapper component if you need state to define the props, that way vue can react to state changes.
+Tente manter a função `props` sem estado (stateless, em Inglês), já que é apenas avaliada sobre as mudanças da rota. Use um componente invólucro (wrapper, em Inglês) se precisares de estado para definir as propriedades, desta maneira a Vue pode reagir às mudanças do estado.
