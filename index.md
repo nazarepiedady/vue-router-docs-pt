@@ -21,7 +21,7 @@ features:
   - title: 🌐 Codificação Automática
     details: Use diretamente caracteres unicode (你好) no teu código.
 
-footer: Licenciado com MIT | Copyright © 2014-presente Evan You, Eduardo San Martin Morote
+footer: Licenciado sob MIT | Copyright © 2014-presente Evan You, Eduardo San Martin Morote
 ---
 
 <HomeSponsors />
