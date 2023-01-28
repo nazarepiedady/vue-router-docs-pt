@@ -1,11 +1,11 @@
-# Transitions
+# Transições
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-transitions"
-  title="Learn about route transitions"
+  title="Aprenda como aplicar transições às rotas"
 />
 
-In order to use transitions on your route components and animate navigations, you need to use the v-slot API:
+Para usares as transições nos teus componentes de rota e animar as navegações. precisas usar a API `v-slot`:
 
 ```html
 <router-view v-slot="{ Component }">
@@ -15,11 +15,11 @@ In order to use transitions on your route components and animate navigations, yo
 </router-view>
 ```
 
-[All transition APIs](https://v3.vuejs.org/guide/transitions-enterleave.html) work the same here.
+[Todas APIs de transição](https://v3.vuejs.org/guide/transitions-enterleave.html) funcionam da mesma maneira que as da Vue.
 
-## Per-Route Transition
+## Transição por Rota
 
-The above usage will apply the same transition for all routes. If you want each route's component to have different transitions, you can instead combine [meta fields](./meta.md) and a dynamic `name` on `<transition>`:
+O uso de cima aplicará a mesma transição para todas as rotas. Se quiseres que cada componente da rota tenha transições diferentes, podes combinar os [campos meta](./meta.md) e um `name` dinâmico na `<transition>`:
 
 ```js
 const routes = [
@@ -38,19 +38,19 @@ const routes = [
 
 ```html
 <router-view v-slot="{ Component, route }">
-  <!-- Use any custom transition and  to `fade` -->
+  <!-- Usa qualquer transição personalizada e para desvanecer (`fade`) -->
   <transition :name="route.meta.transition || 'fade'">
     <component :is="Component" />
   </transition>
 </router-view>
 ```
 
-## Route-Based Dynamic Transition
+## Transição Dinâmica Baseada em Rota
 
-It is also possible to determine the transition to use dynamically based on the relationship between the target route and current route. Using a very similar snippet to the one just before:
+Também é possível determinar a transição a usar dinamicamente baseada no relacionamento entre a rota alvo e a rota atual. Com uso de um fragmento de código muito similar aquele que vimos antes:
 
 ```html
-<!-- use a dynamic transition name -->
+<!-- use um nome de transição dinâmico -->
 <router-view v-slot="{ Component, route }">
   <transition :name="route.meta.transition">
     <component :is="Component" />
@@ -58,7 +58,7 @@ It is also possible to determine the transition to use dynamically based on the 
 </router-view>
 ```
 
-We can add an [after navigation hook](./navigation-guards.md#global-after-hooks) to dynamically add information to the `meta` field based on the depth of the route
+Nós podemos adicionar um [gatilho depois da navegação](./navigation-guards.md#global-after-hooks) para dinamicamente adicionar informação ao campo `meta` baseada na profundidade da rota:
 
 ```js
 router.afterEach((to, from) => {
@@ -68,9 +68,9 @@ router.afterEach((to, from) => {
 })
 ```
 
-## Forcing a transition between reused views
+## Forçar uma Transição entre Visões Reutilizadas
 
-Vue might automatically reuse components that look alike, avoiding any transition. Fortunately, it is possible [to add a `key` attribute](https://v3.vuejs.org/api/special-attributes.html#key) to force transitions. This also allows you to trigger transitions while staying on the same route with different params:
+A Vue pode automaticamente reutilizar componentes parecidos, evitando qualquer transição. Felizmente, é possível [adicionar um atributo `key`](https://v3.vuejs.org/api/special-attributes.html#key) para forçar transições. Isto também permite-te acionar as transições enquanto continuares na mesma rota com parâmetros diferentes:
 
 ```vue
 <router-view v-slot="{ Component, route }">
