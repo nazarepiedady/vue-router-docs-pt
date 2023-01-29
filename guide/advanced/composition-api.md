@@ -7,9 +7,9 @@
 
 A introdução de `setup` e [API de Composição](https://v3.vuejs.org/guide/composition-api-introduction.html) da Vue, abre possibilidades novas mas para ser capaz de receber o potencial completo da Vue Router, precisaremos usar algumas funções novas para substituir o acesso ao `this` e às guardas de navegação em componente.
 
-## Accessing the Router and current Route inside `setup`
+## Acessar o Roteador e a Rota atual dentro de `setup`
 
-Because we don't have access to `this` inside of `setup`, we cannot directly access `this.$router` or `this.$route` anymore. Instead we use the `useRouter` function:
+Uma vez que não temos acesso ao `this` dentro de `setup`, já não podemos acessar `this.$router` ou `this.$route` diretamente. No lugar destes usamos as funções `useRouter`:
 
 ```js
 import { useRouter, useRoute } from 'vue-router'
@@ -32,7 +32,7 @@ export default {
 }
 ```
 
-The `route` object is a reactive object, so any of its properties can be watched and you should **avoid watching the whole `route`** object. In most scenarios, you should directly watch the param you are expecting to change
+O objeto `route` é um objeto reativo, assim quaisquer uma de suas propriedades podem ser observadas e deves **evitar observar o objeto `route` inteiro**. Na maioria dos cenários, deves observar diretamente o parâmetro que estiveres a espera que mude:
 
 ```js
 import { useRoute } from 'vue-router'
@@ -43,7 +43,7 @@ export default {
     const route = useRoute()
     const userData = ref()
 
-    // fetch the user information when params change
+    // pedir as informações do utilizador quando os parâmetros mudarem
     watch(
       () => route.params.id,
       async newId => {
@@ -54,7 +54,7 @@ export default {
 }
 ```
 
-Note we still have access to `$router` and `$route` in templates, so there is no need to return `router` or `route` inside of `setup`.
+Nota que continuamos a ter o acesso ao `$router` e `$router` nos modelos de marcação, então não existe a necessidade de retornar o `router` ou `route` de dentro de `setup`.
 
 ## Navigation Guards
 
