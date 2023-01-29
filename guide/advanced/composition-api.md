@@ -56,9 +56,9 @@ export default {
 
 Nota que continuamos a ter o acesso ao `$router` e `$router` nos modelos de marcação, então não existe a necessidade de retornar o `router` ou `route` de dentro de `setup`.
 
-## Navigation Guards
+## Guardas da Navegação
 
-While you can still use in-component navigation guards with a `setup` function, Vue Router exposes update and leave guards as Composition API functions:
+Embora continues a poder usar as guardas da navegação em componente com uma função `setup`, a Vue Router expõe as guardas de atualização e saída como funções da API de Composição:
 
 ```js
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
@@ -66,20 +66,20 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    // same as beforeRouteLeave option with no access to `this`
+    // o mesmo que a opção beforeRouteLeave sem o acesso ao `this`
     onBeforeRouteLeave((to, from) => {
       const answer = window.confirm(
         'Do you really want to leave? you have unsaved changes!'
       )
-      // cancel the navigation and stay on the same page
+      // cancela a navegação e permanece na mesma página
       if (!answer) return false
     })
 
     const userData = ref()
 
-    // same as beforeRouteUpdate option with no access to `this`
+    // o mesmo que a opção beforeRouteUpdate sem o acesso ao `this`
     onBeforeRouteUpdate(async (to, from) => {
-      // only fetch the user if the id changed as maybe only the query or the hash changed
+      // apenas peça o utilizador se o `id` foi mudado já que talvez apenas a `query` ou `hash` foram mudadas
       if (to.params.id !== from.params.id) {
         userData.value = await fetchUser(to.params.id)
       }
@@ -88,11 +88,11 @@ export default {
 }
 ```
 
-Composition API guards can also be used in any component rendered by `<router-view>`, they don't have to be used directly on the route component like in-component guards.
+As guardas da API de Composição também podem ser usadas em qualquer componente apresentado pelo `<router-view>`, não precisam ser usados diretamente no componente da rota como guardas em componente.
 
 ## `useLink`
 
-Vue Router exposes the internal behavior of RouterLink as a Composition API function. It gives access to the same properties as the [`v-slot` API](../../api/#router-link-s-v-slot):
+A Vue Router expõe o comportamento interno de `RouterLink` como uma função da API de Composição. Ela concede o acesso às mesmas propriedades tal como a [API `v-slot`](../../api/#router-link-s-v-slot):
 
 ```js
 import { RouterLink, useLink } from 'vue-router'
@@ -102,7 +102,7 @@ export default {
   name: 'AppLink',
 
   props: {
-    // add @ts-ignore if using TypeScript
+    // adicione @ts-ignore se estiveres a usar TypeScript
     ...RouterLink.props,
     inactiveClass: String,
   },
