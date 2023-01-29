@@ -1,11 +1,11 @@
-# Vue Router and the Composition API
+# Vue Router e a API de Composição
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/router-and-the-composition-api"
-  title="Learn how to use Vue Router with the composition API"
+  title="Aprenda a como usar a Vue Router com a API de Composição"
 />
 
-The introduction of `setup` and Vue's [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html), open up new possibilities but to be able to get the full potential out of Vue Router, we will need to use a few new functions to replace access to `this` and in-component navigation guards.
+A introdução de `setup` e [API de Composição](https://v3.vuejs.org/guide/composition-api-introduction.html) da Vue, abre possibilidades novas mas para ser capaz de receber o potencial completo da Vue Router, precisaremos usar algumas funções novas para substituir o acesso ao `this` e às guardas de navegação em componente.
 
 ## Accessing the Router and current Route inside `setup`
 
