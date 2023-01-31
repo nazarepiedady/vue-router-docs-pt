@@ -1,12 +1,12 @@
-# Data Fetching
+# Requisição de Dados
 
-Sometimes you need to fetch data from the server when a route is activated. For example, before rendering a user profile, you need to fetch the user's data from the server. We can achieve this in two different ways:
+Algumas vezes precisas pedir dados do servidor quando uma rota é ativada. Por exemplo, antes de apresentar um perfil de utilizador, precisas pedir do servidor os dados do utilizador. Nós podemos alcançar isto de duas maneiras:
 
-- **Fetching After Navigation**: perform the navigation first, and fetch data in the incoming component's lifecycle hook. Display a loading state while data is being fetched.
+- **Requisitar Depois da Navegação**: realizar a navegação primeiro, e depois pedir os dados no gatilho de ciclo de vida do próximo componente. Exibir um estado de carregamento enquanto os dados estão a ser pedidos.
 
-- **Fetching Before Navigation**: Fetch data before navigation in the route enter guard, and perform the navigation after data has been fetched.
+- **Requisitar Antes da Navegação**: pedir os dados antes da navegação na guarda da rota de entrada, e realizar a navegação depois dos dados tiverem sido recebidos.
 
-Technically, both are valid choices - it ultimately depends on the user experience you are aiming for.
+Tecnicamente, ambas são escolhas válidas . isto definitivamente depende da experiência de uso que queres entregar.
 
 ## Fetching After Navigation
 
