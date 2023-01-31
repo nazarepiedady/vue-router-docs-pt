@@ -53,7 +53,7 @@ export default {
 </script>
 ```
 
-If you prefer using a render function or create `computed` properties, you can use the `useLink` from the [Composition API](./composition-api.md):
+Se preferires usar uma função `render` ou criar propriedades `computed`, podes usar o `useLink` da [API de Composição](./composition-api.md):
 
 ```js
 import { RouterLink, useLink } from 'vue-router'
@@ -62,16 +62,16 @@ export default {
   name: 'AppLink',
 
   props: {
-    // add @ts-ignore if using TypeScript
+    // adicionar @ts-ignore se estiveres a usar TypeScript
     ...RouterLink.props,
     inactiveClass: String,
   },
 
   setup(props) {
-    // `props` contains `to` and any other prop that can be passed to <router-link>
+    // `props` contém `to` e qualquer outra propriedade que puder ser passada para `<router-link>`
     const { navigate, href, route, isActive, isExactActive } = useLink(props)
 
-    // profit!
+    // lucro!
 
     return { isExternalLink }
   },
