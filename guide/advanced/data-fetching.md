@@ -69,10 +69,9 @@ export default {
 }
 ```
 
-## Fetching Before Navigation
+## Requisitar Antes da Navegação
 
-With this approach we fetch the data before actually navigating to the new
-route. We can perform the data fetching in the `beforeRouteEnter` guard in the incoming component, and only call `next` when the fetch is complete. The callback passed to `next` will be called **after the component is mounted**:
+Com esta abordagem pedimos os dados antes de fato navegar para a próxima rota. Nós podemos realizar a requisição dos dados na guarda `beforeRouteEnter` no próximo componente, e apenas chamar `next` quando o pedido estiver concluído. A função de resposta passada para `next` será chamada **depois que o componente estiver montado**:
 
 ```js
 export default {
@@ -84,12 +83,12 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     getPost(to.params.id, (err, post) => {
-      // `setData` is a method defined below
+      // `setData` é um método definido abaixo
       next(vm => vm.setData(err, post))
     })
   },
-  // when route changes and this component is already rendered,
-  // the logic will be slightly different.
+  // quando a rota muda e este componente já está desenhado,
+  // a lógica será ligeiramente diferente.
   async beforeRouteUpdate(to, from) {
     this.post = null
     try {
@@ -110,7 +109,7 @@ export default {
 }
 ```
 
-The user will stay on the previous view while the resource is being fetched for the incoming view. It is therefore recommended to display a progress bar or some kind of indicator while the data is being fetched. If the data fetch fails, it's also necessary to display some kind of global warning message.
+O utilizador continuará na visão anterior enquanto o recurso estiver a ser pedido para a próxima visão. É portanto recomendado exibir uma barra de progresso ou algum tipo de indicador enquanto os dados estiverem a ser pedidos. Se o pedido dos dados falhar, também é necessário exibir algum tipo de mensagem de aviso global.
 
 <!-- ### Using Composition API -->
 
