@@ -78,7 +78,7 @@ export default {
 }
 ```
 
-In practice, you might want to use your `AppLink` component for different parts of your application. e.g. using [Tailwind CSS](https://tailwindcss.com), you could create a `NavLink.vue` component with all the classes:
+Na prática, podes querer usar o teu componente `AppLink` para as diferentes partes da tua aplicação, por exemplo, usando a [Tailwind CSS](https://tailwindcss.com), poderias criar um componente `NavLink.vue` com todas as classes:
 
 ```vue
 <template>
