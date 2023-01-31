@@ -1,13 +1,13 @@
-# Extending RouterLink
+# Estendendo o RouterLink
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/extending-router-link-for-external-urls"
-  title="Learn how to extend router-link"
+  title="Aprenda a como estender o router-link"
 />
 
-The RouterLink component exposes enough `props` to suffice most basic applications but it doesn't try to cover every possible use case and you will likely find yourself using `v-slot` for some advanced cases. In most medium to large sized applications, it's worth creating one if not multiple custom RouterLink components to reuse them across your application. Some examples are Links in a Navigation Menu, handling external links, adding an `inactive-class`, etc.
+O componente `RouterLink` expõe `props` suficientes para abastecer as aplicações mais básicas mas não tenta cobrir todo possível caso de uso e provavelmente encontraras-te-á a usar o `v-slot` para alguns casos avançados. Nas aplicações de mais médio à grande porte, é importante criar um se não vários componentes `RouterLink` personalizados para reutilizá-los por toda a tua aplicação. Alguns exemplos são, Ligações em um Menu de Navegação, manipulação de ligações externas, adição de um `inactive-class`, etc.
 
-Let's extend RouterLink to handle external links as well and adding a custom `inactive-class` in an `AppLink.vue` file:
+Vamos estender o `RouterLink` para manipular ligações externas bem como e adicionar uma `inactive-class` em um ficheiro `AppLink.vue`:
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ export default {
   inheritAttrs: false,
 
   props: {
-    // add @ts-ignore if using TypeScript
+    // adicionar @ts-ignore se estiveres a usar TypeScript
     ...RouterLink.props,
     inactiveClass: String,
   },
