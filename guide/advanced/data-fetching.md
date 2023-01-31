@@ -8,11 +8,11 @@ Algumas vezes precisas pedir dados do servidor quando uma rota é ativada. Por e
 
 Tecnicamente, ambas são escolhas válidas . isto definitivamente depende da experiência de uso que queres entregar.
 
-## Fetching After Navigation
+## Requisitar Depois da Navegação
 
-When using this approach, we navigate and render the incoming component immediately, and fetch data in the component's `created` hook. It gives us the opportunity to display a loading state while the data is being fetched over the network, and we can also handle loading differently for each view.
+Quando estivermos a usar esta abordagem, navegamos e apresentamos o próximo componente imediatamente, e pedimos os dados no gatilho `created` do componente. Isto dá-nos a oportunidade de exibir um estado de carregamento enquanto os dados trafegam sobre a rede, e também podemos manipular o carregamento de maneira diferente para cada visão.
 
-Let's assume we have a `Post` component that needs to fetch the data for a post based on `$route.params.id`:
+Vamos assumir que temos um componente `Post` que precisa pedir os dados para uma publicação baseada no `$route.params.id`:
 
 ```html
 <template>
@@ -39,14 +39,14 @@ export default {
     }
   },
   created() {
-    // watch the params of the route to fetch the data again
+    // observar os parâmetros da rota para pedir os dados novamente
     this.$watch(
       () => this.$route.params,
       () => {
         this.fetchData()
       },
-      // fetch the data when the view is created and the data is
-      // already being observed
+      // pedir os dados quando a visão estiver criada e
+      // os dados já estiverem a ser observados
       { immediate: true }
     )
   },
@@ -54,7 +54,8 @@ export default {
     fetchData() {
       this.error = this.post = null
       this.loading = true
-      // replace `getPost` with your data fetching util / API wrapper
+      // substituir `getPost` pelo teu utilitário de requisição de dados
+      // ou envolvedor de API
       getPost(this.$route.params.id, (err, post) => {
         this.loading = false
         if (err) {
