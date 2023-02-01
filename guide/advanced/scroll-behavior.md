@@ -1,40 +1,40 @@
-# Scroll Behavior
+# Comportamento do Deslocamento
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/scroll-behavior"
-  title="Learn how to customize scroll behavior"
+  title="Aprenda a como personalizar o comportamento do deslocamento"
 />
 
-When using client-side routing, we may want to scroll to top when navigating to a new route, or preserve the scrolling position of history entries just like real page reload does. Vue Router allows you to achieve these and even better, allows you to completely customize the scroll behavior on route navigation.
+Quando estivermos a usar o roteamento no lado do cliente, podemos querer se deslocar para o topo da página quando estivermos a navegar para uma nova rota, ou preservar a posição do deslocamento das entradas de história tal como o recarregamento original da página faz. A Vue Router permite-nos alcançar estes e ainda melhor, permite-nos personalizar completamente o comportamento do deslocamento na navegação da rota.
 
-**Note: this feature only works if the browser supports `history.pushState`.**
+**Nota: esta funcionalidade apenas funciona se o navegador suportar `history.pushState`.**
 
-When creating the router instance, you can provide the `scrollBehavior` function:
+Quando estiveres a criar uma instância do roteador, podes fornecer a função `scrollBehavior`:
 
 ```js
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
-    // return desired position
+    // retornar a posição desejada
   }
 })
 ```
 
-The `scrollBehavior` function receives the `to` and `from` route objects, like [Navigation Guards](./navigation-guards.md). The third argument, `savedPosition`, is only available if this is a `popstate` navigation (triggered by the browser's back/forward buttons).
+A função `scrollBehavior` recebe os objetos de rota `to` e `from`, como [Guardas da Navegação](./navigation-guards.md). O terceiro argumento, `savedPosition`, apenas está disponível se esta for uma navegação `popstate` (acionada pelos botões recuar/avançar do navegador).
 
-The function can return a [`ScrollToOptions`](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions) position object:
+A função pode retornar um objeto de posição [`ScrollToOptions`](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions):
 
 ```js
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
+    // deslocar sempre para o topo
     return { top: 0 }
   },
 })
 ```
 
-You can also pass a CSS selector or a DOM element via `el`. In that scenario, `top` and `left` will be treated as relative offsets to that element.
+Tu também podes passar um seletor de CSS ou um elemento do DOM através de `el`. Neste cenário, `to` e `left` serão tratados como compensações relativas a este elemento.
 
 ```js
 const router = createRouter({
@@ -50,9 +50,9 @@ const router = createRouter({
 })
 ```
 
-If a falsy value or an empty object is returned, no scrolling will happen.
+Se um valor falso ou um objeto vazio for retornado, nenhum deslocamento acontecerá.
 
-Returning the `savedPosition` will result in a native-like behavior when navigating with back/forward buttons:
+Retornar o `savedPosition` resultará em um comportamento parecido com o nativo quando navegar com os botões recuar/avançar:
 
 ```js
 const router = createRouter({
@@ -66,7 +66,7 @@ const router = createRouter({
 })
 ```
 
-If you want to simulate the "scroll to anchor" behavior:
+Se quiseres simular o comportamento "deslocar até a âncora":
 
 ```js
 const router = createRouter({
@@ -80,7 +80,7 @@ const router = createRouter({
 })
 ```
 
-If your browser supports [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior), you can make it smooth:
+Se o teu navegador suporta [comportamento de deslocamento](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior), podes torná-lo suave:
 
 ```js
 const router = createRouter({
