@@ -95,9 +95,9 @@ const router = createRouter({
 })
 ```
 
-## Delaying the scroll
+## Atrasar o deslocamento
 
-Sometimes we need to wait a bit before scrolling in the page. For example, when dealing with transitions, we want to wait for the transition to finish before scrolling. To do this you can return a Promise that returns the desired position descriptor. Here is an example where we wait 500ms before scrolling:
+Algumas vezes precisamos esperar um pouco antes de se deslocar na página. Por exemplo, quando lidamos com transições, queremos esperar a transição terminar antes de se deslocar. Para fazer isto podes retornar uma promessa que retorna o descritor da posição desejada. Aqui está um exemplo onde esperamos 500ms antes de se deslocar:
 
 ```js
 const router = createRouter({
@@ -111,4 +111,4 @@ const router = createRouter({
 })
 ```
 
-It's possible to hook this up with events from a page-level transition component to make the scroll behavior play nicely with your page transitions, but due to the possible variance and complexity in use cases, we simply provide this primitive to enable specific userland implementations.
+É possível conectar isto com eventos de uma componente de transição de nível da página para fazer o comportamento do deslocamento correr bem com as transições da tua página, mas por causa da possível discrepância e complexidade em casos de uso, simplesmente fornecemos este primitivo para ativar implementações específicas do cliente.
