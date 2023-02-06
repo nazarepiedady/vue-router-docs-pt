@@ -40,11 +40,11 @@ Quando estiveres a usar um empacotador como o Webpack, este se beneficiará auto
 
 Quando estiveres a usar o Babel, precisarás de adicionar a extensão [`syntax-dynamic-import`](https://babeljs.io/docs/plugins/syntax-dynamic-import/) para o Babel poder analisar a sintaxe apropriadamente.
 
-## Grouping Components in the Same Chunk
+## Agrupar Componentes no Mesmo Pedaço
 
-### With webpack
+### Com a Webpack
 
-Sometimes we may want to group all the components nested under the same route into the same async chunk. To achieve that we need to use [named chunks](https://webpack.js.org/guides/code-splitting/#dynamic-imports) by providing a chunk name using a special comment syntax (requires webpack > 2.4):
+Algumas vezes podemos querer agrupar todos os componentes encaixados sob a mesma rota no mesmo pedaço assíncrono. Para alcançar isto precisamos usar [pedaços nomeados](https://webpack.js.org/guides/code-splitting/#dynamic-imports) fornecendo um nome de pedaço usando uma sintaxe especial de comentário (exige versão de webpack > 2.4):
 
 ```js
 const UserDetails = () =>
@@ -55,11 +55,11 @@ const UserProfileEdit = () =>
   import(/* webpackChunkName: "group-user" */ './UserProfileEdit.vue')
 ```
 
-webpack will group any async module with the same chunk name into the same async chunk.
+O Webpack agrupará qualquer módulo assíncrono com o mesmo nome de pedaço no mesmo pedaço assíncrono.
 
-### With Vite
+### Com a Vite
 
-In Vite you can define the chunks under the [`rollupOptions`](https://vitejs.dev/config/#build-rollupoptions):
+Na Vite podes definir os pedaços sob a [`rollupOptions`](https://vitejs.dev/config/#build-rollupoptions):
 
 ```js
 // vite.config.js
