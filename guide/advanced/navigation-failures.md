@@ -1,33 +1,33 @@
-# Waiting for the result of a Navigation
+# Aguardando pelo resultado de uma Navegação
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-detecting-navigation-failures"
-  title="Learn how to detect navigation failures"
+  title="Aprenda como detetar falhas de navegação"
 />
 
-When using `router-link`, Vue Router calls `router.push` to trigger a navigation. While the expected behavior for most links is to navigate a user to a new page, there are a few situations where users will remain on the same page:
+Quando estiveres a usar o `router-link`, a Vue Router chama o `router.push` para acionar uma navegação. Enquanto o comportamento esperado para a maioria das ligações é navegar um utilizador para uma nova página, existem algumas situações onde os utilizadores continuarão na mesma página:
 
-- Users are already on the page that they are trying to navigate to.
-- A [navigation guard](./navigation-guards.md) aborts the navigation by doing `return false`.
-- A new navigation guard takes place while the previous one not finished.
-- A [navigation guard](./navigation-guards.md) redirects somewhere else by returning a new location (e.g. `return '/login'`).
-- A [navigation guard](./navigation-guards.md) throws an `Error`.
+- Os utilizadores já estão na página para qual estão a tentar navegar.
+- Uma [guarda de navegação](./navigation-guards.md) aborta a navegação fazendo `return false`.
+- Uma nova guarda de navegação ocorre enquanto a anterior ainda não terminou.
+- Uma [guarda de navegação](./navigation-guards.md) redireciona noutro lugar retornando uma nova localização (por exemplo, `return '/login'`).
+- Uma [guarda de navegação](./navigation-guards.md) lança um `Error`.
 
-If we want to do something after a navigation is finished, we need a way to wait after calling `router.push`. Imagine we have a mobile menu that allows us to go to different pages and we only want to hide the menu once we have navigated to the new page, we might want to do something like this:
+Se quisermos fazer alguma coisa depois de uma navegação for terminada, precisamos de uma maneira de esperar depois da chamada de `router.push`. Suponha que temos um menu de dispositivo móvel que permite-nos ir para páginas diferentes e apenas queremos esconder o menu assim que tivermos navegado para a nova página, poderemos querer fazer alguma coisa como:
 
 ```js
 router.push('/my-profile')
 this.isMenuOpen = false
 ```
 
-But this will close the menu right away because **navigations are asynchronous**, we need to `await` the promise returned by `router.push`:
+Mas isto fechará o menu imediatamente porque as **navegações são assíncronas**, precisamos do `wait` para esperar a promessa retornada pelo `router.push`:
 
 ```js
 await router.push('/my-profile')
 this.isMenuOpen = false
 ```
 
-Now the menu will close once the navigation is finished but it will also close if the navigation was prevented. We need a way to detect if we actually changed the page we are on or not.
+Agora o menu fechará assim que a navegação for terminada mas também fechará se a navegação foi impedida. Nós precisamos de uma maneira de detetar se realmente mudamos a página em que estamos ou não.
 
 ## Detecting Navigation Failures
 
