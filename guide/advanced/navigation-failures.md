@@ -1,4 +1,4 @@
-# Aguardando pelo resultado de uma Navegação
+# Aguardando pelo Resultado de uma Navegação
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-detecting-navigation-failures"
@@ -27,39 +27,39 @@ await router.push('/my-profile')
 this.isMenuOpen = false
 ```
 
-Agora o menu fechará assim que a navegação for terminada mas também fechará se a navegação foi impedida. Nós precisamos de uma maneira de detetar se realmente mudamos a página em que estamos ou não.
+Agora o menu fechará assim que a navegação for terminada mas também fechará se a navegação foi impedida. Nós precisamos de uma maneira de detetar se realmente mudamos a página em que estamos ou não estamos.
 
-## Detecting Navigation Failures
+## Detetando Falhas de Navegação
 
-If a navigation is prevented, resulting in the user staying on the same page, the resolved value of the `Promise` returned by `router.push` will be a _Navigation Failure_. Otherwise, it will be a _falsy_ value (usually `undefined`). This allows us to differentiate the case where we navigated away from where we are or not:
+Se uma navegação for impedida, resultando em o utilizador continuar na mesma página, o valor resolvido da `Promise` retornada pelo `router.push` será uma _Falha de Navegação_. De outro modo, será um valor falso ou melhor `falsy` (normalmente `undefined`). Isto permite-nos diferenciar o caso de onde navegamos a partir de onde estamos ou não estamos:
 
 ```js
 const navigationResult = await router.push('/my-profile')
 
 if (navigationResult) {
-  // navigation prevented
+  // navegação impedida
 } else {
-  // navigation succeeded (this includes the case of a redirection)
+  // navegação bem-sucedida (isto inclui o caso de um redirecionamento)
   this.isMenuOpen = false
 }
 ```
 
-_Navigation Failures_ are `Error` instances with a few extra properties that gives us enough information to know what navigation was prevented and why. To check the nature of a navigation result, use the `isNavigationFailure` function:
+As _falhas de navegação_ são instâncias de `Error` com algumas propriedades adicionais que entregam-nos informações suficiente para saber qual navegação foi impedida e o porquê. Para verificar a natureza de um resultado de navegação, use a função `isNavigationFailure`:
 
 ```js
 import { NavigationFailureType, isNavigationFailure } from 'vue-router'
 
-// trying to leave the editing page of an article without saving
+// tentando sair da página de edição de um artigo sem o guardar
 const failure = await router.push('/articles/2')
 
 if (isNavigationFailure(failure, NavigationFailureType.aborted)) {
-  // show a small notification to the user
+  // mostrar uma pequena notificação para o utilizador
   showToast('You have unsaved changes, discard and leave anyway?')
 }
 ```
 
-::: tip
-If you omit the second parameter: `isNavigationFailure(failure)`, it will only check if `failure` is a _Navigation Failure_.
+:::tip Dica
+Se omitires o segundo parâmetro: `isNavigationFailure(failure)`, ela apenas verifica se `failure` é uma _Falha de Navegação_.
 :::
 
 ## Differentiating Navigation Failures
