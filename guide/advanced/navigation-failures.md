@@ -70,12 +70,12 @@ Conforme dissemos no início, existem situações diferentes que abortam uma nav
 - `cancelled`: Uma nova navegação ocorreu antes da navegação atual puder terminar, por exemplo, o `router.push` foi chamado enquanto espera dentro de uma guarda de navegação.
 - `duplicated`: A navegação foi impedida porque já estamos localização de destino.
 
-## _Navigation Failures_'s properties
+## Propriedades das _Falhas de Navegação_
 
-All navigation failures expose `to` and `from` properties to reflect the current location as well as the target location for the navigation that failed:
+Todas as falhas de navegação expõem as propriedades `to` e `from` para refletir a localização atual bem como a localização de destino para a navegação que falhou:
 
 ```js
-// trying to access the admin page
+// tentando acessar a página de administrador
 router.push('/admin').then(failure => {
   if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
     failure.to.path // '/admin'
@@ -84,7 +84,7 @@ router.push('/admin').then(failure => {
 })
 ```
 
-In all cases, `to` and `from` are normalized route locations.
+Em todos casos, `to` e `from` são localizações de rota normalizadas.
 
 ## Detecting Redirections
 
