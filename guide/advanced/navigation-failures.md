@@ -62,13 +62,13 @@ if (isNavigationFailure(failure, NavigationFailureType.aborted)) {
 Se omitires o segundo parâmetro: `isNavigationFailure(failure)`, ela apenas verifica se `failure` é uma _Falha de Navegação_.
 :::
 
-## Differentiating Navigation Failures
+## Diferenciando Falhas de Navegação
 
-As we said at the beginning, there are different situations aborting a navigation, all of them resulting in different _Navigation Failures_. They can be differentiated using the `isNavigationFailure` and `NavigationFailureType`. There are three different types:
+Conforme dissemos no início, existem situações diferentes que abortam uma navegação, todas elas resultando em diferentes _Falhas de Navegação_. Eles podem ser diferenciados usando a `isNavigationFailure` e o `NavigationFailureType`. Existem três tipos diferentes:
 
-- `aborted`: `false` was returned inside of a navigation guard to the navigation.
-- `cancelled`: A new navigation took place before the current navigation could finish. e.g. `router.push` was called while waiting inside of a navigation guard.
-- `duplicated`: The navigation was prevented because we are already at the target location.
+- `aborted`: `false` foi retornado dentro de uma guarda de navegação para a navegação.
+- `cancelled`: Uma nova navegação ocorreu antes da navegação atual puder terminar, por exemplo, o `router.push` foi chamado enquanto espera dentro de uma guarda de navegação.
+- `duplicated`: A navegação foi impedida porque já estamos localização de destino.
 
 ## _Navigation Failures_'s properties
 
