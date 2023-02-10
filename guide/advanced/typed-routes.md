@@ -1,6 +1,6 @@
 # Rotas com Tipos (v4.1.0+)
 
-::: danger ‼️ Funcionalidade Experimental
+:::danger ‼️ Funcionalidade Experimental
 
 Desde a versão 4.1.0, estamos a introduzir uma nova funcionalidade chamada Rotas com Tipos. Esta funcionalidade **experimental** é ativada através de uma extensão de Vite/Webpack/Rollup.
 
