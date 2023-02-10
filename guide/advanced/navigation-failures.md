@@ -86,13 +86,13 @@ router.push('/admin').then(failure => {
 
 Em todos casos, `to` e `from` são localizações de rota normalizadas.
 
-## Detecting Redirections
+## Detetando Redirecionamentos
 
-When returning a new location inside of a Navigation Guard, we are triggering a new navigation that overrides the ongoing one. Differently from other return values, a redirection doesn't prevent a navigation, **it creates a new one**. It is therefore checked differently, by reading the `redirectedFrom` property in a Route Location:
+Quando estivermos a retornar uma nova localização dentro de uma Guarda de Navegação, estamos a acionar uma nova navegação que se sobrepõe aquela em curso. Diferentemente de outros valores de retorno, um redirecionamento não impede uma navegação, **ele cria uma uma nova**. Ele é portanto verificado de forma diferente, lendo a propriedade `redirectedFrom` em uma Localização de Rota:
 
 ```js
 await router.push('/my-profile')
 if (router.currentRoute.value.redirectedFrom) {
-  // redirectedFrom is resolved route location like to and from in navigation guards
+  // `redirectedFrom` é uma localização de rota resolvida como `to` e `from` nas guardas de navegação
 }
 ```
