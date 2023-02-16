@@ -7,11 +7,11 @@
 
 A adição de rotas no teu roteador é normalmente feito através da [opção `routes`](../../api/#routes) mas em algumas situações, podes querer adicionar ou remover rotas enquanto a aplicação já está em execução. Aplicações com interfaces extensivas como [Interface de Utilizador da Interface da Linha de Comando da Vue](https://cli.vuejs.org/dev-guide/ui-api.html) podem usar isto para fazerem a aplicação escrever.
 
-## Adding Routes
+## Adicionar Rotas
 
-Dynamic routing is achieved mainly via two functions: `router.addRoute()` and `router.removeRoute()`. They **only** register a new route, meaning that if the newly added route matches the current location, it would require you to **manually navigate** with `router.push()` or `router.replace()` to display that new route. Let's take a look at an example:
+O roteamento dinâmico é alcançado principalmente através de duas funções: `router.addRoute()` e `router.removeRoute()`. Elas **apenas** registam uma nova rota, querendo dizer que se a rota adicionada recentemente corresponder a localização atual, exigiria que **navegasses manualmente** com a `router.push()` ou `router.replace()` para exibir aquela nova rota. Vejamos um exemplo:
 
-Imagine having the following router with one single route:
+Suponha que tens o seguinte roteador com uma única rota:
 
 ```js
 const router = createRouter({
@@ -20,21 +20,21 @@ const router = createRouter({
 })
 ```
 
-Going to any page, `/about`, `/store`, or `/3-tricks-to-improve-your-routing-code` ends up rendering the `Article` component. If we are on `/about` and we add a new route:
+Ir para qualquer página, `/about`, `/store`, ou `/3-tricks-to-improve-your-routing-code` acabamos por apresentar o componente `Article`. Se estamos na `/about` e adicionamos uma nova rota:
 
 ```js
 router.addRoute({ path: '/about', component: About })
 ```
 
-The page will still show the `Article` component, we need to manually call `router.replace()` to change the current location and overwrite where we were (instead of pushing a new entry, ending up in the same location twice in our history):
+A página continuará a exibir o componente `Article`, precisamos de chamar manualmente o `router.replace()` para mudar a localização atual e sobrescrever onde estávamos (ao invés de empurrar uma nova entrada, acabamos na mesma localização duas vezes na história):
 
 ```js
 router.addRoute({ path: '/about', component: About })
-// we could also use this.$route or route = useRoute() (inside a setup)
+// nós poderíamos também usar `this.$route` ou `route = useRoute()` (dentro de uma `setup`)
 router.replace(router.currentRoute.value.fullPath)
 ```
 
-Remember you can `await router.replace()` if you need to wait for the new route to be displayed.
+Lembra-te de que podes `await router.replace()` se precisares de esperar que a nova rota seja exibida.
 
 ## Adding Routes inside navigation guards
 
