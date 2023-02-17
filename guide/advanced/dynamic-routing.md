@@ -87,16 +87,16 @@ Existem maneiras diferentes de remover as rotas existentes:
 
 Sempre que uma rota for removida, **todos os seus pseudónimos e filhos** são removidos com ela.
 
-## Adding nested routes
+## Adicionar Rotas Encaixadas
 
-To add nested routes to an existing route, you can pass the _name_ of the route as its first parameter to `router.addRoute()`, this will effectively add the route as if it was added through `children`:
+Para adicionar as rotas encaixadas à uma rota existente, podes passar o _name_ da rota como seu primeiro parâmetro ao `router.addRoute()`, isto efetivamente adicionará a rota como se fosse adicionada através do `children`:
 
 ```js
 router.addRoute({ name: 'admin', path: '/admin', component: Admin })
 router.addRoute('admin', { path: 'settings', component: AdminSettings })
 ```
 
-This is equivalent to:
+Isto é equivalente ao:
 
 ```js
 router.addRoute({
