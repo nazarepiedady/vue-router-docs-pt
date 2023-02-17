@@ -36,23 +36,23 @@ router.replace(router.currentRoute.value.fullPath)
 
 Lembra-te de que podes `await router.replace()` se precisares de esperar que a nova rota seja exibida.
 
-## Adding Routes inside navigation guards
+## Adicionar Rotas dentro das Guardas de Navegação
 
-If you decide to add or remove routes inside of a navigation guard, you should not call `router.replace()` but trigger a redirection by returning the new location:
+Se decidires adicionar ou remover as rotas dentro de uma guarda de navegação, não deves chamar `router.replace()` mas acionar um redirecionamento com o retorno da nova localização:
 
 ```js
 router.beforeEach(to => {
   if (!hasNecessaryRoute(to)) {
     router.addRoute(generateRoute(to))
-    // trigger a redirection
+    // acionar um redirecionamento
     return to.fullPath
   }
 })
 ```
 
-The example above assumes two things: first, the newly added route record will match the `to` location, effectively resulting in a different location from the one we were trying to access. Second, `hasNecessaryRoute()` returns `false` after adding the new route to avoid an infinite redirection.
+O exemplo acima assume duas coisas: primeiro, o registo da rota adicionada recentemente corresponderá a localização `to`, resultando efetivamente em uma localização diferente daquela que estávamos a tentar acessar. Segundo, `hasNecessaryRoute()` retorna `false` depois de adicionar a nova rota para evitar um redirecionamento infinito.
 
-Because we are redirecting, we are replacing the ongoing navigation, effectively behaving like the example shown before. In real world scenarios, adding is more likely to happen outside of navigation guards, e.g. when a view component mounts, it register new routes.
+Uma vez que estamos a redirecionar, estamos a substituir a navegação em curso, comportando-se efetivamente como exemplo mostrado antes. Em cenários do mundo real, é mais provável que adição aconteça fora das guardas de navegação, por exemplo, quando um componente de visão monta, regista as novas rotas.
 
 ## Removing routes
 
