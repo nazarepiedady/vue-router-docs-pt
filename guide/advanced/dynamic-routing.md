@@ -107,9 +107,9 @@ router.addRoute({
 })
 ```
 
-## Looking at existing routes
+## Examinar as Rotas Existentes
 
-Vue Router gives you two functions to look at existing routes:
+A Vue Router dá-te duas funções para examinar as rotas existentes:
 
-- [`router.hasRoute()`](../../api/#hasroute): check if a route exists
-- [`router.getRoutes()`](../../api/#getroutes): get an array with all the route records.
+- [`router.hasRoute()`](../../api/#hasroute): consulta se uma rota existe
+- [`router.getRoutes()`](../../api/#getroutes): recebe um arranjo com todos os registos de rota.
