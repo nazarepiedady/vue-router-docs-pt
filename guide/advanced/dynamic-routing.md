@@ -54,31 +54,38 @@ O exemplo acima assume duas coisas: primeiro, o registo da rota adicionada recen
 
 Uma vez que estamos a redirecionar, estamos a substituir a navegação em curso, comportando-se efetivamente como exemplo mostrado antes. Em cenários do mundo real, é mais provável que adição aconteça fora das guardas de navegação, por exemplo, quando um componente de visão monta, regista as novas rotas.
 
-## Removing routes
+## Remover Rotas
 
-There are few different ways to remove existing routes:
+Existem maneiras diferentes de remover as rotas existentes:
 
-- By adding a route with a conflicting name. If you add a route that has the same name as an existing route, it will remove the route first and then add the route:
+- Com a adição de uma rota com um nome contraditório. Se adicionas uma rota que tem o mesmo nome de uma rota existente, primeiro removerá a rota e depois adicionará a rota:
+
   ```js
   router.addRoute({ path: '/about', name: 'about', component: About })
-  // this will remove the previously added route because they have the same name and names are unique
+  // isto removerá a rota adicionada anteriormente porque elas têm o mesmo nome e nomes são únicos
   router.addRoute({ path: '/other', name: 'about', component: Other })
   ```
-- By calling the callback returned by `router.addRoute()`:
+
+- Com a chamada da função de resposta retornada pela `router.addRouter()`:
+
   ```js
   const removeRoute = router.addRoute(routeRecord)
-  removeRoute() // removes the route if it exists
+  removeRoute() // remove a rota se existir
   ```
-  This is useful when the routes do not have a name
-- By using `router.removeRoute()` to remove a route by its name:
+
+  Isto é útil quando as rotas não têm um nome
+
+- Com o uso do `router.removeRoute()` para remover uma rota pelo seu nome:
+
   ```js
   router.addRoute({ path: '/about', name: 'about', component: About })
-  // remove the route
+  // remover a rota
   router.removeRoute('about')
   ```
-  Note you can use `Symbol`s for names in routes if you wish to use this function but want to avoid conflicts in names.
 
-Whenever a route is removed, **all of its aliases and children** are removed with it.
+  Nota que podes usar os `Symbol` para nomes em rotas se desejas usar esta função mas queres evitar conflitos em nomes.
+
+Sempre que uma rota for removida, **todos os seus pseudónimos e filhos** são removidos com ela.
 
 ## Adding nested routes
 
