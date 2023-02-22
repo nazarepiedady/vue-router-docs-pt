@@ -1,11 +1,11 @@
-# Navigation Guards
+# Guardas da Navegação
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-guards"
-  title="Learn how to add navigation guards"
+  title="Saiba como adicionar guardas de navegação"
 />
 
-As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it. There are a number of ways to hook into the route navigation process: globally, per-route, or in-component.
+Conforme o nome sugere, as guardas da navegação fornecidas pela Vue Router sao primariamente usadas para guardar as navegações ou pelo redirecionamento dela ou cancelamento dela. Existem várias maneiras de prender a guarda no processo de navegação da rota: globalmente, por rota, ou dentro do componente.
 
 ## Global Before Guards
 
