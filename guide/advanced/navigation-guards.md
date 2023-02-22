@@ -7,55 +7,55 @@
 
 Conforme o nome sugere, as guardas da navegação fornecidas pela Vue Router sao primariamente usadas para guardar as navegações ou pelo redirecionamento dela ou cancelamento dela. Existem várias maneiras de prender a guarda no processo de navegação da rota: globalmente, por rota, ou dentro do componente.
 
-## Global Before Guards
+## Guardas "Em Face De" Globais
 
-You can register global before guards using `router.beforeEach`:
+Tu podes registar as guardas "em face de" globais usando `router.beforeEach`:
 
 ```js
 const router = createRouter({ ... })
 
 router.beforeEach((to, from) => {
   // ...
-  // explicitly return false to cancel the navigation
+  // retorna explicitamente `false` para cancelar a navegação
   return false
 })
 ```
 
-Global before guards are called in creation order, whenever a navigation is triggered. Guards may be resolved asynchronously, and the navigation is considered **pending** before all hooks have been resolved.
+As guardas em face de globais são chamadas dentro da ordem de criação, sempre que uma navegação for acionada. As guardas podem ser resolvidas de maneira assíncrona, e a navegação é considerada **pendente** antes de todos os gatilhos serem resolvidos.
 
-Every guard function receives two arguments:
+Toda função de guarda recebe dois argumentos:
 
-- **`to`**: the target route location [in a normalized format](../../api/#routelocationnormalized) being navigated to.
-- **`from`**: the current route location [in a normalized format](../../api/#routelocationnormalized) being navigated away from.
+- **`to`**: a localização da rota de destino [em um formato normalizado](../../api/#routelocationnormalized) para onde tencionas ir.
+- **`from`**: a localização da rota atual [em um formato normalizado](../../api/#routelocationnormalized) de onde tencionas sair.
 
-And can optionally return any of the following values:
+E podem opcionalmente retornar quaisquer dos seguintes valores:
 
-- `false`: cancel the current navigation. If the browser URL was changed (either manually by the user or via back button), it will be reset to that of the `from` route.
-- A [Route Location](../../api/#routelocationraw): Redirect to a different location by passing a route location as if you were calling [`router.push()`](../../api/#push), which allows you to pass options like `replace: true` or `name: 'home'`. The current navigation is dropped and a new one is created with the same `from`.
+- `false`: cancela a navegação atual. Se a URL do navegador for mudada (ou manualmente pelo utilizador ou através do botão retornar), será reiniciada para aquela da rota do `from`.
+- Uma [Localização de Rota](../../api/#routelocationraw): Redireciona para uma localização diferente com a passagem de uma localização de rota como se estivesses a chamar [`router.push()`](../../api/#push), que permite-te passar as opções como `replace: true` ou `name: 'home'`. A navegação atual é largada e uma nova é criada com o mesmo `from`.
 
   ```js
   router.beforeEach(async (to, from) => {
     if (
-      // make sure the user is authenticated
+      // certifica-te que utilizador está autenticado
       !isAuthenticated &&
-      // ❗️ Avoid an infinite redirect
+      // ❗️ Evite um redirecionamento infinito
       to.name !== 'Login'
     ) {
-      // redirect the user to the login page
+      // redireciona o utilizador para uma página `login`
       return { name: 'Login' }
     }
   })
   ```
 
-It's also possible to throw an `Error` if an unexpected situation was met. This will also cancel the navigation and call any callback registered via [`router.onError()`](../../api/#onerror).
+Também é possível lançar um `Error` se uma situação inesperada ocorrer. Isto também cancelará a navegação e chamará qualquer função de resposta registada através do [`router.onError()`](../../api/#onerror).
 
-If nothing, `undefined` or `true` is returned, **the navigation is validated**, and the next navigation guard is called.
+Se nada inesperado ocorrer, `undefined` ou `true` é retornado, **a navegação é validada**, e a próxima guarda da navegação é chamada.
 
-All of the things above **work the same way with `async` functions** and Promises:
+Todas as coisas acima **funcionam da mesma maneira com as funções `async`** e Promessas:
 
 ```js
 router.beforeEach(async (to, from) => {
-  // canUserAccess() returns `true` or `false`
+  // `canUserAccess()` retorna `true` ou `false`
   const canAccess = await canUserAccess(to)
   if (!canAccess) return '/login'
 })
