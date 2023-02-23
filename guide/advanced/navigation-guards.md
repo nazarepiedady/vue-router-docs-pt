@@ -137,9 +137,9 @@ router.afterEach((to, from, failure) => {
 
 Saiba mais sobre as falhas da navegação no [seu guia](./navigation-failures.md).
 
-## Per-Route Guard
+## Guarda Por Rota
 
-You can define `beforeEnter` guards directly on a route's configuration object:
+Tu podes definir guardas `beforeEnter` diretamente em um objeto de configuração da rota:
 
 ```js
 const routes = [
@@ -147,16 +147,16 @@ const routes = [
     path: '/users/:id',
     component: UserDetails,
     beforeEnter: (to, from) => {
-      // reject the navigation
+      // rejeitar a navegação
       return false
     },
   },
 ]
 ```
 
-`beforeEnter` guards **only trigger when entering the route**, they don't trigger when the `params`, `query` or `hash` change e.g. going from `/users/2` to `/users/3` or going from `/users/2#info` to `/users/2#projects`. They are only triggered when navigating **from a different** route.
+As guardas `beforeEnter` **só acionam quando a rota estiver entrando**, não acionam quando o `params`, `query` ou `hash` mudar, por exemplo ir de `/users/2` para `/users/3` ou ir de `/users/2#info` para `/users/2#projects`. Elas só são acionadas quando estiveres a navegar **de uma rota diferente**.
 
-You can also pass an array of functions to `beforeEnter`, this is useful when reusing guards for different routes:
+Tu também podes passar um arranjo de funções para `beforeEnter`, isto é útil quando estiveres a reutilizar as guardas para diferentes rotas:
 
 ```js
 function removeQueryParams(to) {
@@ -182,7 +182,7 @@ const routes = [
 ]
 ```
 
-Note it is possible to achieve a similar behavior by using [route meta fields](./meta.md) and [global navigation guards](#global-before-guards).
+Nota que é possível alcançar um comportamento parecido usando os [campos de meta da rota] e as [guardas de navegação global](#global-before-guards).
 
 ## In-Component Guards
 
