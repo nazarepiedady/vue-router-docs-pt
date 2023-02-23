@@ -113,9 +113,9 @@ A `router.beforeResolve` é o sítio ideal para realizar a requisição de dados
 
 <!-- TODO: how to combine with [`meta` fields](./meta.md) to create a [generic fetching mechanism](#TODO). -->
 
-## Global After Hooks
+## Gatilhos `After` Globais
 
-You can also register global after hooks, however unlike guards, these hooks do not get a `next` function and cannot affect the navigation:
+Tu também podes registar gatilhos `after` globais, no entanto ao contrário das guardas, estes gatilhos não recebem uma função `next` e não pode afetar a navegação:
 
 ```js
 router.afterEach((to, from) => {
@@ -125,9 +125,9 @@ router.afterEach((to, from) => {
 
 <!-- TODO: maybe add links to examples -->
 
-They are useful for analytics, changing the title of the page, accessibility features like announcing the page and many other things.
+Eles são úteis para os analíticos, mudar o título da página, funcionalidades de acessibilidade como anunciando a página e muitas outras coisas.
 
-They also reflect [navigation failures](./navigation-failures.md) as the third argument:
+Eles também refletem as [falhas da navegação](./navigation-failures.md) como terceiro argumento:
 
 ```js
 router.afterEach((to, from, failure) => {
@@ -135,7 +135,7 @@ router.afterEach((to, from, failure) => {
 })
 ```
 
-Learn more about navigation failures on [its guide](./navigation-failures.md).
+Saiba mais sobre as falhas da navegação no [seu guia](./navigation-failures.md).
 
 ## Per-Route Guard
 
