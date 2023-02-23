@@ -84,9 +84,9 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-## Global Resolve Guards
+## Guardas de Navegação `Resolve` Globais
 
-You can register a global guard with `router.beforeResolve`. This is similar to `router.beforeEach` because it triggers on **every navigation**, but resolve guards are called right before the navigation is confirmed, **after all in-component guards and async route components are resolved**. Here is an example that ensures the user has given access to the Camera for routes that [have defined a custom meta](./meta.md) property `requiresCamera`:
+Tu podes registar uma guarda global com `router.beforeResolve`. Isto é parecido com `router.beforeEach` porque aciona-se em **toda navegação***, porém as guardas `resolve` são chamadas exatamente antes da navegação ser confirmada, **depois de todas as guardas em componente e componentes de rotas assíncronas serem resolvidos**. No exemplo abaixo demonstramos como garantir que o utilizador deu acesso à Câmara para rotas que [definiram uma propriedade de meta personalizada](./meta.md) `requiresCamera`:
 
 ```js
 router.beforeResolve(async to => {
@@ -95,10 +95,13 @@ router.beforeResolve(async to => {
       await askForCameraPermission()
     } catch (error) {
       if (error instanceof NotAllowedError) {
-        // ... handle the error and then cancel the navigation
+        // ... manipular o erro e depois cancelar a navegação
         return false
       } else {
-        // unexpected error, cancel the navigation and pass the error to the global handler
+        /*
+          erro inesperado, cancelar a navegação e
+          passar o erro para o manipulador global
+        */
         throw error
       }
     }
@@ -106,7 +109,7 @@ router.beforeResolve(async to => {
 })
 ```
 
-`router.beforeResolve` is the ideal spot to fetch data or do any other operation that you want to avoid doing if the user cannot enter a page.
+A `router.beforeResolve` é o sítio ideal para realizar a requisição de dados ou fazer qualquer outra operação que queres evitar fazer se o utilizador não puder entrar em uma página.
 
 <!-- TODO: how to combine with [`meta` fields](./meta.md) to create a [generic fetching mechanism](#TODO). -->
 
