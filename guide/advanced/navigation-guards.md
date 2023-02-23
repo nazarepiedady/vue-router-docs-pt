@@ -184,13 +184,13 @@ const routes = [
 
 Nota que é possível alcançar um comportamento parecido usando os [campos de meta da rota] e as [guardas de navegação global](#global-before-guards).
 
-## In-Component Guards
+## Guardas de Navegação dentro do Componente
 
-Finally, you can directly define route navigation guards inside route components (the ones passed to the router configuration)
+Finalmente, podes definir as guardas de navegação da rota diretamente dentro dos componentes de rota (aquelas passadas para a configuração do roteador).
 
-### Using the options API
+### Usando a API de Opções
 
-You can add the following options to route components:
+Tu podes adicionar as seguintes opções para os componentes de rota:
 
 - `beforeRouteEnter`
 - `beforeRouteUpdate`
@@ -200,45 +200,45 @@ You can add the following options to route components:
 const UserDetails = {
   template: `...`,
   beforeRouteEnter(to, from) {
-    // called before the route that renders this component is confirmed.
-    // does NOT have access to `this` component instance,
-    // because it has not been created yet when this guard is called!
+    // chamada antes da rota que apresenta este componente for confirmada.
+    // NÃO tem acesso à instância `this` do componente,
+    // porque o componente ainda não foi criado quando esta guarda é chamada!
   },
   beforeRouteUpdate(to, from) {
-    // called when the route that renders this component has changed, but this component is reused in the new route.
-    // For example, given a route with params `/users/:id`, when we navigate between `/users/1` and `/users/2`,
-    // the same `UserDetails` component instance will be reused, and this hook will be called when that happens.
-    // Because the component is mounted while this happens, the navigation guard has access to `this` component instance.
+    // chamada quando a rota que apresenta este componente mudou, mas este componente é reutilizado na nova rota.
+    // Por exemplo, dada uma rota com parâmetros `/users/:id`, quando navegamos entre `/users/1` e `/users/2`,
+    // a mesma instância do componente `UserDetails` será reutilizada, e este gatilho serão chamados quando aquilo acontecer.
+    // Uma vez que o componente é montado enquanto isto acontece, a guarda da navegação tem acesso para a instância `this` do componente.
   },
   beforeRouteLeave(to, from) {
-    // called when the route that renders this component is about to be navigated away from.
-    // As with `beforeRouteUpdate`, it has access to `this` component instance.
+    // chamado quando a rota que apresenta este componente está prestes a ser abandonada (quando estiveres a deixar a rota).
+    // Tal como `beforeRouteUpdate`, ele tem acesso à instância `this` do componente.
   },
 }
 ```
 
-The `beforeRouteEnter` guard does **NOT** have access to `this`, because the guard is called before the navigation is confirmed, thus the new entering component has not even been created yet.
+A guarda `beforeRouteEnter` **NÃO** tem acesso ao `this`, porque a guarda é chamada antes da navegação ser confirmada, assim o novo componente entrando ainda foi criado.
 
-However, you can access the instance by passing a callback to `next`. The callback will be called when the navigation is confirmed, and the component instance will be passed to the callback as the argument:
+No entanto, podes acessar a instância passando uma função de resposta para `next`. A função de resposta será chamada quando a navegação for confirmada, e a instância do componente será passada para a função de resposta como argumento:
 
 ```js
 beforeRouteEnter (to, from, next) {
   next(vm => {
-    // access to component public instance via `vm`
+    // acessar a instância pública do componente através do `vm`
   })
 }
 ```
 
-Note that `beforeRouteEnter` is the only guard that supports passing a callback to `next`. For `beforeRouteUpdate` and `beforeRouteLeave`, `this` is already available, so passing a callback is unnecessary and therefore _not supported_:
+Nota que `beforeRouteEnter` é a única guarda que suporta a passagem de uma função de resposta para `next`. Para `beforeRouteUpdate` e `beforeRouteLeave`, a `this` já está disponível, então a passagem de uma função de resposta é desnecessária e portanto _não suportada_:
 
 ```js
 beforeRouteUpdate (to, from) {
-  // just use `this`
+  // apenas use a `this`
   this.name = to.params.name
 }
 ```
 
-The **leave guard** is usually used to prevent the user from accidentally leaving the route with unsaved edits. The navigation can be canceled by returning `false`.
+A **guarda de saída** é normalmente usada para evitar que o utilizador deixe acidentalmente a rota com edições por guardar. A navegação pode ser cancelada ao retornar `false`.
 
 ```js
 beforeRouteLeave (to, from) {
@@ -247,21 +247,20 @@ beforeRouteLeave (to, from) {
 }
 ```
 
-### Using the composition API
+### Usando a API de Composição
 
-If you are writing your component using the [composition API and a `setup` function](https://v3.vuejs.org/guide/composition-api-setup.html#setup), you can add update and leave guards through `onBeforeRouteUpdate` and `onBeforeRouteLeave` respectively. Please refer to the [Composition API section](./composition-api.md#navigation-guards) for more details.
+Se estiveres a escrever o teu componente usando a [API de composição e uma função de `setup`](https://v3.vuejs.org/guide/composition-api-setup.html#setup), podes adicionar as guardas de saída e atualização através de `onBeforeRouteUpdate` e `onBeforeRouteLeave` respetivamente. Consulte a [seção da API de Composição](./composition-api.md#navigation-guards) para mais detalhes.
+## O Fluxo Completo de Resolução da Navegação
 
-## The Full Navigation Resolution Flow
-
-1. Navigation triggered.
-2. Call `beforeRouteLeave` guards in deactivated components.
-3. Call global `beforeEach` guards.
-4. Call `beforeRouteUpdate` guards in reused components.
-5. Call `beforeEnter` in route configs.
-6. Resolve async route components.
-7. Call `beforeRouteEnter` in activated components.
-8. Call global `beforeResolve` guards.
-9. Navigation is confirmed.
-10. Call global `afterEach` hooks.
-11. DOM updates triggered.
-12. Call callbacks passed to `next` in `beforeRouteEnter` guards with instantiated instances.
+1. Navegação acionada.
+2. Chamar as guardas `beforeRouteLeave` nos componentes desativados.
+3. Chamar as guardas `beforeEach` globais.
+4. Chamar as guardas `beforeRouteUpdate` nos componentes reutilizados.
+5. Chamar `beforeEnter` nas configurações da rota.
+6. Resolver os componentes de rota assíncrona.
+7. Chamar `beforeRouteEnter` nos componentes ativados.
+8. Chamar as guardas `beforeResolve` globais.
+9. Navegação é confirmada.
+10. Chamar os gatilhos `afterEach` globais.
+11. Atualizações do DOM acionadas.
+12. Chamar as funções de resposta passadas para a `next` nas guardas `beforeRouteEnter` com as instâncias instanciadas.
