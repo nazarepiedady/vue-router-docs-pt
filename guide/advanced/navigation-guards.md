@@ -7,9 +7,9 @@
 
 Conforme o nome sugere, as guardas da navegação fornecidas pela Vue Router sao primariamente usadas para guardar as navegações ou pelo redirecionamento dela ou cancelamento dela. Existem várias maneiras de prender a guarda no processo de navegação da rota: globalmente, por rota, ou dentro do componente.
 
-## Guardas "Em Face De" Globais
+## Guardas de Navegação `Before` Globais
 
-Tu podes registar as guardas "em face de" globais usando `router.beforeEach`:
+Tu podes registar as guardas `before` globais usando `router.beforeEach`:
 
 ```js
 const router = createRouter({ ... })
@@ -21,7 +21,7 @@ router.beforeEach((to, from) => {
 })
 ```
 
-As guardas em face de globais são chamadas dentro da ordem de criação, sempre que uma navegação for acionada. As guardas podem ser resolvidas de maneira assíncrona, e a navegação é considerada **pendente** antes de todos os gatilhos serem resolvidos.
+As guardas `before` globais são chamadas dentro da ordem de criação, sempre que uma navegação for acionada. As guardas podem ser resolvidas de maneira assíncrona, e a navegação é considerada **pendente** antes de todos os gatilhos serem resolvidos.
 
 Toda função de guarda recebe dois argumentos:
 
