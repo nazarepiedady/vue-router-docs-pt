@@ -61,20 +61,20 @@ router.beforeEach(async (to, from) => {
 })
 ```
 
-### Optional third argument `next`
+### O Terceiro Argumento Opcional `next`
 
-In previous versions of Vue Router, it was also possible to use a _third argument_ `next`, this was a common source of mistakes and went through an [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0037-router-return-guards.md#motivation) to remove it. However, it is still supported, meaning you can pass a third argument to any navigation guard. In that case, **you must call `next` exactly once** in any given pass through a navigation guard. It can appear more than once, but only if the logical paths have no overlap, otherwise the hook will never be resolved or produce errors. Here is **a bad example** of redirecting the user to `/login` if they are not authenticated:
+Nas versões anteriores da Vue Router, também era possível usar um _terceiro argumento_ `next`, isto era uma fonte comum de confusões e passou por um [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0037-router-return-guards.md#motivation) para removê-lo. No entanto, continua a ser suportado, querendo dizer que podes passar um terceiro argumento para qualquer guarda de navegação. Neste caso, **deves chamar a `next` exatamente uma vez** em alguma dada passagem de uma guarda de navegação. Ele pode aparecer mais de uma vez, mas apenas se os caminhos lógicos não tiverem nenhuma sobreposição, de outro modo o gatilho nunca será resolvido ou produzirá erros. No exemplo abaixo apresentamos **maneira errada** de redirecionar os utilizadores para a rota `/login` se não estiverem autenticados:
 
 ```js
 // BAD
 router.beforeEach((to, from, next) => {
   if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
-  // if the user is not authenticated, `next` is called twice
+  // se o utilizador não estiver autenticado, `next` será chamada duas vezes
   next()
 })
 ```
 
-Here is the correct version:
+Agora abaixo apresentamos a **maneira correta**:
 
 ```js
 // GOOD
