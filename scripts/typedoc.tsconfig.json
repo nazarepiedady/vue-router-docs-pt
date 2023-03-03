@@ -1,14 +1,14 @@
 {
-  "include": ["../../router/src/**/*.ts"],
-  "exclude": ["**/*.spec.ts"],
+  "include": ["../router/src/global.d.ts", "../router/src/**/*.ts"],
+  "exclude": ["../*/__tests__/**/*.ts", "**/*.spec.ts"],
   "compilerOptions": {
-    "baseUrl": "..",
-    "rootDir": "../..",
+    "baseUrl": ".",
+    "rootDir": "..",
     "outDir": "dist",
     "sourceMap": false,
     "noEmit": true,
     "paths": {
-      "vue-router": ["../../vue-router/src"]
+      "vue-router": ["../router/src"]
     },
 
     "target": "esnext",
@@ -31,6 +31,6 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["jest", "node", "vite/client"]
+    "types": ["node"]
   }
 }
