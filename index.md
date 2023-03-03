@@ -1,11 +1,26 @@
 ---
-home: true
+layout: home
 
-heroImage: /logo.png
-actionText: Começar →
-actionLink: /installation.html
-altActionLink: https://vueschool.io/courses/vue-router-4-for-everyone?friend=vuerouter&utm_source=vuerouter&utm_medium=link&utm_campaign=homepage
-altActionText: Curso em Vídeo Gratuito
+title: Vue Router
+titleTemplate: O Roteador oficial para a Vue.js
+
+hero:
+  name: Vue Router
+  text: O Roteador oficial para a Vue.js
+  tagline: Roteamento expressivo, configurável e conveniente para a Vue.js
+  image:
+    src: /logo.svg
+    alt: Logótipo da Vue Router
+  actions:
+    - theme: brand
+      text: Começar
+      link: /installation
+    - theme: cta vueschool
+      text: Curso em Vídeo Gratuito
+      link: https://vueschool.io/courses/vue-router-4-for-everyone?friend=vuerouter&utm_source=vuerouter&utm_medium=link&utm_campaign=homepage
+    - theme: cta vue-mastery
+      text: Receba a Vue Router Cheat Sheet
+      link: https://www.vuemastery.com/vue-router?coupon=ROUTER-DOCS&via=eduardo
 
 features:
   - title: 🛣 Sintaxe de rota expressiva
@@ -20,12 +35,11 @@ features:
     details: Controle com precisão a posição do deslocamento dentro de cada página.
   - title: 🌐 Codificação Automática
     details: Use diretamente caracteres unicode (你好) no teu código.
-
-footer: Licenciado sob MIT | Copyright © 2014-presente Evan You, Eduardo San Martin Morote
 ---
 
-<HomeSponsors />
-
 <script setup>
-import HomeSponsors from './.vitepress/components/HomeSponsors.vue'
+import '.vitepress/theme/styles/home-links.css'
+import HomeSponsors from '.vitepress/theme/components/HomeSponsors.vue'
 </script>
+
+<HomeSponsors />
