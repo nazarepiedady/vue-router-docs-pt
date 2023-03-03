@@ -10,29 +10,31 @@
     </a>
   </div>
 </template>
+
 <script setup lang="ts">
 import { useData } from 'vitepress'
 
 const { site } = useData()
+
 const translations = {
   'en-US': 'Watch a free video lesson on Vue School',
   'zh-CN': '在 Vue School 上观看免费视频课程',
-  'pt-PT': 'Assista uma aula gratuita na Vue School',
+  'pt-PT': 'Assista uma Aula Gratuita sobre o Assunto na Vue School',
 }
+
 defineProps<{ href: string; title: string }>()
 </script>
+
 <style scoped>
 .vueschool {
   margin-top: 20px;
-  background-color: #e7ecf3;
+  background-color: var(--vp-c-bg-alt);
   padding: 1em 1.25em;
   border-radius: 2px;
-  color: #486491;
   position: relative;
   display: flex;
 }
 .vueschool a {
-  color: #486491 !important;
   position: relative;
   padding-left: 36px;
 }

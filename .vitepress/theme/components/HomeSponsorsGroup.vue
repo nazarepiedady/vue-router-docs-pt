@@ -1,5 +1,5 @@
 <template>
-  <h3>Patrocinadores {{ translateNameToPortuguese(name) }}</h3>
+  <h3>Patrocinadores de {{ translateNameToPortuguese(name) }}</h3>
 
   <p>
     <a
@@ -10,14 +10,11 @@
       target="_blank"
       rel="sponsored noopener"
       class="sponsor_wrapper"
+      :class="isDark && sponsor.imgSrcLight === sponsor.imgSrcDark && 'apply-bg'"
     >
       <img
         :src="sponsor.imgSrc"
-        :class="
-          isDark &&
-          sponsor.imgSrcLight === sponsor.imgSrcDark &&
-          'invert-colors'
-        "
+        :class="isDark && sponsor.imgSrcLight === sponsor.imgSrcDark && 'invert-colors'"
         :alt="sponsor.alt"
         :style="{ height: size + 'px' }"
       />
@@ -27,37 +24,31 @@
 
 <script setup lang="ts">
 import sponsors from './sponsors.json'
-import { isDark } from '../theme/dark-theme'
 import { computed } from 'vue'
+import type { PropType } from 'vue'
 import { useData } from 'vitepress'
 
-const props = withDefaults(
-  defineProps<{
-    name: 'gold' | 'platinum' | 'silver' | 'bronze'
-    size: number | string
-  }>(),
-  { size: 140 }
-)
+const { isDark } = useData()
 
-const isPortuguese = (): boolean => {
-  const { site } = useData()
-  return site.value.lang === 'pt-PT'
-}
-
-const translateNameToPortuguese = (typeName): string => {
-  let sponsorsTypes = {
-    gold: 'ouro',
-    platinum: 'platina',
-    silver: 'prata',
-    bronze: 'bronze'
+const props = defineProps({
+  name: {
+    type: String as PropType<'gold' | 'platinum' | 'silver' | 'bronze'>,
+    required: true,
+  },
+  size: {
+    type: [Number, String],
+    default: 140,
   }
+})
 
-  if (isPortuguese()) {
-    return sponsorsTypes[typeName]
-  } else {
-    return typeName
+const translateNameToPortuguese = (name: string): string => {
+  let sponsorNames = {
+    gold: 'Ouro',
+    platinum: 'Platina',
+    silver: 'Prata',
+    bronze: 'Bronze'
   }
-
+  return sponsorNames[name]
 }
 
 const list = computed(() =>
@@ -73,6 +64,8 @@ const list = computed(() =>
   padding: 5px;
   margin: 0 3px;
 
+  border-radius: 5px;
+
   display: inline-block;
   text-decoration: none;
   vertical-align: middle;
@@ -85,7 +78,9 @@ p {
 }
 
 h3 {
-  margin: 0 0 10px;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0.75em 0;
 }
 
 img {
@@ -96,9 +91,14 @@ img {
 
 html:not(.light) img.invert-colors {
   filter: invert(1) grayscale(100%);
+  background-color: transparent;
 }
 
-img:hover {
+.sponsor_wrapper.apply-bg:hover {
+  background-color: var(--c-text);
+}
+
+.sponsor_wrapper:hover img {
   filter: none !important;
   opacity: 1;
 }

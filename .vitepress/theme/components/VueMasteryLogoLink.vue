@@ -4,21 +4,21 @@
       <img alt="Logótipo da Vue Mastery" width="25px" src="https://firebasestorage.googleapis.com/v0/b/vue-mastery.appspot.com/o/flamelink%2Fmedia%2Fvue-mastery-logo-small.png?alt=media&token=941fcc3a-2b6f-40e9-b4c8-56b3890da108">
     </span>
     <span class="description">
-      Descarregue a <span>Vue Router Cheat Sheet</span> da Vue Mastery
+      Receba a <span>Vue Router Cheat Sheet</span> da Vue Mastery
     </span>
   </a>
 </template>
 
 <style scoped>
 a {
-  background-color: rgba(27,31,35,0.05);
+  background-color: var(--vp-c-bg-alt);
   border-radius: 8px;
   padding: 8px 16px 8px 8px;
   transition: color 0.5s, background-color 0.5s;
   display: flex;
   align-items: center;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .description {
@@ -26,7 +26,7 @@ a {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #2c3e50;
+  color: var(--vp-c-text-1);
   margin: 0 0 0 16px;
   transition: color 0.5s;
 }
@@ -36,7 +36,7 @@ a:hover {
 }
 
 .description span {
-  color: #3eaf7c;
+  color: var(--vp-c-brand);
 }
 
 .logo-wrapper {
@@ -44,7 +44,7 @@ a:hover {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--vp-c-bg-soft);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +56,6 @@ a:hover {
 }
 
 @media (max-width: 576px) {
-
   .description {
     font-size: 12px;
     line-height: 18px;

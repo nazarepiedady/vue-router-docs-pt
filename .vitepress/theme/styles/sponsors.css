@@ -1,6 +1,4 @@
 .become-sponsor {
-  margin-top: 1.5rem;
-  display: inline-block;
   font-size: 0.9em;
   font-weight: 700;
   width: auto;
@@ -10,18 +8,17 @@
   border-radius: 2em;
   transition: all 0.15s ease;
   box-sizing: border-box;
-  border: 2px solid var(--c-text);
-  color: var(--c-text);
+  border: 2px solid var(--vp-c-brand-dark);
 }
 
 .become-sponsor:hover {
-  background-color: var(--c-brand);
+  background-color: var(--vp-c-brand);
   text-decoration: none;
-  border-color: var(--c-brand);
-  color: var(--c-brand-text);
+  border-color: var(--vp-c-brand);
+  color: var(--vp-button-brand-text);
 }
 
-.sponsors-top .become-sponsor.become-sponsor {
+.sponsors-top .become-sponsor {
   font-size: 0.75em;
   padding: 0.2em;
   width: auto;
