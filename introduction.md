@@ -3,7 +3,7 @@
 <VueSchoolLink
   href="https://vueschool.io/courses/vue-router-4-for-everyone"
   title="Aprenda a como construir Aplicações de Página Única poderosas com a Vue Router na Vue School"
->Assista um Curso em Vídeo de Vue Router</VueSchoolLink>
+>Assista um Curso de Vue Router</VueSchoolLink>
 
 O Vue Router é o roteador oficial para a [Vue.js](https://vuejs.org). Ele se integra profundamente com o núcleo da Vue.js para facilitar a construção de Aplicações de Página Única com a Vue.js. As funcionalidades incluem:
 
@@ -23,5 +23,5 @@ O Vue Router é o roteador oficial para a [Vue.js](https://vuejs.org). Ele se in
 <HomeSponsors />
 
 <script setup>
-import HomeSponsors from './.vitepress/components/HomeSponsors.vue'
+import HomeSponsors from '.vitepress/theme/components/HomeSponsors.vue'
 </script>
