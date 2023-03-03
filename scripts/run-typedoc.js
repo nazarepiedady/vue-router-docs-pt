@@ -7,5 +7,5 @@ createTypeDocApp({
   // entryPointStrategy: 'packages',
   githubPages: false,
   disableSources: true,
-  entryPoints: [path.resolve(__dirname, '../../router/src/index.ts')],
+  entryPoints: [path.resolve(__dirname, '../router/src/index.ts')],
 }).build()
