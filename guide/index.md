@@ -1,13 +1,13 @@
-# Começar
+# Começar {#getting-started}
 
 <VueSchoolLink
   href="https://vueschool.io/courses/vue-router-4-for-everyone"
-  title="Aprenda a construir Aplicações de Página Única poderosas com a Vue School"
->Assista um Curso em Vídeo Gratuito sobre a Vue Router</VueSchoolLink>
+  title="Construa Aplicações de Página Única poderosas com a Vue Router na Vue School"
+>Faça um curso de Vue Router</VueSchoolLink>
 
 A criação de uma Aplicação de Página Única com a Vue + Vue Router acontece de maneira natural: com a Vue.js, já estamos a compor a nossa aplicação com componentes. Quando adicionamos a Vue Router para a mistura, todo o que precisamos fazer é mapear os nossos componentes para rotas e deixar a Vue Router saber onde apresentá-las. Aqui está um exemplo básico:
 
-## HTML
+## HTML {#html}
 
 ```html
 <script src="https://unpkg.com/vue@3"></script>
@@ -28,17 +28,17 @@ A criação de uma Aplicação de Página Única com a Vue + Vue Router acontece
 </div>
 ```
 
-### `router-link`
+### `router-link` {#router-link}
 
 Nota como que ao invés de usar os marcadores `a` normais, usamos um componente personalizado `router-link` para criar ligações. Isto permite que a Vue Router para mudar a URL sem recarregar a página, manipular a geração de URL bem como a sua codificação. Nós veremos depois como tiver proveito destas funcionalidades.
 
-### `router-view`
+### `router-view` {#router-view}
 
 O `router-view` exibirá o componente que corresponde a URL. Tu podes colocá-lo em qualquer lugar para adaptá-lo para o teu esquema.
 
 <VueMasteryLogoLink></VueMasteryLogoLink>
 
-## JavaScript
+## JavaScript {#javascript}
 
 ```js
 // 1. Defina componentes de rota.
