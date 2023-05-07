@@ -2,11 +2,11 @@
 layout: home
 
 title: Vue Router
-titleTemplate: O Roteador oficial para a Vue.js
+titleTemplate: O roteador oficial para a Vue.js
 
 hero:
   name: Vue Router
-  text: O Roteador oficial para a Vue.js
+  text: O roteador oficial para a Vue.js
   tagline: Roteamento expressivo, configurável e conveniente para a Vue.js
   image:
     src: /logo.svg
@@ -16,10 +16,10 @@ hero:
       text: Começar
       link: /installation
     - theme: cta vueschool
-      text: Curso em Vídeo Gratuito
+      text: Curso Gratuito
       link: https://vueschool.io/courses/vue-router-4-for-everyone?friend=vuerouter&utm_source=vuerouter&utm_medium=link&utm_campaign=homepage
     - theme: cta vue-mastery
-      text: Receba a Vue Router Cheat Sheet
+      text: Folha de Consulta da Vue Router
       link: https://www.vuemastery.com/vue-router?coupon=ROUTER-DOCS&via=eduardo
 
 features:
