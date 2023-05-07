@@ -1,9 +1,9 @@
-# Introdução
+# Introdução {#introduction}
 
 <VueSchoolLink
   href="https://vueschool.io/courses/vue-router-4-for-everyone"
-  title="Aprenda a como construir Aplicações de Página Única poderosas com a Vue Router na Vue School"
->Assista um Curso de Vue Router</VueSchoolLink>
+  title="Construa Aplicações de Página Única poderosas com a Vue Router na Vue School"
+>Faça um curso de Vue Router</VueSchoolLink>
 
 O Vue Router é o roteador oficial para a [Vue.js](https://vuejs.org). Ele se integra profundamente com o núcleo da Vue.js para facilitar a construção de Aplicações de Página Única com a Vue.js. As funcionalidades incluem:
 
