@@ -1,12 +1,12 @@
-# Migrating from Vue 2
+# Migrating from Vue 2 {#migrating-from-vue-2}
 
 Most of Vue Router API has remained unchanged during its rewrite from v3 (for Vue 2) to v4 (for Vue 3) but there are still a few breaking changes that you might encounter while migrating your application. This guide is here to help you understand why these changes happened and how to adapt your application to make it work with Vue Router 4.
 
-## Breaking Changes
+## Breaking Changes {#breaking-changes}
 
 Changes are ordered by their usage. It is therefore recommended to follow this list in order.
 
-### new Router becomes createRouter
+### new Router becomes createRouter {#new-router-becomes-createrouter}
 
 Vue Router is no longer a class but a set of functions. Instead of writing `new Router()`, you now have to call `createRouter`:
 
@@ -20,7 +20,7 @@ const router = createRouter({
 })
 ```
 
-### New `history` option to replace `mode`
+### New `history` option to replace `mode` {#new-history-option-to-replace-mode}
 
 The `mode: 'history'` option has been replaced with a more flexible one named `history`. Depending on which mode you were using, you will have to replace it with the appropriate function:
 
@@ -55,7 +55,7 @@ router.isReady().then(() => {
 
 **Reason**: enable tree shaking of non used histories as well as implementing custom histories for advanced use cases like native solutions.
 
-### Moved the `base` option
+### Moved the `base` option {#moved-the-base-option}
 
 The `base` option is now passed as the first argument to `createWebHistory` (and other histories):
 
@@ -67,7 +67,7 @@ createRouter({
 })
 ```
 
-### Removal of the `fallback` option
+### Removal of the `fallback` option {#removal-of-the-fallback-option}
 
 The `fallback` option is no longer supported when creating the router:
 
@@ -81,7 +81,7 @@ The `fallback` option is no longer supported when creating the router:
 
 **Reason**: All browsers supported by Vue support the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), allowing us to avoid hacks around modifying `location.hash` and directly use `history.pushState()`.
 
-### Removed `*` (star or catch all) routes
+### Removed `*` (star or catch all) routes {#removed-star-or-catch-all}
 
 Catch all routes (`*`, `/*`) must now be defined using a parameter with a custom regex:
 
@@ -107,13 +107,13 @@ router.resolve({
 }).href // '/not/found'
 ```
 
-:::tip
+:::tip DICA
 You don't need to add the `*` for repeated params if you don't plan to directly push to the not found route using its name. If you call `router.push('/not/found/url')`, it will provide the right `pathMatch` param.
 :::
 
 **Reason**: Vue Router doesn't use `path-to-regexp` anymore, instead it implements its own parsing system that allows route ranking and enables dynamic routing. Since we usually add one single catch-all route per project, there is no big benefit in supporting a special syntax for `*`. The encoding of params is encoding across routes, without exception to make things easier to predict.
 
-### Replaced `onReady` with `isReady`
+### Replaced `onReady` with `isReady` {#replaced-onready-with-isready}
 
 The existing `router.onReady()` function has been replaced with `router.isReady()` which doesn't take any argument and returns a Promise:
 
@@ -131,13 +131,13 @@ try {
 }
 ```
 
-### `scrollBehavior` changes
+### `scrollBehavior` changes {#scrollbehavior-changes}
 
 The object returned in `scrollBehavior` is now similar to [`ScrollToOptions`](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions): `x` is renamed to `left` and `y` is renamed to `top`. See [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0035-router-scroll-position.md).
 
 **Reason**: making the object similar to `ScrollToOptions` to make it feel more familiar with native JS APIs and potentially enable future new options.
 
-### `<router-view>`, `<keep-alive>`, and `<transition>`
+### `<router-view>`, `<keep-alive>`, and `<transition>` {#router-view-keep-alive-transition}
 
 `transition` and `keep-alive` must now be used **inside** of `RouterView` via the `v-slot` API:
 
@@ -153,7 +153,7 @@ The object returned in `scrollBehavior` is now similar to [`ScrollToOptions`](ht
 
 **Reason**: This was a necessary change. See the [related RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0034-router-view-keep-alive-transitions.md).
 
-### Removal of `append` prop in `<router-link>`
+### Removal of `append` prop in `<router-link>` {#removal-of-append-prop-in-router-link}
 
 The `append` prop has been removed from `<router-link>`. You can manually concatenate the value to an existing `path` instead:
 
@@ -175,7 +175,7 @@ app.config.globalProperties.append = (path, pathToAppend) =>
 
 **Reason**: `append` wasn't used very often, is easy to replicate in user land.
 
-### Removal of `event` and `tag` props in `<router-link>`
+### Removal of `event` and `tag` props in `<router-link>` {#removal-of-event-and-tag-props-in-router-link}
 
 Both `event`, and `tag` props have been removed from `<router-link>`. You can use the [`v-slot` API](../../api/#router-link-s-v-slot) to fully customize `<router-link>`:
 
@@ -190,7 +190,7 @@ with
 
 **Reason**: These props were often used together to use something different from an `<a>` tag but were introduced before the `v-slot` API and are not used enough to justify adding to the bundle size for everybody.
 
-### Removal of the `exact` prop in `<router-link>`
+### Removal of the `exact` prop in `<router-link>` {#removal-of-the-exact-prop-in-router-link}
 
 The `exact` prop has been removed because the caveat it was fixing is no longer present so you should be able to safely remove it. There are however two things you should be aware of:
 
@@ -201,17 +201,17 @@ If you wish to customize this behavior, e.g. take into account the `hash` sectio
 
 **Reason**: See the [RFC about active matching](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0028-router-active-link.md#summary) changes for more details.
 
-### Navigation guards in mixins are ignored
+### Navigation guards in mixins are ignored {#navigation-guards-in-mixins-are-ignored}
 
 At the moment navigation guards in mixins are not supported. You can track its support at [vue-router#454](https://github.com/vuejs/router/issues/454).
 
-### Removal of `router.match` and changes to `router.resolve`
+### Removal of `router.match` and changes to `router.resolve` {#removal-of-router-match-and-changes-to-router-resolve}
 
 Both `router.match`, and `router.resolve` have been merged together into `router.resolve` with a slightly different signature. [Refer to the API](../../api/#resolve) for more details.
 
 **Reason**: Uniting multiple methods that were used for the same purpose.
 
-### Removal of `router.getMatchedComponents()`
+### Removal of `router.getMatchedComponents()` {#removal-of-router-getmatchedcomponents}
 
 The method `router.getMatchedComponents` is now removed as matched components can be retrieved from `router.currentRoute.value.matched`:
 
@@ -223,7 +223,7 @@ router.currentRoute.value.matched.flatMap(record =>
 
 **Reason**: This method was only used during SSR and is a one liner that can be done by the user.
 
-### Redirect records cannot use special paths
+### Redirect records cannot use special paths {#redirect-records-cannot-use-special-paths}
 
 Previously, a non documented feature allowed to set a redirect record to a special path like `/events/:id` and it would reuse an existing param `id`. This is no longer possible and there are two options:
 
@@ -232,7 +232,7 @@ Previously, a non documented feature allowed to set a redirect record to a speci
 
 **Reason**: This syntax was rarely used and _another way of doing things_ that wasn't shorter enough compared to the versions above while introducing some complexity and making the router heavier.
 
-### **All** navigations are now always asynchronous
+### **All** navigations are now always asynchronous {#all-navigations-are-now-always-asynchronous}
 
 All navigations, including the first one, are now asynchronous, meaning that, if you use a `transition`, you may need to wait for the router to be _ready_ before mounting the app:
 
@@ -246,7 +246,7 @@ Otherwise there will be an initial transition as if you provided the `appear` pr
 
 Note that **if you have navigation guards upon the initial navigation**, you might not want to block the app render until they are resolved unless you are doing Server Side Rendering. In this scenario, not waiting the router to be ready to mount the app would yield the same result as in Vue 2.
 
-### Removal of `router.app`
+### Removal of `router.app` {#removal-of-router-app}
 
 `router.app` used to represent the last root component (Vue instance) that injected the router. Vue Router can now be safely used by multiple Vue applications at the same time. You can still add it when using the router:
 
@@ -259,7 +259,7 @@ You can also extend the TypeScript definition of the `Router` interface to add t
 
 **Reason**: Vue 3 applications do not exist in Vue 2 and now we properly support multiple applications using the same Router instance, so having an `app` property would have been misleading because it would have been the application instead of the root instance.
 
-### Passing content to route components' `<slot>`
+### Passing content to route components' `<slot>` {#passing-content-to-route-components-slot}
 
 Before you could directly pass a template to be rendered by a route components' `<slot>` by nesting it under a `<router-view>` component:
 
@@ -279,7 +279,7 @@ Because of the introduction of the `v-slot` api for `<router-view>`, you must pa
 </router-view>
 ```
 
-### Removal of `parent` from route locations
+### Removal of `parent` from route locations {#removal-of-parent-from-route-locations}
 
 The `parent` property has been removed from normalized route locations (`this.$route` and object returned by `router.resolve`). You can still access it via the `matched` array:
 
@@ -289,11 +289,11 @@ const parent = this.$route.matched[this.$route.matched.length - 2]
 
 **Reason**: Having `parent` and `children` creates unnecessary circular references while the properties could be retrieved already through `matched`.
 
-### Removal of `pathToRegexpOptions`
+### Removal of `pathToRegexpOptions` {#removal-of-pathtoregexoptions}
 
 The `pathToRegexpOptions` and `caseSensitive` properties of route records have been replaced with `sensitive` and `strict` options for `createRouter()`. They can now also be directly passed when creating the router with `createRouter()`. Any other option specific to `path-to-regexp` has been removed as `path-to-regexp` is no longer used to parse paths.
 
-### Removal of unnamed parameters
+### Removal of unnamed parameters {#removal-of-unnamed-parameters}
 
 Due to the removal of `path-to-regexp`, unnamed parameters are no longer supported:
 
@@ -301,11 +301,11 @@ Due to the removal of `path-to-regexp`, unnamed parameters are no longer support
 - `/foo(foo)?` becomes `/foo:_(foo)?`
 - `/foo/(.*)` becomes `/foo/:_(.*)`
 
-:::tip
+:::tip DICA
 Note you can use any name instead of `_` for the param. The point is to provide one.
 :::
 
-### Usage of `history.state`
+### Usage of `history.state` {#usage-of-history-state}
 
 Vue Router saves information on the `history.state`. If you have any code manually calling `history.pushState()`, you should likely avoid it or refactor it with a regular `router.push()` and a `history.replaceState()`:
 
@@ -328,7 +328,7 @@ history.replaceState(history.state, '', url)
 
 **Reason**: We use the history state to save information about the navigation like the scroll position, previous location, etc.
 
-### `routes` option is required in `options`
+### `routes` option is required in `options` {#routes-options-is-required-in-options}
 
 The property `routes` is now required in `options`.
 
@@ -338,7 +338,7 @@ createRouter({ routes: [] })
 
 **Reason**: The router is designed to be created with routes even though you can add them later on. You need at least one route in most scenarios and this is written once per app in general.
 
-### Non existent named routes
+### Non existent named routes {#non-existent-named-routes}
 
 Pushing or resolving a non existent named route throws an error:
 
@@ -350,7 +350,7 @@ router.resolve({ name: 'homee' }) // throws
 
 **Reason**: Previously, the router would navigate to `/` but display nothing (instead of the home page). Throwing an error makes more sense because we cannot produce a valid URL to navigate to.
 
-### Missing required `params` on named routes
+### Missing required `params` on named routes {#missing-required-params-on-named-routes}
 
 Pushing or resolving a named route without its required params will throw an error:
 
@@ -365,7 +365,7 @@ router.resolve({ name: 'user' })
 
 **Reason**: Same as above.
 
-### Named children routes with an empty `path` no longer appends a slash
+### Named children routes with an empty `path` no longer appends a slash {#named-children-routes-with-an-empty-path-no-longer-appends-an-slash}
 
 Given any nested named route with an empty `path`:
 
@@ -417,7 +417,7 @@ Note this will work if `path` was `/parent/` as the relative location `home` to 
 
 <!-- TODO: maybe a cookbook entry -->
 
-### `$route` properties Encoding
+### `$route` properties Encoding {#route-properties-encoding}
 
 Decoded values in `params`, `query`, and `hash` are now consistent no matter where the navigation is initiated (older browsers will still produce unencoded `path` and `fullPath`). The initial navigation should yield the same results as in-app navigations.
 
@@ -430,7 +430,7 @@ Given any [normalized route location](../../api/#routelocationnormalized):
 
 **Reason**: This allows to easily copy existing properties of a location when calling `router.push()` and `router.resolve()`, and make the resulting route location consistent across browsers. `router.push()` is now idempotent, meaning that calling `router.push(route.fullPath)`, `router.push({ hash: route.hash })`, `router.push({ query: route.query })`, and `router.push({ params: route.params })` will not create extra encoding.
 
-### TypeScript changes
+### TypeScript changes {#typescript-changes}
 
 To make typings more consistent and expressive, some types have been renamed:
 
@@ -440,7 +440,7 @@ To make typings more consistent and expressive, some types have been renamed:
 | Location       | RouteLocation           |
 | Route          | RouteLocationNormalized |
 
-## New Features
+## New Features {#new-features}
 
 Some of new features to keep an eye on in Vue Router 4 include:
 
