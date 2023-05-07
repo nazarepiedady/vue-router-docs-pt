@@ -3,7 +3,7 @@ import { defineConfig, HeadConfig } from 'vitepress'
 const META_URL = 'https://router.vuejs.org'
 const META_TITLE = 'Vue Router'
 //const META_IMAGE = ''
-const META_DESCRIPTION = 'O Roteador oficial para a Vue.js.'
+const META_DESCRIPTION = 'O roteador oficial para a Vue.js.'
 
 const isProduction = process.env.NETLIFY && process.env.CONTEXT === 'production'
 
@@ -27,10 +27,11 @@ const config = defineConfig({
       light: 'github-light',
     },
 
+    /*
     attrs: {
       leftDelimiter: '%{',
       rightDelimiter: '}%',
-    },
+    },*/
   },
   
   head: [
@@ -206,7 +207,7 @@ const config = defineConfig({
           ],
         },
         {
-          text: 'Migrando a partir da Vue 2',
+          text: 'Guia de Migração',
           link: '/guide/migration/index.html',
         },
       ],
