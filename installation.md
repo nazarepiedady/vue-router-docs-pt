@@ -1,8 +1,8 @@
-# Instalação
+# Instalação {#installation}
 
 <VueMasteryLogoLink></VueMasteryLogoLink>
 
-## Descarregamento Direto / CDN
+## Descarregamento Direto / CDN {#direct-download-cdn}
 
 [https://unpkg.com/vue-router@4](https://unpkg.com/vue-router@4)
 
@@ -12,13 +12,13 @@ O [Unpkg.com](https://unpkg.com) fornece ligações de CDN baseadas no npm. A li
 
 <!--/email_off-->
 
-## npm
+## npm {#npm}
 
 ```bash
 npm install vue-router@4
 ```
 
-## yarn
+## yarn {#yarn}
 
 ```bash
 yarn add vue-router@4
