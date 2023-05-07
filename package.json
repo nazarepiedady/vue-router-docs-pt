@@ -1,6 +1,6 @@
 {
   "name": "vue-router-docs-pt",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vitepress dev .",
@@ -8,13 +8,13 @@
     "build": "vitepress build ."
   },
   "dependencies": {
-    "@chenfengyuan/vue-countdown": "^2.1.0",
-    "vitepress": "^1.0.0-alpha.49"
+    "@chenfengyuan/vue-countdown": "^2.1.1",
+    "vitepress": "^1.0.0-alpha.74"
   },
   "devDependencies": {
-    "@algolia/client-search": "^4.14.2",
-    "typedoc": "^0.23.25",
-    "typedoc-plugin-markdown": "^3.14.0",
-    "@types/node": "^18.14.0"
+    "@algolia/client-search": "^4.17.0",
+    "@types/node": "^18.16.1",
+    "typedoc": "^0.23.28",
+    "typedoc-plugin-markdown": "^3.15.2"
   }
 }
