@@ -84,10 +84,10 @@ exports.createTypeDocApp = function createTypeDocApp(config = {}) {
           if (existingIds.has(slugifiedTitle)) {
             const current = existingIds.get(slugifiedTitle)
             existingIds.set(slugifiedTitle, current + 1)
-            id = ` %{#${slugifiedTitle}_${current + 1}}%`
+            id = ` {#${slugifiedTitle}_${current + 1}}`
           } else {
             existingIds.set(slugifiedTitle, 0)
-            id = ` %{#${slugifiedTitle}}%`
+            id = ` {#${slugifiedTitle}}`
           }
           const newLine = line + id
           lines.splice(i, 1, newLine)

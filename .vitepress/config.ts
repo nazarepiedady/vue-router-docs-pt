@@ -29,8 +29,8 @@ const config = defineConfig({
 
     /*
     attrs: {
-      leftDelimiter: '%{',
-      rightDelimiter: '}%',
+      leftDelimiter: '{',
+      rightDelimiter: '}',
     },*/
   },
   
