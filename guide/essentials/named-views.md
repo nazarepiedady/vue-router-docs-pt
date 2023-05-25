@@ -1,4 +1,4 @@
-# Visões Nomeadas
+# Visões Nomeadas {#named-views}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-named-views"
@@ -35,7 +35,7 @@ const router = createRouter({
 
 Uma demonstração em funcionamento deste exemplo pode ser encontrado [nesta ligação](https://codesandbox.io/s/named-views-vue-router-4-examples-rd20l).
 
-## Visões Nomeadas Encaixadas
+## Visões Nomeadas Encaixadas {#nested-named-views}
 
 É possível criar esquemas complexos usando visões nomeadas com visões encaixadas. Quando estiveres a fazer isto, também precisarás dar ao `router-view` encaixado um nome. Consideremos um exemplo de painel de Definições:
 
