@@ -1,4 +1,4 @@
-# Passando Propriedades para os Componentes de Rota
+# Passando Propriedades para os Componentes de Rota {#passing-props-to-route-components}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-props"
@@ -29,11 +29,11 @@ const routes = [{ path: '/user/:id', component: User, props: true }]
 
 Isto permite-te usar o componente em qualquer lugar, o que torna o componente mais fácil de reutilizar e testar.
 
-## Modo booleano
+## Modo Booleano {#boolean-mode}
 
 Quando o `props` for definido para `true`, a `route.params` serão definidas como propriedades do componente.
 
-## Visões Nomeadas
+## Visões Nomeadas {#named-views}
 
 Para rotas com visões nomeadas, tens que definir a opção `props` para cada visão nomeada:
 
@@ -47,7 +47,7 @@ const routes = [
 ]
 ```
 
-## Modo de objeto
+## Modo de Objeto {#object-mode}
 
 Quando `props` for um objeto, este será definido como propriedades de componente como está. Útil para quando as propriedades forem estáticas.
 
@@ -61,7 +61,7 @@ const routes = [
 ]
 ```
 
-## Mode de função
+## Mode de Função {#function-mode}
 
 Tu podes criar uma função que retorna propriedades. Isto permite-te moldar parâmetros com outros tipos, combinar valores estáticos com valores baseados em rota etc.
 
