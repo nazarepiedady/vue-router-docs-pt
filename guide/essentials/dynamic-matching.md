@@ -1,4 +1,4 @@
-# Correspondência de Rota Dinâmica com Parâmetros
+# Correspondência de Rota Dinâmica com Parâmetros {#dynamic-route-matching-with-params}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/dynamic-routes"
@@ -48,7 +48,7 @@ Uma demonstração em funcionamento deste exemplo pode ser encontrado [nesta lig
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe> -->
 
-## Reagindo as Mudanças de Parâmetros
+## Reagindo as Mudanças de Parâmetros {#reacting-to-params-changes}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/reacting-to-param-changes"
@@ -85,7 +85,7 @@ const User = {
 }
 ```
 
-## Captura total / Rota não encontrada 404
+## Captura total / Rota não encontrada 404 {#catch-all-404-not-found-route}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/404-not-found-page"
@@ -129,6 +129,6 @@ Acompanhe mais na seção [parâmetros repetidos](./route-matching-syntax.md#rep
 
 Se estiveres a usar o [mode de História](./history-mode.md), certifica-te também de seguir as instruções para configurar corretamente o teu servidor.
 
-## Padrões de Correspondência Avançados
+## Padrões de Correspondência Avançados {#advanced-matching-patterns}
 
 A Vue Router usa a sua própria sintaxe de correspondência de caminho, inspirada por aquela usada pela `express`, assim ela suporta muitos padrões de correspondência avançados tais como parâmetros opcionais, zero ou mais / um ou mais requisitos, e até padrões de expressão regular personalizado. Consulte a documentação da [Correspondência Avançada](./route-matching-syntax.md) para explorá-las.
