@@ -1,11 +1,11 @@
-# Redirecionamento e Pseudónimos
+# Redirecionamento e Pseudónimos {#redirect-and-alias}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-redirect-and-alias"
   title="Aprenda como usar o redirecionamento e pseudónimos"
 />
 
-## Redirecionar
+## Redirecionar {#redirect}
 
 O redirecionamento também é feito na configuração de `routes`. Para redirecionar de `/home` para `/`:
 
@@ -43,7 +43,7 @@ Nota que os **[Guardas da Navegação](../advanced/navigation-guards.md) não s�
 
 Quando estiveres a escrever um `redirect`, podes omitir a opção `component` porque ele nunca é alcançado diretamente então não existe componente a apresentar. As únicas exceções são as [rotas encaixadas](./nested-routes.md): se um registo de rota tiver uma propriedade `children` e `redirect`, ela também deve ter uma propriedade `component`.
 
-### Redirecionamento relativo
+### Redirecionamento Relativo {#relative-redirecting}
 
 É também possível redirecionar para uma localização relativa:
 
@@ -62,7 +62,7 @@ const routes = [
 ]
 ```
 
-## Pseudónimos
+## Pseudónimos {#alias}
 
 Um redirecionamento significa que quando o utilizador visitar `/home`, a URL será pelo `/`, e depois correspondida como `/`. Mas o que é um pseudónimo?
 
