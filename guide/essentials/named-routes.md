@@ -1,4 +1,4 @@
-# Rotas Nomeadas
+# Rotas Nomeadas {#named-routes}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/named-routes"
