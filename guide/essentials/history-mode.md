@@ -1,4 +1,4 @@
-# Diferentes Modos de História
+# Diferentes Modos de História {#different-history-modes}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/history-mode"
@@ -7,7 +7,7 @@
 
 A opção `history` quando estivermos a criar a instância do roteador permite-nos escolher entre diferentes modos de história.
 
-## Modo de Hash
+## Modo de Hash {#hash-mode}
 
 O modo hash da história é criado com `createWebHashHistory()`:
 
@@ -24,7 +24,7 @@ const router = createRouter({
 
 Ele usa um character de cardinal (`#`) antes da URL real que é internamente passado. Uma vez que esta seção da URL nunca é enviada para o servidor, ela não exige qualquer tratamento especial no nível do servidor. **Ele tem no entanto um impacto nocivo na SEO**. Se isto for uma preocupação para ti, use o modo HTML5 da história.
 
-## Modo de HTML5
+## Modo de HTML5 {#html5-mode}
 
 O modo de HTML5 é criado com `createWebHistory()` e é o modo recomendado:
 
@@ -45,7 +45,7 @@ Temos cá um problema: Já que a nossa aplicação é uma aplicação de cliente
 
 Não te preocupes: Para corrigir o problema, tudo o que precisas fazer é adicionar uma simples rota de resposta geral para o teu servidor. Se a URL não corresponder a quaisquer recursos estáticos, o servidor deve servir a mesma página `index.html` onde a tua aplicação reside. Lindo, novamente!
 
-## Modo de Memória
+## Modo de Memória {#memory-mode}
 
 O modo de memória da história não presume um ambiente navegador e portanto não interage com a URL **nem aciona automaticamente a navegação inicial**. Isto torna-o perfeito para ambiente da Node e SSR. Isto é criado com `createMemoryHistory()` e **exige que empurres a navegação inicial** depois da chamada de `app.use(router)`.
 
@@ -62,11 +62,11 @@ const router = createRouter({
 
 Embora não seja recomendado, podes usar este modo dentro de aplicações de Navegador mas nota que **não existirá história**, querendo dizer que não serás capaz de _regressar_ ou _avançar_.
 
-## Exemplos de Configurações de Servidor
+## Exemplos de Configurações de Servidor {#example-server-configurations}
 
 **Nota**: Os seguintes exemplos assumem que estás a servir a tua aplicação a partir da pasta de raiz. Se implementares para uma sub-pasta, deves usar [a opção `publicPath` da Interface da Linha de Comando de Vue](https://cli.vuejs.org/config/#publicpath) e a [propriedade `base` relacionada do roteador](../../api/#createwebhistory). Tu também precisas ajustar os exemplos abaixo para usarem a sub-pasta no lugar da pasta de raiz (por exemplo, substituindo `RewriteBase /` por `RewriteBase /nome-da-tua-sub-pasta/`).
 
-### Apache
+### Apache {#apache}
 
 ```apacheconf
 <IfModule mod_negotiation.c>
@@ -85,7 +85,7 @@ Embora não seja recomendado, podes usar este modo dentro de aplicações de Nav
 
 No lugar de `mod_rewrite`, poderias também usar [`FallbackResource`](https://httpd.apache.org/docs/2.2/mod/mod_dir.html#fallbackresource).
 
-### nginx
+### nginx {#nginx}
 
 ```nginx
 location / {
@@ -93,7 +93,7 @@ location / {
 }
 ```
 
-### Node.js Nativa
+### Node.js Nativa {#node-js-nativa}
 
 ```js
 const http = require('http')
@@ -119,11 +119,11 @@ http
   })
 ```
 
-### Node.js com Express
+### Node.js com Express {#express-with-node-js}
 
 Para Node.js/Express, considere usar o [intermediário `connect-history-api-fallback`](https://github.com/bripkens/connect-history-api-fallback).
 
-### Serviços de Informação de Internet (IIS)
+### Serviços de Informação de Internet (IIS) {#internet-information-services-iis}
 
 1. Instale [`UrlRewrite` da IIS](https://www.iis.net/downloads/microsoft/url-rewrite)
 2. Crie um ficheiro `web.config` no diretório de raiz da tua aplicação com o seguinte:
@@ -148,13 +148,13 @@ Para Node.js/Express, considere usar o [intermediário `connect-history-api-fall
 </configuration>
 ```
 
-### Caddy v2
+### Caddy v2 {#caddy-v2}
 
 ```
 try_files {path} /
 ```
 
-### Caddy v1
+### Caddy v1 {#caddy-v1}
 
 ```
 rewrite {
@@ -163,7 +163,7 @@ rewrite {
 }
 ```
 
-### Hospedagem da Firebase
+### Hospedagem da Firebase {#firebase-hosting}
 
 Adicione isto no teu `firebase.json`:
 
@@ -181,7 +181,7 @@ Adicione isto no teu `firebase.json`:
 }
 ```
 
-### Netlify
+### Netlify {#netlify}
 
 Crie um ficheiro `_redirects` que é incluído com os teus ficheiros implementados em produção:
 
@@ -193,7 +193,7 @@ Nos projetos da interface da linha de comando da Vue, Nuxt e Vite, este ficheiro
 
 Tu podes informar-te mais a respeito da sintaxe na [documentação da Netlify](https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps). Tu podes também [criar um `netlify.toml`](https://docs.netlify.com/configure-builds/file-based-configuration/) para combinar os _redirecionamentos (redirections)_ com as outras funcionalidades da Netlify.
 
-### Vercel
+### Vercel {#vercel}
 
 Crie um ficheiro `vercel.json` sob o diretório de raiz do teu projeto com o seguinte:
 
@@ -203,7 +203,7 @@ Crie um ficheiro `vercel.json` sob o diretório de raiz do teu projeto com o seg
 }
 ```
 
-## Advertência
+## Advertência {#caveat}
 
 Existe uma advertência para isto: O teu servidor não mais reportará erros de página não encontrada já que todos os caminhos não encontrados servem agora o teu ficheiro `index.html`. Para solucionar este problema, deves implementar uma rota de resposta geral dentro da tua aplicação de Vue para mostrar uma página não encontrada 404:
 
