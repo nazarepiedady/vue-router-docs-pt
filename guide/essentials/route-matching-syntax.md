@@ -1,4 +1,4 @@
-# Sintaxe de Correspondência da Rota
+# Sintaxe de Correspondência da Rota {#routes-matching-syntax}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-advanced-routes-matching-syntax"
@@ -11,7 +11,7 @@ A maioria das aplicações usarão rotas estáticas como `/about` e rotas dinâm
 Para fins de simplicidade, todos registos da rota **estão a omitir a propriedade `component`** para focar no valor `path`.
 :::
 
-## Expressão Regular Personalizada nos Parâmetros
+## Expressão Regular Personalizada nos Parâmetros {#custom-regex-in-params}
 
 Quando estivermos a definir um parâmetro como `:userId`, usaremos internamente a seguinte expressão regular `([^/]+)` (pelo menos um carácter que não é uma barra `/`) para extrair os parâmetros das URLs. Isto funciona bem a menos que precises fazer diferenciar duas rotas baseadas no conteúdo do parâmetro. Suponha duas rotas `/:orderId` e `/productName`, ambas corresponderiam exatamente as mesmas URLs, assim precisamos de uma maneira de diferenciá-las. A maneira mais fácil seria adicionar uma seção estática ao caminho que as diferencia:
 
@@ -41,7 +41,7 @@ Agora, ir para `/25` corresponderá ao `/:orderId` enquanto ir para qualquer coi
 Certifica-te de **escapar as barras oblíquas invertidas (`/`)** como fizemos com `\d` (torna-se `\\d`) para realmente passar o carácter barra oblíqua invertida na sequência de caracteres em JavaScript.
 :::
 
-## Parâmetros Repetitivos
+## Parâmetros Repetitivos {#repeatable-params}
 
 Se precisas corresponder rotas com várias seções como `/first/second/third`, deves marcar um parâmetro como repetitivo com `*` (0 ou mais) e `+` (1 ou mais):
 
@@ -80,7 +80,7 @@ const routes = [
 ]
 ```
 
-## Opções de Rota Estritas e Sensíveis
+## Opções de Rota Estritas e Sensíveis {#sensitive-and-strict-route-options}
 
 Por padrão, todas rotas são insensíveis às diferenças entre maiúsculas e minúsculas e correspondem a rotas com ou sem uma barra de caminho, por exemplo uma rota `/users` corresponde a `/users`, `/users/`, e até mesmo `/Users/`. Este comportamento pode ser configurado com as opções `strict` e `sensitive`, podem ser definidas ambas no nível de um roteador e rota:
 
@@ -99,7 +99,7 @@ const router = createRouter({
 })
 ```
 
-## Parâmetros Opcionais
+## Parâmetros Opcionais {#optional-parameters}
 
 Tu também podes marcar um parâmetro como opcional com o uso do modificador `?` (0 ou 1):
 
@@ -114,6 +114,6 @@ const routes = [
 
 Nota que tecnicamente `*` também marca um parâmetro como opcional mas parâmetros `?` não podem ser repetidos.
 
-## Depuração
+## Depuração {#debugging}
 
 Se precisas escavar como as tuas rotas são transformadas em uma expressão regular para entenderes o porquê de uma rota não ser correspondida ou, comunicar um bug, podes usar a [ferramenta classificadora de caminho](https://paths.esm.dev/?p=AAMeJSyAwR4UbFDAFxAcAGAIJXMAAA..#). Ela ajuda a partilhar as tuas rotas através da URL.
