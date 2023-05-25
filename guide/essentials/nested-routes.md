@@ -1,4 +1,4 @@
-# Rotas Encaixadas
+# Rotas Encaixadas {#nested-routes}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/nested-routes"
@@ -105,7 +105,7 @@ const routes = [
 
 Uma demonstração em funcionamento deste exemplo pode ser encontrada [nesta ligação](https://codesandbox.io/s/nested-views-vue-router-4-examples-hl326?initialpath=%2Fusers%2Feduardo).
 
-## Rotas Encaixadas Nomeadas
+## Rotas Encaixadas Nomeadas {#nested-named-routes}
 
 Quando estamos a lidar com [Rotas Nomeadas](./named-routes.md), normalmente **nomeias as rotas filhas**:
 
