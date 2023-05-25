@@ -2,7 +2,7 @@
 sidebarDepth: 0
 ---
 
-# Navegação Programática
+# Navegação Programática {#programmatic-navigation}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-programmatic-navigation"
@@ -11,7 +11,7 @@ sidebarDepth: 0
 
 À parte de usar `<router-link>` para criar marcadores de âncoras para navegação declarativa, nós podemos fazer isto programaticamente usando os métodos da instância do roteador.
 
-## Navegar para uma localização diferente
+## Navegar para uma Localização Diferente {#navigation-to-a-different-location}
 
 **Nota: Dentro de uma instância de Vue, tens acesso à instância do roteador como `$router`. Tu podes portanto chamar `this.$router.push`.**
 
@@ -62,7 +62,7 @@ Já que a propriedade `to` aceita o mesmo tipo de objeto que o `router.push`, as
 
 O `router.push` e todos os outros métodos de navegação retornam uma _Promessa_ que permite-nos esperar até a navegação ser terminada e saber se foi bem-sucedida ou não. Nós falaremos mais a respeito disto na [Manipulação da Navegação](../advanced/navigation-failures.md).
 
-## Substituir a localização atual
+## Substituir a Localização Atual {#replace-current-location}
 
 Isto comporta-se como `router.push`, a única diferença é que ele navega sem empurrar uma nova entrada na história, como o seu nome sugeri - ele substitui a entrada atual.
 
@@ -78,7 +78,7 @@ router.push({ path: '/home', replace: true })
 router.replace({ path: '/home' })
 ```
 
-## Percorrer a história
+## Percorrer a História {#traverse-history}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/go-back"
@@ -104,7 +104,7 @@ router.go(-100)
 router.go(100)
 ```
 
-## Manipulação da História
+## Manipulação da História {#history-manipulation}
 
 Tu podes ter notado que o `router.push`, `router.replace` e `router.go` são os equivalentes dos [`window.history.pushState`, `window.history.replaceState` and `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History), e eles imitam as APIs da `window.history`.
 
