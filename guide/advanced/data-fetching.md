@@ -1,4 +1,4 @@
-# Requisição de Dados
+# Requisição de Dados {#data-fetching}
 
 Algumas vezes precisas pedir dados do servidor quando uma rota é ativada. Por exemplo, antes de apresentar um perfil de utilizador, precisas pedir do servidor os dados do utilizador. Nós podemos alcançar isto de duas maneiras:
 
@@ -8,7 +8,7 @@ Algumas vezes precisas pedir dados do servidor quando uma rota é ativada. Por e
 
 Tecnicamente, ambas são escolhas válidas . isto definitivamente depende da experiência de uso que queres entregar.
 
-## Requisitar Depois da Navegação
+## Requisitar Depois da Navegação {#fetching-after-navigation}
 
 Quando estivermos a usar esta abordagem, navegamos e apresentamos o próximo componente imediatamente, e pedimos os dados no gatilho `created` do componente. Isto dá-nos a oportunidade de exibir um estado de carregamento enquanto os dados trafegam sobre a rede, e também podemos manipular o carregamento de maneira diferente para cada visão.
 
@@ -69,7 +69,7 @@ export default {
 }
 ```
 
-## Requisitar Antes da Navegação
+## Requisitar Antes da Navegação {#fetching-before-navigation}
 
 Com esta abordagem pedimos os dados antes de fato navegar para a próxima rota. Nós podemos realizar a requisição dos dados na guarda `beforeRouteEnter` no próximo componente, e apenas chamar `next` quando o pedido estiver concluído. A função de resposta passada para `next` será chamada **depois que o componente estiver montado**:
 
