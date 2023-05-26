@@ -1,4 +1,4 @@
-# Roteamento Dinâmico
+# Roteamento Dinâmico {#dynamic-routing}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-dynamic-routing"
@@ -7,7 +7,7 @@
 
 A adição de rotas no teu roteador é normalmente feito através da [opção `routes`](../../api/#routes) mas em algumas situações, podes querer adicionar ou remover rotas enquanto a aplicação já está em execução. Aplicações com interfaces extensivas como [Interface de Utilizador da Interface da Linha de Comando da Vue](https://cli.vuejs.org/dev-guide/ui-api.html) podem usar isto para fazerem a aplicação escrever.
 
-## Adicionar Rotas
+## Adicionar Rotas {#adding-routes}
 
 O roteamento dinâmico é alcançado principalmente através de duas funções: `router.addRoute()` e `router.removeRoute()`. Elas **apenas** registam uma nova rota, querendo dizer que se a rota adicionada recentemente corresponder a localização atual, exigiria que **navegasses manualmente** com a `router.push()` ou `router.replace()` para exibir aquela nova rota. Vejamos um exemplo:
 
@@ -36,7 +36,7 @@ router.replace(router.currentRoute.value.fullPath)
 
 Lembra-te de que podes `await router.replace()` se precisares de esperar que a nova rota seja exibida.
 
-## Adicionar Rotas dentro das Guardas de Navegação
+## Adicionar Rotas dentro das Guardas de Navegação {#adding-routes-inside-navigation-guards}
 
 Se decidires adicionar ou remover as rotas dentro de uma guarda de navegação, não deves chamar `router.replace()` mas acionar um redirecionamento com o retorno da nova localização:
 
@@ -54,7 +54,7 @@ O exemplo acima assume duas coisas: primeiro, o registo da rota adicionada recen
 
 Uma vez que estamos a redirecionar, estamos a substituir a navegação em curso, comportando-se efetivamente como exemplo mostrado antes. Em cenários do mundo real, é mais provável que adição aconteça fora das guardas de navegação, por exemplo, quando um componente de visão monta, regista as novas rotas.
 
-## Remover Rotas
+## Remover Rotas {#removing-routes}
 
 Existem maneiras diferentes de remover as rotas existentes:
 
@@ -87,7 +87,7 @@ Existem maneiras diferentes de remover as rotas existentes:
 
 Sempre que uma rota for removida, **todos os seus pseudónimos e filhos** são removidos com ela.
 
-## Adicionar Rotas Encaixadas
+## Adicionar Rotas Encaixadas {#adding-nested-routes}
 
 Para adicionar as rotas encaixadas à uma rota existente, podes passar o _name_ da rota como seu primeiro parâmetro ao `router.addRoute()`, isto efetivamente adicionará a rota como se fosse adicionada através do `children`:
 
@@ -107,7 +107,7 @@ router.addRoute({
 })
 ```
 
-## Examinar as Rotas Existentes
+## Examinar as Rotas Existentes {#looking-at-existing-routes}
 
 A Vue Router dá-te duas funções para examinar as rotas existentes:
 
