@@ -1,4 +1,4 @@
-# Vue Router e a API de Composição
+# Vue Router e a API de Composição {#vue-router-and-the-composition-api}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/router-and-the-composition-api"
@@ -7,7 +7,7 @@
 
 A introdução de `setup` e [API de Composição](https://v3.vuejs.org/guide/composition-api-introduction.html) da Vue, abre possibilidades novas mas para ser capaz de receber o potencial completo da Vue Router, precisaremos usar algumas funções novas para substituir o acesso ao `this` e às guardas de navegação em componente.
 
-## Acessar o Roteador e a Rota atual dentro de `setup`
+## Acessar o Roteador e a Rota atual dentro de `setup` {#accessing-the-router-and-current-route-inside-setup}
 
 Uma vez que não temos acesso ao `this` dentro de `setup`, já não podemos acessar `this.$router` ou `this.$route` diretamente. No lugar destes usamos as funções `useRouter`:
 
@@ -56,7 +56,7 @@ export default {
 
 Nota que continuamos a ter o acesso ao `$router` e `$router` nos modelos de marcação, então não existe a necessidade de retornar o `router` ou `route` de dentro de `setup`.
 
-## Guardas da Navegação
+## Guardas da Navegação {#navigation-guards}
 
 Embora continues a poder usar as guardas da navegação em componente com uma função `setup`, a Vue Router expõe as guardas de atualização e saída como funções da API de Composição:
 
@@ -90,7 +90,7 @@ export default {
 
 As guardas da API de Composição também podem ser usadas em qualquer componente apresentado pelo `<router-view>`, não precisam ser usados diretamente no componente da rota como guardas em componente.
 
-## `useLink`
+## `useLink` {#uselink}
 
 A Vue Router expõe o comportamento interno de `RouterLink` como uma função da API de Composição. Ela concede o acesso às mesmas propriedades tal como a [API `v-slot`](../../api/#router-link-s-v-slot):
 
