@@ -1,4 +1,4 @@
-# Estendendo o RouterLink
+# Estendendo o `RouterLink` {#extending-routerlink}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/extending-router-link-for-external-urls"
