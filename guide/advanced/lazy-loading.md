@@ -1,4 +1,4 @@
-# Rotas de Carregamento Preguiçoso
+# Rotas de Carregamento Preguiçoso {#lazy-loading-routes}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/lazy-loading-routes-vue-cli-only"
@@ -40,9 +40,9 @@ Quando estiveres a usar um empacotador como o Webpack, este se beneficiará auto
 
 Quando estiveres a usar o Babel, precisarás de adicionar a extensão [`syntax-dynamic-import`](https://babeljs.io/docs/plugins/syntax-dynamic-import/) para o Babel poder analisar a sintaxe apropriadamente.
 
-## Agrupar Componentes no Mesmo Pedaço
+## Agrupar Componentes no Mesmo Pedaço {#grouping-components-in-the-same-chunk}
 
-### Com a Webpack
+### Com a Webpack {#with-webpack}
 
 Algumas vezes podemos querer agrupar todos os componentes encaixados sob a mesma rota no mesmo pedaço assíncrono. Para alcançar isto precisamos usar [pedaços nomeados](https://webpack.js.org/guides/code-splitting/#dynamic-imports) fornecendo um nome de pedaço usando uma sintaxe especial de comentário (exige versão de webpack > 2.4):
 
@@ -57,7 +57,7 @@ const UserProfileEdit = () =>
 
 O Webpack agrupará qualquer módulo assíncrono com o mesmo nome de pedaço no mesmo pedaço assíncrono.
 
-### Com a Vite
+### Com a Vite {#with-vite}
 
 Na Vite podes definir os pedaços sob a [`rollupOptions`](https://vitejs.dev/config/#build-rollupoptions):
 
