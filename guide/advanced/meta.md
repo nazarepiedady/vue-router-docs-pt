@@ -1,4 +1,4 @@
-# Campos de Meta da Rota
+# Campos de Meta da Rota {#route-meta-fields}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-meta-fields"
@@ -56,7 +56,7 @@ router.beforeEach((to, from) => {
 })
 ```
 
-## TypeScript
+## TypeScript {#typescript}
 
 É possível definir tipo para o campo `meta` pela extensão da interface `RouteMeta` da `vue-router`:
 
