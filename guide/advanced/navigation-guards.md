@@ -1,4 +1,4 @@
-# Guardas da Navegação
+# Guardas da Navegação {#navigation-guards}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/route-guards"
@@ -7,7 +7,7 @@
 
 Conforme o nome sugere, as guardas da navegação fornecidas pela Vue Router sao primariamente usadas para guardar as navegações ou pelo redirecionamento dela ou cancelamento dela. Existem várias maneiras de prender a guarda no processo de navegação da rota: globalmente, por rota, ou dentro do componente.
 
-## Guardas de Navegação `Before` Globais
+## Guardas de Navegação `Before` Globais {#global-before-guards}
 
 Tu podes registar as guardas `before` globais usando `router.beforeEach`:
 
@@ -61,7 +61,7 @@ router.beforeEach(async (to, from) => {
 })
 ```
 
-### O Terceiro Argumento Opcional `next`
+### O Terceiro Argumento Opcional `next` {#optional-third-argument-next}
 
 Nas versões anteriores da Vue Router, também era possível usar um _terceiro argumento_ `next`, isto era uma fonte comum de confusões e passou por um [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0037-router-return-guards.md#motivation) para removê-lo. No entanto, continua a ser suportado, querendo dizer que podes passar um terceiro argumento para qualquer guarda de navegação. Neste caso, **deves chamar a `next` exatamente uma vez** em alguma dada passagem de uma guarda de navegação. Ele pode aparecer mais de uma vez, mas apenas se os caminhos lógicos não tiverem nenhuma sobreposição, de outro modo o gatilho nunca será resolvido ou produzirá erros. No exemplo abaixo apresentamos **maneira errada** de redirecionar os utilizadores para a rota `/login` se não estiverem autenticados:
 
@@ -84,7 +84,7 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-## Guardas de Navegação `Resolve` Globais
+## Guardas de Navegação `Resolve` Globais {#global-resolve-guards}
 
 Tu podes registar uma guarda global com `router.beforeResolve`. Isto é parecido com `router.beforeEach` porque aciona-se em **toda navegação***, porém as guardas `resolve` são chamadas exatamente antes da navegação ser confirmada, **depois de todas as guardas em componente e componentes de rotas assíncronas serem resolvidos**. No exemplo abaixo demonstramos como garantir que o utilizador deu acesso à Câmara para rotas que [definiram uma propriedade de meta personalizada](./meta.md) `requiresCamera`:
 
@@ -113,7 +113,7 @@ A `router.beforeResolve` é o sítio ideal para realizar a requisição de dados
 
 <!-- TODO: how to combine with [`meta` fields](./meta.md) to create a [generic fetching mechanism](#TODO). -->
 
-## Gatilhos `After` Globais
+## Gatilhos `After` Globais {#global-after-hooks}
 
 Tu também podes registar gatilhos `after` globais, no entanto ao contrário das guardas, estes gatilhos não recebem uma função `next` e não pode afetar a navegação:
 
@@ -137,7 +137,7 @@ router.afterEach((to, from, failure) => {
 
 Saiba mais sobre as falhas da navegação no [seu guia](./navigation-failures.md).
 
-## Guarda Por Rota
+## Guarda Por Rota {#per-route-guard}
 
 Tu podes definir guardas `beforeEnter` diretamente em um objeto de configuração da rota:
 
@@ -184,11 +184,11 @@ const routes = [
 
 Nota que é possível alcançar um comportamento parecido usando os [campos de meta da rota] e as [guardas de navegação global](#global-before-guards).
 
-## Guardas de Navegação dentro do Componente
+## Guardas de Navegação dentro do Componente {#in-component-guards}
 
 Finalmente, podes definir as guardas de navegação da rota diretamente dentro dos componentes de rota (aquelas passadas para a configuração do roteador).
 
-### Usando a API de Opções
+### Usando a API de Opções {#using-the-options-api}
 
 Tu podes adicionar as seguintes opções para os componentes de rota:
 
@@ -247,10 +247,10 @@ beforeRouteLeave (to, from) {
 }
 ```
 
-### Usando a API de Composição
+### Usando a API de Composição {#using-the-composition-api}
 
 Se estiveres a escrever o teu componente usando a [API de composição e uma função de `setup`](https://v3.vuejs.org/guide/composition-api-setup.html#setup), podes adicionar as guardas de saída e atualização através de `onBeforeRouteUpdate` e `onBeforeRouteLeave` respetivamente. Consulte a [seção da API de Composição](./composition-api.md#navigation-guards) para mais detalhes.
-## O Fluxo Completo de Resolução da Navegação
+## O Fluxo Completo de Resolução da Navegação {#the-full-navigation-resolution-flow}
 
 1. Navegação acionada.
 2. Chamar as guardas `beforeRouteLeave` nos componentes desativados.
