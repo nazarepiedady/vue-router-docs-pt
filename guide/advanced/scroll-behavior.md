@@ -1,4 +1,4 @@
-# Comportamento do Deslocamento
+# Comportamento do Deslocamento {#scroll-behavior}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/scroll-behavior"
@@ -34,14 +34,14 @@ const router = createRouter({
 })
 ```
 
-Tu também podes passar um seletor de CSS ou um elemento do DOM através de `el`. Neste cenário, `to` e `left` serão tratados como compensações relativas a este elemento.
+Tu também podes passar um seletor de CSS ou um elemento do DOM através de `el`. Neste cenário, `to` e `left` serão tratados como compensações relativas a este elemento:
 
 ```js
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
-    // always scroll 10px above the element #main
+    // deslocar sempre 10px acima do elemento #main
     return {
-      // could also be
+      // também poderia ser
       // el: document.getElementById('main'),
       el: '#main',
       top: -10,
@@ -95,7 +95,7 @@ const router = createRouter({
 })
 ```
 
-## Atrasar o deslocamento
+## Atrasar o Deslocamento {#delaying-the-scroll}
 
 Algumas vezes precisamos esperar um pouco antes de se deslocar na página. Por exemplo, quando lidamos com transições, queremos esperar a transição terminar antes de se deslocar. Para fazer isto podes retornar uma promessa que retorna o descritor da posição desejada. Aqui está um exemplo onde esperamos 500ms antes de se deslocar:
 
