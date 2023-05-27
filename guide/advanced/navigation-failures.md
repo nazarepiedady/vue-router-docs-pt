@@ -1,4 +1,4 @@
-# Aguardando pelo Resultado de uma Navegação
+# Aguardando pelo Resultado de uma Navegação {#waiting-for-the-result-of-a-navigation}
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/vue-router-4-detecting-navigation-failures"
@@ -29,7 +29,7 @@ this.isMenuOpen = false
 
 Agora o menu fechará assim que a navegação for terminada mas também fechará se a navegação foi impedida. Nós precisamos de uma maneira de detetar se realmente mudamos a página em que estamos ou não estamos.
 
-## Detetando Falhas de Navegação
+## Detetando Falhas de Navegação {#detecting-navigation-failures}
 
 Se uma navegação for impedida, resultando em o utilizador continuar na mesma página, o valor resolvido da `Promise` retornada pelo `router.push` será uma _Falha de Navegação_. De outro modo, será um valor falso ou melhor `falsy` (normalmente `undefined`). Isto permite-nos diferenciar o caso de onde navegamos a partir de onde estamos ou não estamos:
 
@@ -62,7 +62,7 @@ if (isNavigationFailure(failure, NavigationFailureType.aborted)) {
 Se omitires o segundo parâmetro: `isNavigationFailure(failure)`, ela apenas verifica se `failure` é uma _Falha de Navegação_.
 :::
 
-## Diferenciando Falhas de Navegação
+## Diferenciando Falhas de Navegação {#differentiating-navigation-failures}
 
 Conforme dissemos no início, existem situações diferentes que abortam uma navegação, todas elas resultando em diferentes _Falhas de Navegação_. Eles podem ser diferenciados usando a `isNavigationFailure` e o `NavigationFailureType`. Existem três tipos diferentes:
 
@@ -70,7 +70,7 @@ Conforme dissemos no início, existem situações diferentes que abortam uma nav
 - `cancelled`: Uma nova navegação ocorreu antes da navegação atual puder terminar, por exemplo, o `router.push` foi chamado enquanto espera dentro de uma guarda de navegação.
 - `duplicated`: A navegação foi impedida porque já estamos localização de destino.
 
-## Propriedades das _Falhas de Navegação_
+## Propriedades das _Falhas de Navegação_ {#navigation-failures-s-properties}
 
 Todas as falhas de navegação expõem as propriedades `to` e `from` para refletir a localização atual bem como a localização de destino para a navegação que falhou:
 
@@ -86,7 +86,7 @@ router.push('/admin').then(failure => {
 
 Em todos casos, `to` e `from` são localizações de rota normalizadas.
 
-## Detetando Redirecionamentos
+## Detetando Redirecionamentos {#detecting-redirections}
 
 Quando estivermos a retornar uma nova localização dentro de uma Guarda de Navegação, estamos a acionar uma nova navegação que se sobrepõe aquela em curso. Diferentemente de outros valores de retorno, um redirecionamento não impede uma navegação, **ele cria uma uma nova**. Ele é portanto verificado de forma diferente, lendo a propriedade `redirectedFrom` em uma Localização de Rota:
 
