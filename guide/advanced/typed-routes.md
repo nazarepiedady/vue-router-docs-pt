@@ -1,4 +1,4 @@
-# Rotas com Tipos (v4.1.0+)
+# Rotas com Tipos (v4.1.0+) {#typed-routes-v4-1-0}
 
 :::danger ‼️ Funcionalidade Experimental
 
