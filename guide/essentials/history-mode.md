@@ -214,4 +214,4 @@ const router = createRouter({
 })
 ```
 
-Alternativamente, se estiveres a usar um servidor de Node.js, podes implementar a função de resposta usando o roteador no lado do servidor para corresponder a URL de chegada e responder com 404 se nenhuma rota for correspondida. Consulte a [documentação da interpretação no lado do servidor da Vue](https://v3.vuejs.org/guide/ssr/introduction.html#what-is-server-side-rendering-ssr) para mais informações.
+Alternativamente, se estiveres a usar um servidor de Node.js, podes implementar a função de resposta usando o roteador no lado do servidor para corresponder a URL de chegada e responder com 404 se nenhuma rota for correspondida. Consulte a [documentação da interpretação no lado do servidor da Vue](https://vuejs.org/guide/ssr/introduction.html#what-is-server-side-rendering-ssr) para mais informações.
