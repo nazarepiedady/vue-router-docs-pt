@@ -33,7 +33,7 @@ const UserDetails = () =>
 Em geral, é uma boa ideia **sempre usar importações dinâmicas** para todas as tuas rotas.
 
 :::tip Nota
-**Não** usar [componentes Assíncronos](https://v3.vuejs.org/guide/component-dynamic-async.html#async-components) para as rotas. Os componentes assíncronos podem continuar a ser usados dentro dos componentes de rota mas os mesmos componentes de rota são apenas importações dinâmicas.
+**Não** usar [componentes Assíncronos](https://vuejs.org/guide/component-dynamic-async#async-components) para as rotas. Os componentes assíncronos podem continuar a ser usados dentro dos componentes de rota mas os mesmos componentes de rota são apenas importações dinâmicas.
 :::
 
 Quando estiveres a usar um empacotador como o Webpack, este se beneficiará automaticamente da [separação de código](https://webpack.js.org/guides/code-splitting/).
