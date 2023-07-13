@@ -15,11 +15,11 @@ Para usares as transições nos teus componentes de rota e animar as navegaçõe
 </router-view>
 ```
 
-[Todas APIs de transição](https://v3.vuejs.org/guide/transitions-enterleave.html) funcionam da mesma maneira que as da Vue.
+[Todas APIs de transição](https://vuejs.org/guide/transitions-enterleave) funcionam da mesma maneira que as da Vue.
 
 ## Transição por Rota {#per-route-transition}
 
-O uso de cima aplicará a mesma transição para todas as rotas. Se quiseres que cada componente da rota tenha transições diferentes, podes combinar os [campos meta](./meta.md) e um `name` dinâmico na `<transition>`:
+O uso de cima aplicará a mesma transição para todas as rotas. Se quiseres que cada componente da rota tenha transições diferentes, podes combinar os [campos meta](./meta) e um `name` dinâmico na `<transition>`:
 
 ```js
 const routes = [
@@ -58,7 +58,7 @@ Também é possível determinar a transição a usar dinamicamente baseada no re
 </router-view>
 ```
 
-Nós podemos adicionar um [gatilho depois da navegação](./navigation-guards.md#global-after-hooks) para dinamicamente adicionar informação ao campo `meta` baseada na profundidade da rota:
+Nós podemos adicionar um [gatilho depois da navegação](./navigation-guards#global-after-hooks) para dinamicamente adicionar informação ao campo `meta` baseada na profundidade da rota:
 
 ```js
 router.afterEach((to, from) => {
@@ -70,7 +70,7 @@ router.afterEach((to, from) => {
 
 ## Forçar uma Transição entre Visões Reutilizadas {#forcing-a-transition-between-reused-views}
 
-A Vue pode automaticamente reutilizar componentes parecidos, evitando qualquer transição. Felizmente, é possível [adicionar um atributo `key`](https://v3.vuejs.org/api/special-attributes.html#key) para forçar transições. Isto também permite-te acionar as transições enquanto continuares na mesma rota com parâmetros diferentes:
+A Vue pode automaticamente reutilizar componentes parecidos, evitando qualquer transição. Felizmente, é possível [adicionar um atributo `key`](https://vuejs.org/api/special-attributes#key) para forçar transições. Isto também permite-te acionar as transições enquanto continuares na mesma rota com parâmetros diferentes:
 
 ```vue
 <router-view v-slot="{ Component, route }">
