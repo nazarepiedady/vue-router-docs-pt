@@ -249,7 +249,7 @@ beforeRouteLeave (to, from) {
 
 ### Usando a API de Composição {#using-the-composition-api}
 
-Se estiveres a escrever o teu componente usando a [API de composição e uma função de `setup`](https://v3.vuejs.org/guide/composition-api-setup.html#setup), podes adicionar as guardas de saída e atualização através de `onBeforeRouteUpdate` e `onBeforeRouteLeave` respetivamente. Consulte a [seção da API de Composição](./composition-api.md#navigation-guards) para mais detalhes.
+Se estiveres a escrever o teu componente usando a [API de composição e uma função de `setup`](https://vuejs.org/guide/composition-api-setup.html#setup), podes adicionar as guardas de saída e atualização através de `onBeforeRouteUpdate` e `onBeforeRouteLeave` respetivamente. Consulte a [seção da API de Composição](./composition-api.md#navigation-guards) para mais detalhes.
 ## O Fluxo Completo de Resolução da Navegação {#the-full-navigation-resolution-flow}
 
 1. Navegação acionada.
