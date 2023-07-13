@@ -5,7 +5,7 @@
   title="Aprenda a como usar a Vue Router com a API de Composição"
 />
 
-A introdução de `setup` e [API de Composição](https://v3.vuejs.org/guide/composition-api-introduction.html) da Vue, abre possibilidades novas mas para ser capaz de receber o potencial completo da Vue Router, precisaremos usar algumas funções novas para substituir o acesso ao `this` e às guardas de navegação em componente.
+A introdução de `setup` e [API de Composição](https://vuejs.org/guide/composition-api-introduction) da Vue, abre possibilidades novas mas para ser capaz de receber o potencial completo da Vue Router, precisaremos usar algumas funções novas para substituir o acesso ao `this` e às guardas de navegação em componente.
 
 ## Acessar o Roteador e a Rota atual dentro de `setup` {#accessing-the-router-and-current-route-inside-setup}
 
