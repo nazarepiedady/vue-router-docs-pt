@@ -19,7 +19,7 @@ hero:
       text: Curso Gratuito
       link: https://vueschool.io/courses/vue-router-4-for-everyone?friend=vuerouter&utm_source=vuerouter&utm_medium=link&utm_campaign=homepage
     - theme: cta vue-mastery
-      text: Folha de Consulta da Vue Router
+      text: Folha de Consulta
       link: https://www.vuemastery.com/vue-router?coupon=ROUTER-DOCS&via=eduardo
 
 features:
