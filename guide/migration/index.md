@@ -1,17 +1,17 @@
-# Migrating from Vue 2 {#migrating-from-vue-2}
+# Migrando da Vue 2 {#migrating-from-vue-2}
 
-Most of Vue Router API has remained unchanged during its rewrite from v3 (for Vue 2) to v4 (for Vue 3) but there are still a few breaking changes that you might encounter while migrating your application. This guide is here to help you understand why these changes happened and how to adapt your application to make it work with Vue Router 4.
+A maioria da parte da API da Vue Router permaneceu inalterada durante a sua reescrita da versão 3 (para Vue 2) para versão 4 (para Vue 3) mas ainda existem algumas mudanças de rutura que podes encontrar enquanto migras a tua aplicação. Este guia está aqui para ajudar-te a entender o porquê estas mudanças aconteceram e como adaptar a tua aplicação para fazê-la funcionar com a Vue Router 4.
 
-## Breaking Changes {#breaking-changes}
+## Mudanças de Rutura {#breaking-changes}
 
-Changes are ordered by their usage. It is therefore recommended to follow this list in order.
+As mudanças estão organizadas pelo seu uso. É portanto recomendado seguir esta lista em ordem.
 
-### new Router becomes createRouter {#new-router-becomes-createrouter}
+### `new Router` Torna-se `createRouter` {#new-router-becomes-createrouter}
 
-Vue Router is no longer a class but a set of functions. Instead of writing `new Router()`, you now have to call `createRouter`:
+A Vue Router já não é uma classe mas um conjunto de funções. No lugar de escrever `new Router()`, agora tens de chamar `createRouter`:
 
 ```js
-// previously was
+// anteriormente era
 // import Router from 'vue-router'
 import { createRouter } from 'vue-router'
 
@@ -20,19 +20,19 @@ const router = createRouter({
 })
 ```
 
-### New `history` option to replace `mode` {#new-history-option-to-replace-mode}
+### A Nova Opção `history` para Substituir o `mode` {#new-history-option-to-replace-mode}
 
-The `mode: 'history'` option has been replaced with a more flexible one named `history`. Depending on which mode you were using, you will have to replace it with the appropriate function:
+A opção `mode: 'history'` foi substituída com uma mais flexível nomeada `history`. Dependendo de qual modo que estavas a usar, terás de substituí-lo com a função apropriada:
 
 - `"history"`: `createWebHistory()`
 - `"hash"`: `createWebHashHistory()`
 - `"abstract"`: `createMemoryHistory()`
 
-Here is a full snippet:
+Cá está um trecho completo:
 
 ```js
 import { createRouter, createWebHistory } from 'vue-router'
-// there is also createWebHashHistory and createMemoryHistory
+// também existe `createWebHashHistory` e `createMemoryHistory`
 
 createRouter({
   history: createWebHistory(),
@@ -40,24 +40,24 @@ createRouter({
 })
 ```
 
-On SSR, you need to manually pass the appropriate history:
+Na interpretação no lado do servidor (SSR), precisas de manualmente passar a história apropriada:
 
 ```js
 // router.js
 let history = isServer ? createMemoryHistory() : createWebHistory()
 let router = createRouter({ routes, history })
-// somewhere in your server-entry.js
-router.push(req.url) // request url
+// em algum lugar no teu `server-entry.js`
+router.push(req.url) // url da requisição
 router.isReady().then(() => {
-  // resolve the request
+  // resolver a requisição
 })
 ```
 
-**Reason**: enable tree shaking of non used histories as well as implementing custom histories for advanced use cases like native solutions.
+**Motivo**: ativa a agitação da árvore de histórias não usadas bem como implementar as histórias personalizadas para casos de uso avançados como soluções nativas.
 
-### Moved the `base` option {#moved-the-base-option}
+### Mudou-se a Opção `base` {#moved-the-base-option}
 
-The `base` option is now passed as the first argument to `createWebHistory` (and other histories):
+A opção `base` agora é passada como o primeiro argumento para `createWebHistory` (e outras histórias):
 
 ```js
 import { createRouter, createWebHistory } from 'vue-router'
@@ -67,40 +67,46 @@ createRouter({
 })
 ```
 
-### Removal of the `fallback` option {#removal-of-the-fallback-option}
+### Remoção da Opção `fallback` {#removal-of-the-fallback-option}
 
-The `fallback` option is no longer supported when creating the router:
+A opção `fallback` já não é suportada quando criares o roteador:
 
 ```diff
 -new VueRouter({
 +createRouter({
 -  fallback: false,
-// other options...
+// outras opções...
 })
 ```
 
-**Reason**: All browsers supported by Vue support the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), allowing us to avoid hacks around modifying `location.hash` and directly use `history.pushState()`.
+**Motivo**: Todos os navegadores suportados pela Vue suportam a [API de História da HTML5](https://developer.mozilla.org/en-US/docs/Web/API/History_API), permitindo-nos evitar malabarismos em torno da modificação de `location.hash` e usar diretamente `history.pushState()`.
 
-### Removed `*` (star or catch all) routes {#removed-star-or-catch-all}
+### Rotas `*` (estrela ou captura total) removida {#removed-star-or-catch-all}
 
-Catch all routes (`*`, `/*`) must now be defined using a parameter with a custom regex:
+A captura de todas as rotas (`*`, `/*`) agora deve ser definida usando um parâmetro com uma expressão regular personalizada:
 
 ```js
 const routes = [
-  // pathMatch is the name of the param, e.g., going to /not/found yields
+  // `pathMatch` é o nome do parâmetro, por exemplo, indo para `/not/found`
   // { params: { pathMatch: ['not', 'found'] }}
-  // this is thanks to the last *, meaning repeated params and it is necessary if you
-  // plan on directly navigating to the not-found route using its name
+
+  // isto é graças ao último `*`, que significa parâmetros repetidos
+  // e é necessário se planeamos navegar diretamente para rota `not-found`
+  // usando o seu nome
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
-  // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+
+  // se omitirmos o último `*`, o carácter `/` nos parâmetros serão codificados
+  // quando ao resolverem ou empurrarem.
   { path: '/:pathMatch(.*)', name: 'bad-not-found', component: NotFound },
 ]
-// bad example if using named routes:
+
+// mau exemplo se usamos rotas nomeadas:
 router.resolve({
   name: 'bad-not-found',
   params: { pathMatch: 'not/found' },
 }).href // '/not%2Ffound'
-// good example:
+
+// bom exemplo:
 router.resolve({
   name: 'not-found',
   params: { pathMatch: ['not', 'found'] },
@@ -108,21 +114,21 @@ router.resolve({
 ```
 
 :::tip DICA
-You don't need to add the `*` for repeated params if you don't plan to directly push to the not found route using its name. If you call `router.push('/not/found/url')`, it will provide the right `pathMatch` param.
+Nós não precisamos adicionar o `*` para parâmetros repetidos se não planeamos empurrar diretamente para a rota não encontrada usando o seu nome. Se chamarmos `router.push('/not/found/url')`, fornecerá o parâmetro `pathMatch` correto.
 :::
 
-**Reason**: Vue Router doesn't use `path-to-regexp` anymore, instead it implements its own parsing system that allows route ranking and enables dynamic routing. Since we usually add one single catch-all route per project, there is no big benefit in supporting a special syntax for `*`. The encoding of params is encoding across routes, without exception to make things easier to predict.
+**Motivo**: A Vue Router não mais `path-to-regexp`, ao invés disto implementa o seu próprio sistema de analise que permite a classificação de rota e ativa o roteamento dinâmico. Uma vez que normalmente adicionamos uma única rota de captura total por projeto, não existe grande benefício em suportar uma sintaxe especial para `*`. A codificação dos parâmetros está codificação através das rotas, sem exceção para tornar as coisas mais fáceis de predizer.
 
-### Replaced `onReady` with `isReady` {#replaced-onready-with-isready}
+### Substituiu `onReady` por `isReady` {#replaced-onready-with-isready}
 
-The existing `router.onReady()` function has been replaced with `router.isReady()` which doesn't take any argument and returns a Promise:
+A função `router.onReady()` existente tem sido substituída por `router.isReady()` que não recebe nenhum argumento e retorna uma promessa:
 
 ```js
-// replace
+// substituir
 router.onReady(onSuccess, onError)
-// with
+// por
 router.isReady().then(onSuccess).catch(onError)
-// or use await:
+// ou usar await:
 try {
   await router.isReady()
   // onSuccess
@@ -131,15 +137,15 @@ try {
 }
 ```
 
-### `scrollBehavior` changes {#scrollbehavior-changes}
+### Mudanças de `scrollBehavior` {#scrollbehavior-changes}
 
-The object returned in `scrollBehavior` is now similar to [`ScrollToOptions`](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions): `x` is renamed to `left` and `y` is renamed to `top`. See [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0035-router-scroll-position.md).
+O objeto retornado em `scrollBehavior` é agora semelhante ao [`ScrollToOptions`](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions): `x` foi renomeado para `left` e `y` foi renomeado para `top`. Consulte o [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0035-router-scroll-position.md).
 
-**Reason**: making the object similar to `ScrollToOptions` to make it feel more familiar with native JS APIs and potentially enable future new options.
+**Motivo**: tornar o objeto semelhante ao `ScrollToOptions` para torná-lo mais familiar com as APIs de JavaScript nativa do navegador e potencialmente ativar futuras novas opções.
 
-### `<router-view>`, `<keep-alive>`, and `<transition>` {#router-view-keep-alive-transition}
+### `<router-view>`, `<keep-alive>`, e `<transition>` {#router-view-keep-alive-transition}
 
-`transition` and `keep-alive` must now be used **inside** of `RouterView` via the `v-slot` API:
+`transition` e `keep-alive` devem agora ser usados **dentro** do `RouterView` através da API `v-slot`:
 
 ```vue
 <router-view v-slot="{ Component }">
@@ -151,11 +157,11 @@ The object returned in `scrollBehavior` is now similar to [`ScrollToOptions`](ht
 </router-view>
 ```
 
-**Reason**: This was a necessary change. See the [related RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0034-router-view-keep-alive-transitions.md).
+**Motivo**: Isto foi uma mudança necessária. Consulte o [RFC relacionado](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0034-router-view-keep-alive-transitions.md).
 
-### Removal of `append` prop in `<router-link>` {#removal-of-append-prop-in-router-link}
+### Remoção da propriedade `append` no `<router-link>` {#removal-of-append-prop-in-router-link}
 
-The `append` prop has been removed from `<router-link>`. You can manually concatenate the value to an existing `path` instead:
+A propriedade `append` tem sido removida do `<router-link>`. Tu podes concatenar manualmente o valor à um `path` existente:
 
 ```html
 replace
@@ -166,18 +172,18 @@ with
 </router-link>
 ```
 
-You must define a global `append` function on your _App_ instance:
+Tu deves definir uma função global `append` na instância da tua _Aplicação_:
 
 ```js
 app.config.globalProperties.append = (path, pathToAppend) =>
   path + (path.endsWith('/') ? '' : '/') + pathToAppend
 ```
 
-**Reason**: `append` wasn't used very often, is easy to replicate in user land.
+**Motivo**: `append` não era usado com muita frequência, é fácil replicar na terra do utilizador.
 
-### Removal of `event` and `tag` props in `<router-link>` {#removal-of-event-and-tag-props-in-router-link}
+### Remoção das propriedades `event` e `tag` no `<router-link>` {#removal-of-event-and-tag-props-in-router-link}
 
-Both `event`, and `tag` props have been removed from `<router-link>`. You can use the [`v-slot` API](../../api/#router-link-s-v-slot) to fully customize `<router-link>`:
+Ambas propriedades `event` e `tag` têm sido removida do `<router-link>`. Tu podes usar a [API `v-slot`](../../api/#router-link-s-v-slot) para personalizar completamente o `<router-link>`:
 
 ```html
 replace
@@ -188,32 +194,32 @@ with
 </router-link>
 ```
 
-**Reason**: These props were often used together to use something different from an `<a>` tag but were introduced before the `v-slot` API and are not used enough to justify adding to the bundle size for everybody.
+**Motivo**: Estas propriedades eram com frequência usadas juntas para usar algo diferente dum marcador `<a>` mas foram introduzidas antes da API `v-slot` e não são usadas o bastante para justificar a adição ao tamanho do pacote para todos.
 
-### Removal of the `exact` prop in `<router-link>` {#removal-of-the-exact-prop-in-router-link}
+### Remoção da propriedade `exact` no `<router-link>` {#removal-of-the-exact-prop-in-router-link}
 
-The `exact` prop has been removed because the caveat it was fixing is no longer present so you should be able to safely remove it. There are however two things you should be aware of:
+A propriedade `exact` tem sido removida porque a advertência que estava a corrigir já não está mais presente então deverias ser capaz de seguramente removê-la. Existem no entanto duas coisas de que deves estar ciente:
 
-- Routes are now active based on the route records they represent instead of the generated route location objects and their `path`, `query`, and `hash` properties
-- Only the `path` section is matched, `query`, and `hash` aren't taken into account anymore
+- As rotas são agora ativas baseadas nos registos de rota que apresentam ao invés dos objetos de localização de rota gerado e suas propriedades `path`, `query`, e `hash`
+- Apenas a seção `path` é correspondida, `query`, e `hash` não são mais levados em conta
 
-If you wish to customize this behavior, e.g. take into account the `hash` section, you should use the [`v-slot` API](https://next.router.vuejs.org/api/#router-link-s-v-slot) to extend `<router-link>`.
+Se desejas personalizar este comportamento, por exemplo, levar em conta a seção `hash`, deves usar a [API `v-slot`](/api/#router-link-s-v-slot) para estender `<router-link>`.
 
-**Reason**: See the [RFC about active matching](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0028-router-active-link.md#summary) changes for more details.
+**Motivo**: Consulte o [RFC sobre as mudanças de correspondência ativa](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0028-router-active-link.md#summary) por mais detalhes.
 
-### Navigation guards in mixins are ignored {#navigation-guards-in-mixins-are-ignored}
+### As guardas de navegação nas misturas são ignoradas {#navigation-guards-in-mixins-are-ignored}
 
-At the moment navigation guards in mixins are not supported. You can track its support at [vue-router#454](https://github.com/vuejs/router/issues/454).
+Neste momentos as guardas de navegação nas misturas não são suportadas. Tu podes rastrear seu suporte em [vue-router#454](https://github.com/vuejs/router/issues/454).
 
-### Removal of `router.match` and changes to `router.resolve` {#removal-of-router-match-and-changes-to-router-resolve}
+### Remoção da `router.match` e mudanças para `router.resolve` {#removal-of-router-match-and-changes-to-router-resolve}
 
-Both `router.match`, and `router.resolve` have been merged together into `router.resolve` with a slightly different signature. [Refer to the API](../../api/#resolve) for more details.
+Ambas `router.match` e `router.resolve` foram fundidas em `router.resolve` com uma assinatura ligeiramente diferente. [Consulte a API](../../api/#resolve) por mais detalhes.
 
-**Reason**: Uniting multiple methods that were used for the same purpose.
+**Motive**: Unir vários métodos que eram usados para o mesmo propósito.
 
-### Removal of `router.getMatchedComponents()` {#removal-of-router-getmatchedcomponents}
+## Remoção do `router.getMatchedComponents()` {#removal-of-router-getmatchedcomponents}
 
-The method `router.getMatchedComponents` is now removed as matched components can be retrieved from `router.currentRoute.value.matched`:
+O método `router.getMatchedComponents` foi removido visto que os componentes correspondidos podem ser recuperados a partir de `router.currentRoute.value.matched`:
 
 ```js
 router.currentRoute.value.matched.flatMap(record =>
@@ -221,47 +227,47 @@ router.currentRoute.value.matched.flatMap(record =>
 )
 ```
 
-**Reason**: This method was only used during SSR and is a one liner that can be done by the user.
+**Motivo**: Este método apenas foi usado durante a interpretação no lado do servidor e é uma solução de uma linha que pode ser feita pelo utilizador.
 
-### Redirect records cannot use special paths {#redirect-records-cannot-use-special-paths}
+### Redirecionar registos que não podem usar caminhos especiais {#redirect-records-cannot-use-special-paths}
 
-Previously, a non documented feature allowed to set a redirect record to a special path like `/events/:id` and it would reuse an existing param `id`. This is no longer possible and there are two options:
+Anteriormente, um funcionalidade não documentada permitia definir um redirecionamento de registo para um caminho especial como `/events/:id` e reutilizaria um parâmetro `id` existente. Isto já não é possível e existem duas opções:
 
-- Using the name of the route without the param: `redirect: { name: 'events' }`. Note this won't work if the param `:id` is optional
-- Using a function to recreate the new location based on the target: `redirect: to => ({ name: 'events', params: to.params })`
+- Usando o nome da rota sem o parâmetro: `redirect: { name: 'events' }`. Nota que isto não funcionará se o parâmetro `:id` for opcional.
+- Usando uma função para recriar a nova localização baseado no alvo: `redirect: to => ({ name: 'events', params: to.params })`.
 
-**Reason**: This syntax was rarely used and _another way of doing things_ that wasn't shorter enough compared to the versions above while introducing some complexity and making the router heavier.
+**Motivo**: Esta sintaxe era raramente usada e _uma outra maneira de fazer coisas_ que não eram curtas o suficiente comparadas as versões acima enquanto introduzia alguma complexidade e tornava o roteador mais pesado.
 
-### **All** navigations are now always asynchronous {#all-navigations-are-now-always-asynchronous}
+### **Todas** as navegações agora são sempre assíncronas {#all-navigations-are-now-always-asynchronous}
 
-All navigations, including the first one, are now asynchronous, meaning that, if you use a `transition`, you may need to wait for the router to be _ready_ before mounting the app:
+Todas as navegações, incluindo a primeira, são agora assíncronas, o que significa que, se usares uma `transition`, podes precisar de ter de esperar o roteador estar _pronto_ antes de montar a aplicação:
 
 ```js
 app.use(router)
-// Note: on Server Side, you need to manually push the initial location
+// Nota: no lado do servidor, podes empurrar manualmente a localização inicial
 router.isReady().then(() => app.mount('#app'))
 ```
 
-Otherwise there will be an initial transition as if you provided the `appear` prop to `transition` because the router displays its initial location (nothing) and then displays the first location.
+De outro modo existirá uma transição inicial como se fornecesses a propriedade `appear` à `transition` porque o roteador exibe sua localização inicial (nada) e depois exibe a primeira localização.
 
-Note that **if you have navigation guards upon the initial navigation**, you might not want to block the app render until they are resolved unless you are doing Server Side Rendering. In this scenario, not waiting the router to be ready to mount the app would yield the same result as in Vue 2.
+Nota que **se tiveres guardas de navegação sobre a navegação inicial**, podes não querer bloquear o desenho da aplicação até forem resolvidas a menos que estejas a fazer interpretação no lado do servidor. Neste cenário, não esperar o roteador estar pronto para montar a aplicação produziria o mesmo resultado que na Vue 2.
 
-### Removal of `router.app` {#removal-of-router-app}
+### Remoção da `router.app` {#removal-of-router-app}
 
-`router.app` used to represent the last root component (Vue instance) that injected the router. Vue Router can now be safely used by multiple Vue applications at the same time. You can still add it when using the router:
+`router.app` costumava a representar o último componente da raiz (instância de Vue) que injetou o roteador. A Vue Router pode agora ser seguramente usada por várias aplicações de Vue ao mesmo tempo. Tu ainda podes adicioná-la quando usares o roteador:
 
 ```js
 app.use(router)
 router.app = app
 ```
 
-You can also extend the TypeScript definition of the `Router` interface to add the `app` property.
+Tu podes também estender a definição de TypeScript da interface `Router` para adicionar a propriedade `app`.
 
-**Reason**: Vue 3 applications do not exist in Vue 2 and now we properly support multiple applications using the same Router instance, so having an `app` property would have been misleading because it would have been the application instead of the root instance.
+**Motivo**: As aplicações de Vue 3 não existem na Vue 2 e agora suportamos apropriadamente várias aplicações usando a mesma instância do roteador, assim ter uma propriedade `app` teria sido enganoso porque teria sido a aplicação ao invés da instância da raiz.
 
-### Passing content to route components' `<slot>` {#passing-content-to-route-components-slot}
+### Passando conteúdo para o `<slot>` dos componentes da rota {#passing-content-to-route-components-slot}
 
-Before you could directly pass a template to be rendered by a route components' `<slot>` by nesting it under a `<router-view>` component:
+Antes poderias passar diretamente um modelo de marcação para ser desenhado por um `<slot>` dos componentes da rota encaixando-o sob um componente `<router-view>`:
 
 ```html
 <router-view>
@@ -269,7 +275,7 @@ Before you could directly pass a template to be rendered by a route components' 
 </router-view>
 ```
 
-Because of the introduction of the `v-slot` api for `<router-view>`, you must pass it to the `<component>` using the `v-slot` API:
+Por causa da introdução da API de `v-slot` para `<router-view>`, deves passá-lo ao `<component>` usando a API de `v-slot`:
 
 ```html
 <router-view v-slot="{ Component }">
@@ -279,95 +285,95 @@ Because of the introduction of the `v-slot` api for `<router-view>`, you must pa
 </router-view>
 ```
 
-### Removal of `parent` from route locations {#removal-of-parent-from-route-locations}
+### Remoção de `parent` das localizações da rota {#removal-of-parent-from-route-locations}
 
-The `parent` property has been removed from normalized route locations (`this.$route` and object returned by `router.resolve`). You can still access it via the `matched` array:
+A propriedade `parent` foi removida das localizações da rota normalizada (`this.$route` e o objeto retornado por `router.resolve`). Tu ainda podes acessá-lo através do vetor `matched`:
 
 ```js
 const parent = this.$route.matched[this.$route.matched.length - 2]
 ```
 
-**Reason**: Having `parent` and `children` creates unnecessary circular references while the properties could be retrieved already through `matched`.
+**Motivo**: Ter `parent` e `children` cria referências circulares desnecessárias enquanto as propriedades já poderiam ser recuperadas através de `matched`.
 
-### Removal of `pathToRegexpOptions` {#removal-of-pathtoregexoptions}
+### Remoção de `pathToRegexpOptions` {#removal-of-pathtoregexoptions}
 
-The `pathToRegexpOptions` and `caseSensitive` properties of route records have been replaced with `sensitive` and `strict` options for `createRouter()`. They can now also be directly passed when creating the router with `createRouter()`. Any other option specific to `path-to-regexp` has been removed as `path-to-regexp` is no longer used to parse paths.
+As propriedades `pathToRegexpOptions` e `caseSensitive` dos registos de rota foram substituídas pelas `sensitive` e `strict` para `createRouter()`. Elas agora podem também ser diretamente passadas quando crias o roteador com `createRouter()`. Qualquer outra opção específica para `path-to-regexp` foi removida visto que `path-to-regexp` não é mais usada para analisar caminhos.
 
-### Removal of unnamed parameters {#removal-of-unnamed-parameters}
+### Remoção de parâmetros não nomeados {#removal-of-unnamed-parameters}
 
-Due to the removal of `path-to-regexp`, unnamed parameters are no longer supported:
+Devido a remoção de `path-to-regexp`, os parâmetros não nomeados não são mais suportados:
 
-- `/foo(/foo)?/suffix` becomes `/foo/:_(foo)?/suffix`
-- `/foo(foo)?` becomes `/foo:_(foo)?`
-- `/foo/(.*)` becomes `/foo/:_(.*)`
+- `/foo(/foo)?/suffix` torna-se `/foo/:_(foo)?/suffix`
+- `/foo(foo)?` torna-se `/foo:_(foo)?`
+- `/foo/(.*)` torna-se `/foo/:_(.*)`
 
 :::tip DICA
-Note you can use any name instead of `_` for the param. The point is to provide one.
+Nota que podes usar qualquer nome no lugar de `_` para o parâmetro. O ponto é fornecer um.
 :::
 
-### Usage of `history.state` {#usage-of-history-state}
+### Uso de `history.state` {#usage-of-history-state}
 
-Vue Router saves information on the `history.state`. If you have any code manually calling `history.pushState()`, you should likely avoid it or refactor it with a regular `router.push()` and a `history.replaceState()`:
+A Vue Router guarda informação na `history.state`. Se tiveres qualquer código chamando manualmente `history.pushState()`, provavelmente deves evitá-lo ou refazê-lo com um `route.push()` normal e um `history.replaceState()`:
 
 ```js
-// replace
+// substituir
 history.pushState(myState, '', url)
-// with
+// por
 await router.push(url)
 history.replaceState({ ...history.state, ...myState }, '')
 ```
 
-Similarly, if you were calling `history.replaceState()` without preserving the current state, you will need to pass the current `history.state`:
+De maneira semelhante, se estivesses a chamar `history.replaceState()` sem preservar o estado atual, precisarás de passar a `history.state` atual:
 
 ```js
-// replace
+// substituir
 history.replaceState({}, '', url)
-// with
+// por
 history.replaceState(history.state, '', url)
 ```
 
-**Reason**: We use the history state to save information about the navigation like the scroll position, previous location, etc.
+**Motivo**: Nós usamos o estado da história para guardar informação sobre a navegação como a posição do deslocamento, localização anterior, etc.
 
-### `routes` option is required in `options` {#routes-options-is-required-in-options}
+### A opção `routes` é obrigatória nas `options` {#routes-options-is-required-in-options}
 
-The property `routes` is now required in `options`.
+A propriedade `routes` agora é obrigatória nas `options`.
 
 ```js
 createRouter({ routes: [] })
 ```
 
-**Reason**: The router is designed to be created with routes even though you can add them later on. You need at least one route in most scenarios and this is written once per app in general.
+**Motivo**: O roteador está desenhado para ser criado com as rotas muito embora possas adicioná-los mais tarde. Tu precisas de ao menos uma rota na maioria dos cenários e este é escrito uma vez por aplicação em geral.
 
-### Non existent named routes {#non-existent-named-routes}
+### Rotas nomeadas que não existem {#non-existent-named-routes}
 
-Pushing or resolving a non existent named route throws an error:
+Empurrar ou resolver uma rota nomeada que não existe lança um erro:
 
 ```js
-// Oops, we made a typo in name
+// Oops, cometemos um erro de digitação no nome
 router.push({ name: 'homee' }) // throws
 router.resolve({ name: 'homee' }) // throws
 ```
 
-**Reason**: Previously, the router would navigate to `/` but display nothing (instead of the home page). Throwing an error makes more sense because we cannot produce a valid URL to navigate to.
+**Motivo**: Anteriormente, o roteador navegaria para `/` mas não exibia nada (no lugar da página principal). Lançar um erro faz mais sentido porque não podemos produzir uma URL válida para onde navegar.
 
-### Missing required `params` on named routes {#missing-required-params-on-named-routes}
+### `params` obrigatório em falta nas rotas nomeadas {#missing-required-params-on-named-routes}
 
-Pushing or resolving a named route without its required params will throw an error:
+Empurrar ou resolver uma rota nomeada sem seus parâmetros obrigatórios lançará um erro:
 
 ```js
-// given the following route:
+// dada a seguinte rota:
 const routes = [{ path: '/users/:id', name: 'user', component: UserDetails }]
 
-// Missing the `id` param will fail
+// o parâmetro em falta `id` falhará
 router.push({ name: 'user' })
 router.resolve({ name: 'user' })
 ```
 
-**Reason**: Same as above.
+**Motivo**: O mesmo que está acima.
 
-### Named children routes with an empty `path` no longer appends a slash {#named-children-routes-with-an-empty-path-no-longer-appends-an-slash}
+### rotas de filhos nomeados com um `path` vazio não mais anexam uma barra {#named-children-routes-with-an-empty-path-no-longer-appends-an-slash}
 
-Given any nested named route with an empty `path`:
+Dado qualquer rota nomeada encaixada com um `path` vazio:
 
 ```js
 const routes = [
@@ -387,13 +393,13 @@ const routes = [
 ]
 ```
 
-Navigating or resolving to the named route `dashboard` will now produce a URL **without a trailing slash**:
+Navegar ou resolver para a rota nomeada `dashboard` produzirá uma URL **sem uma barra à direita**:
 
 ```js
 router.resolve({ name: 'dashboard' }).href // '/dashboard'
 ```
 
-This has an important side effect about children `redirect` records like these:
+Isto tem um efeito colateral importante sobre os registos de `redirect` dos filhos como estes:
 
 ```js
 const routes = [
@@ -401,7 +407,7 @@ const routes = [
     path: '/parent',
     component: Parent,
     children: [
-      // this would now redirect to `/home` instead of `/parent/home`
+      // isto agora redirecionaria para `/home` ao invés de `/parent/home`
       { path: '', redirect: 'home' },
       { path: 'home', component: Home },
     ],
@@ -409,30 +415,30 @@ const routes = [
 ]
 ```
 
-Note this will work if `path` was `/parent/` as the relative location `home` to `/parent/` is indeed `/parent/home` but the relative location of `home` to `/parent` is `/home`.
+Nota que isto funcionaria se `path` fosse `/parent/` como localização relativa de `home` para `/parent/` é de fato `/parent/home/` mas a localização relativa de `home` para `/parent` é  `/home`.
 
 <!-- Learn more about relative links [in the cookbook](../../cookbook/relative-links.md). -->
 
-**Reason**: This is to make trailing slash behavior consistent: by default all routes allow a trailing slash. It can be disabled by using the `strict` option and manually appending (or not) a slash to the routes.
+**Motivo**: Isto é para tornar o comportamento de barra à direita consistente: por padrão todas as rotas permitem uma barra à direita. Isto pode ser desativado usando a opção `strict` e manualmente anexando (ou não) uma barra às rotas.
 
 <!-- TODO: maybe a cookbook entry -->
 
-### `$route` properties Encoding {#route-properties-encoding}
+### Codificação das propriedades de `$route` {#route-properties-encoding}
 
-Decoded values in `params`, `query`, and `hash` are now consistent no matter where the navigation is initiated (older browsers will still produce unencoded `path` and `fullPath`). The initial navigation should yield the same results as in-app navigations.
+Os valores descodificados nos `params`, `query`, e `hash` agora são consistentes não importa onde a navegação foi iniciada (os navegadores ainda produzirão `path` e `fullPath` não descodificados). A navegação inicial deve produzir os mesmos resultados que as navegações na aplicação.
 
-Given any [normalized route location](../../api/#routelocationnormalized):
+Dada qualquer [localização de rota normalizada](../../api/#routelocationnormalized):
 
-- Values in `path`, `fullPath` are not decoded anymore. They will appear as provided by the browser (most browsers provide them encoded). e.g. directly writing on the address bar `https://example.com/hello world` will yield the encoded version: `https://example.com/hello%20world` and both `path` and `fullPath` will be `/hello%20world`.
-- `hash` is now decoded, that way it can be copied over: `router.push({ hash: $route.hash })` and be used directly in [scrollBehavior](../../api/#scrollbehavior)'s `el` option.
-- When using `push`, `resolve`, and `replace` and providing a `string` location or a `path` property in an object, **it must be encoded** (like in the previous version). On the other hand, `params`, `query` and `hash` must be provided in its unencoded version.
-- The slash character (`/`) is now properly decoded inside `params` while still producing an encoded version on the URL: `%2F`.
+- Os valores em `path`, `fullPath` não são mais descodificados. Eles aparecerão como foram fornecidos pelo navegador (a maioria dos navegadores fornece-os codificados). Por exemplo, escrever diretamente na barra de endereço `https://example.com/hello world` produzirá a versão codificada: `https://example.com/hello%20world` e ambos `path` e `fullPath` serão `/hello%20world`.
+- `hash` agora é descodificado, desta maneira pode ser copiado: `router.push({ hash: $route.hash })` e ser usado diretamente na opção `el` do [`scrollBehavior`](../../api/#scrollbehavior)
+- Quando usamos `push`, `resolve`, e `replace` e fornecemos uma localização de `string` ou uma propriedade `path` num objeto, **deve ser codificado** (como na versão anterior). Por outro lado, `params`, `query`, `hash` deve ser fornecido na sua versão não codificada.
+- O carácter barra (`/`) agora é apropriadamente descodificado dentro de `params` embora ainda produza uma versão codificada na URL: `%2F`.
 
-**Reason**: This allows to easily copy existing properties of a location when calling `router.push()` and `router.resolve()`, and make the resulting route location consistent across browsers. `router.push()` is now idempotent, meaning that calling `router.push(route.fullPath)`, `router.push({ hash: route.hash })`, `router.push({ query: route.query })`, and `router.push({ params: route.params })` will not create extra encoding.
+**Motivo**: Isto permite copiar facilmente propriedades existentes duma localização quando chamamos `router.push()` e `router.resolve()`, e torna a localização da rota resultante consistente através dos navegadores.  `router.push()` agora é idempotente, significando que chamar `router.push(route.fullPath)`, `router.push({ hash: route.hash })`, `router.push({ query: route.query })`, e `router.push({ params: route.params })` não criará codificação adicional.
 
-### TypeScript changes {#typescript-changes}
+### Mudanças de TypeScript {#typescript-changes}
 
-To make typings more consistent and expressive, some types have been renamed:
+Para tornar os tipos mais consistentes e expressivos, alguns dos tipos foram renomeados:
 
 | `vue-router@3` | `vue-router@4`          |
 | -------------- | ----------------------- |
@@ -440,10 +446,10 @@ To make typings more consistent and expressive, some types have been renamed:
 | Location       | RouteLocation           |
 | Route          | RouteLocationNormalized |
 
-## New Features {#new-features}
+## Novas Funcionalidades {#new-features}
 
-Some of new features to keep an eye on in Vue Router 4 include:
+Algumas das novas funcionalidades para ficar de olho na Vue Router 4 incluem:
 
-- [Dynamic Routing](../advanced/dynamic-routing.md)
-- [Composition API](../advanced/composition-api.md)
+- [Roteamento Dinâmico](../advanced/dynamic-routing)
+- [API de Composição](../advanced/composition-api)
 <!-- - Custom History implementation -->
