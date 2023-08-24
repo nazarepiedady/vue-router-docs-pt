@@ -16,6 +16,25 @@ if (process.env.NETLIFY) {
   console.log('Netlify build', process.env.CONTEXT)
 }
 
+const rControl = /[\u0000-\u001f]/g
+const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’<>,.?/]+/g
+const rCombining = /[\u0300-\u036F]/g
+
+/**
+ * Default slugification function
+ */
+export const slugify = (str: string): string =>
+  str
+    .normalize('NFKD')
+    // Remove accents
+    .replace(rCombining, '')
+    // Remove control characters
+    .replace(rControl, '')
+    // Replace special characters
+    .replace(rSpecial, '-')
+    // ensure it doesn't start with a number
+    .replace(/^(\d)/, '_$1')
+
 const config = defineConfig({
   title: META_TITLE,
   appearance: 'dark',
@@ -32,6 +51,10 @@ const config = defineConfig({
       leftDelimiter: '{',
       rightDelimiter: '}',
     },*/
+
+    anchor: {
+      slugify,
+    },
   },
   
   head: [
@@ -53,6 +76,7 @@ const config = defineConfig({
     root: { label: 'Português', lang: 'pt-PT', link: '/' },
     en: { label: 'English', lang: 'en-US', link: 'https://router.vuejs.org/' },
     zh: { label: '简体中文', lang: 'zh-CN', link: 'https://router.vuejs.org/zh/' },
+    ko: { label: '한국어', lang: 'ko-KR', link: 'https://router.vuejs.kr/' },
   },
 
   themeConfig: {
