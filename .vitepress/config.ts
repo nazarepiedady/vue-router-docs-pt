@@ -2,14 +2,22 @@ import { defineConfig, HeadConfig } from 'vitepress'
 
 const META_URL = 'https://router.vuejs.org'
 const META_TITLE = 'Vue Router'
-//const META_IMAGE = ''
+const META_IMAGE = null
 const META_DESCRIPTION = 'O roteador oficial para a Vue.js.'
 
 const isProduction = process.env.NETLIFY && process.env.CONTEXT === 'production'
 
 const productionHead: HeadConfig[] = [
-  ['script', { src: 'https://unpkg.com/thesemetrics@latest', async: '' }],
-  ['script', { src: 'https://vueschool.io/banners/main.js', async: '', type: 'text/javascript' }],
+  ['script', { src: 'https://unpkg.com/thesemetrics@latest', async: '', type: 'text/javascript' }],
+  [
+    'script', 
+    { 
+      src: 'https://vueschool.io/banner.js?affiliate=vuerouter&type=top',
+      // @ts-expect-error: vitepress bug
+      async: true,
+      type: 'text/javascript'
+    }
+  ],
 ]
 
 if (process.env.NETLIFY) {
