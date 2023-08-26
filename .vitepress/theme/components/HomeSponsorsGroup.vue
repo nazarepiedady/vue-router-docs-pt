@@ -1,5 +1,5 @@
 <template>
-  <h3>Patrocinadores de {{ translateNameToPortuguese(name) }}</h3>
+  <h3>Patrocinadores {{ translateNameToPortuguese(name) }}</h3>
 
   <p>
     <a
@@ -52,7 +52,7 @@ const translateNameToPortuguese = (name: string): string => {
 }
 
 const list = computed(() =>
-  sponsors[props.name.toLowerCase()].map(sponsor => ({
+  sponsors[props.name.toLowerCase()].map((sponsor) => ({
     ...sponsor,
     imgSrc: isDark.value ? sponsor.imgSrcDark : sponsor.imgSrcLight,
   }))
