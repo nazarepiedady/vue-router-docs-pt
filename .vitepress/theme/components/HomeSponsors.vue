@@ -3,15 +3,20 @@
     <div>
       <HomeSponsorsGroup 
         v-if="sponsors.platinum.length" 
-        name="platinum" size="96" />
+        name="platinum"
+        size="96"
+      />
 
       <HomeSponsorsGroup 
         v-if="sponsors.gold.length" 
-        name="gold" size="48" />
+        name="gold" size="38"
+      />
 
       <HomeSponsorsGroup 
         v-if="sponsors.silver.length" 
-        name="silver" size="24" />
+        name="silver"
+        size="24"
+      />
 
       <div class="cta">
         <a class="become-sponsor button white" href="https://github.com/sponsors/posva">
@@ -30,13 +35,14 @@ import { useData } from 'vitepress'
 const { site } = useData()
 
 const translations = {
-  'en-US': 'Become a Sponsor!',
-  'zh-CN': '成为赞助者！',
+  //'en-US': 'Become a Sponsor!',
+  //'zh-CN': '成为赞助者！',
   'pt-PT': 'Torna-te um Patrocinador!'
 }
 </script>
 
-<style scoped>.sponsors_outer {
+<style scoped>
+.sponsors_outer {
   text-align: center;
   padding: 35px 40px 45px;
   background-color: var(--vp-c-bg-accent);
