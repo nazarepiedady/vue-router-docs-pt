@@ -8,7 +8,14 @@ const META_DESCRIPTION = 'O roteador oficial para a Vue.js.'
 const isProduction = process.env.NETLIFY && process.env.CONTEXT === 'production'
 
 const productionHead: HeadConfig[] = [
-  ['script', { src: 'https://unpkg.com/thesemetrics@latest', async: '', type: 'text/javascript' }],
+  [
+    'script',
+    { 
+      src: 'https://unpkg.com/thesemetrics@latest',
+      async: '',
+      type: 'text/javascript'
+    }
+  ],
   [
     'script', 
     { 
