@@ -1,7 +1,12 @@
 <template>
-  <a href="https://www.vuemastery.com/vue-router?coupon=ROUTER-DOCS&via=eduardo" target="_blank">
+  <a 
+    href="https://www.vuemastery.com/vue-router?coupon=ROUTER-DOCS&via=eduardo"
+    target="_blank">
     <span class="logo-wrapper">
-      <img alt="Logótipo da Vue Mastery" width="25px" src="https://firebasestorage.googleapis.com/v0/b/vue-mastery.appspot.com/o/flamelink%2Fmedia%2Fvue-mastery-logo-small.png?alt=media&token=941fcc3a-2b6f-40e9-b4c8-56b3890da108">
+      <img
+        alt="Logótipo da Vue Mastery"
+        width="25px"
+        src="https://firebasestorage.googleapis.com/v0/b/vue-mastery.appspot.com/o/flamelink%2Fmedia%2Fvue-mastery-logo-small.png?alt=media&token=941fcc3a-2b6f-40e9-b4c8-56b3890da108">
     </span>
     <span class="description">
       Receba a <span>Vue Router Cheat Sheet</span> da Vue Mastery
