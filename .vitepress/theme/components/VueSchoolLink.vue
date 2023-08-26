@@ -5,6 +5,7 @@
       target="_blank"
       rel="sponsored noopener"
       :title="title"
+      class="no-icon"
     >
       <slot>{{ translations[site.lang]}}</slot>
     </a>
@@ -17,8 +18,6 @@ import { useData } from 'vitepress'
 const { site } = useData()
 
 const translations = {
-  'en-US': 'Watch a free video lesson on Vue School',
-  'zh-CN': '在 Vue School 上观看免费视频课程',
   'pt-PT': 'Assista uma Aula Gratuita sobre o Assunto na Vue School',
 }
 
