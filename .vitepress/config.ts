@@ -11,22 +11,12 @@ const productionHead: HeadConfig[] = [
   [
     'script',
     { 
-      //src: 'https://unpkg.com/thesemetrics@latest',
-      src: 'https://unpkg.com/thesemetrics@0.3.0/dist/browser.min.js',
-      // @ts-expect-error: vitepress bug
-      async: true,
+      src: 'https://unpkg.com/thesemetrics@latest',
+      //src: 'https://unpkg.com/thesemetrics@0.3.0/dist/browser.min.js',
+      async: '',
       type: 'text/javascript',
     },
-  ],
-  [
-    'script', 
-    { 
-      src: 'https://vueschool.io/banner.js?affiliate=vuerouter&type=top',
-      // @ts-expect-error: vitepress bug
-      async: true,
-      type: 'text/javascript'
-    }
-  ],
+  ]
 ]
 
 if (process.env.NETLIFY) {
@@ -88,6 +78,16 @@ const config = defineConfig({
     //['meta', { property: 'twitter:image', content: META_IMAGE }],
     ['meta', { property: 'twitter:description', content: META_DESCRIPTION }],
 
+    [
+      'script', 
+      { 
+        src: 'https://vueschool.io/banner.js?affiliate=vuerouter&type=top',
+        // @ts-expect-error: vitepress bug
+        async: true,
+        type: 'text/javascript'
+      }
+    ],
+
     ...(isProduction ? productionHead : []),
   ],
 
@@ -132,6 +132,10 @@ const config = defineConfig({
           { 
             text: 'Relatório de Mudança', 
             link: 'https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md'
+          },
+          {
+            text: 'Certificação de Vue.js',
+            link: 'https://certification.vuejs.org/?friend=VUEROUTER'
           }
         ]
       },
