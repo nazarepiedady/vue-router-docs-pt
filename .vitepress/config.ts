@@ -5,20 +5,6 @@ const META_TITLE = 'Vue Router'
 const META_IMAGE = null
 const META_DESCRIPTION = 'O roteador oficial para a Vue.js.'
 
-const isProduction = process.env.NETLIFY && process.env.CONTEXT === 'production'
-
-const productionHead: HeadConfig[] = [
-  [
-    'script',
-    { 
-      src: 'https://unpkg.com/thesemetrics@latest',
-      //src: 'https://unpkg.com/thesemetrics@0.3.0/dist/browser.min.js',
-      async: '',
-      type: 'text/javascript',
-    },
-  ]
-]
-
 if (process.env.NETLIFY) {
   console.log('Netlify build', process.env.CONTEXT)
 }
@@ -88,7 +74,6 @@ const config = defineConfig({
       }
     ],
 
-    ...(isProduction ? productionHead : []),
   ],
 
   locales: {
