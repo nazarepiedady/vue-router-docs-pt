@@ -11,10 +11,12 @@ const productionHead: HeadConfig[] = [
   [
     'script',
     { 
-      src: 'https://unpkg.com/thesemetrics@latest',
-      async: '',
-      type: 'text/javascript'
-    }
+      //src: 'https://unpkg.com/thesemetrics@latest',
+      src: 'https://unpkg.com/thesemetrics@0.3.0/dist/browser.min.js',
+      // @ts-expect-error: vitepress bug
+      async: true,
+      type: 'text/javascript',
+    },
   ],
   [
     'script', 
@@ -82,6 +84,8 @@ const config = defineConfig({
     ['meta', { property: 'og:description', content: META_DESCRIPTION }],
     ['meta', { property: 'twitter:url', content: META_URL }],
     ['meta', { property: 'twitter:title', content: META_TITLE }],
+    ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
+    //['meta', { property: 'twitter:image', content: META_IMAGE }],
     ['meta', { property: 'twitter:description', content: META_DESCRIPTION }],
 
     ...(isProduction ? productionHead : []),
